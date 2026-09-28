@@ -1,0 +1,15 @@
+{
+  "canonical": "מחברת_מכינה_ראשית.html",
+  "claude_instructions": "CLAUDE.md",
+  "slash_command": ".claude/commands/improve-notebook.md",
+  "references": [
+    "חוברת תשפו מעודכן חלק א.pdf",
+    "חוברת תרגילים בפיזיקה 2026.pdf",
+    "חוברת לימוד מקורית של Claude.html",
+    "תוכנית 5 ימים מקורית של Claude.html"
+  ],
+  "notes": [
+    "הקובץ 'קלוד.html' לא נכלל כי הוא זהה בינארית ל'מחברת לימוד_ 5 ימים.html' ולכן מיותר.",
+    "קבצי המקור נשמרים תחת references/ בלבד ולא אמורים להיערך."
+  ]
+}

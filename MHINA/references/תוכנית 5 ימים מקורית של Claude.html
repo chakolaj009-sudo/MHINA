@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>תוכנית 5 ימים: מתמטיקה ופיזיקה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#1B2333; --muted:#5B6578; --line:#DCE1E9;
+  --math:#1F6B57; --math-soft:#E4F1EC; --phys:#3848A6; --phys-soft:#E7EAF8; --trig:#8A3F7A; --trig-soft:#F5E8F2; --warn:#8A5A00; --warn-soft:#FFF3D6;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151E; --surface:#1A2030; --ink:#E8ECF4; --muted:#9BA6BB; --line:#2B3348;
+    --math:#66C7A8; --math-soft:#1B2D29; --phys:#93A0EE; --phys-soft:#212749; --trig:#E0A3D3; --trig-soft:#38233A; --warn:#F0C674; --warn-soft:#3A2F14;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151E; --surface:#1A2030; --ink:#E8ECF4; --muted:#9BA6BB; --line:#2B3348;
+  --math:#66C7A8; --math-soft:#1B2D29; --phys:#93A0EE; --phys-soft:#212749; --trig:#E0A3D3; --trig-soft:#38233A; --warn:#F0C674; --warn-soft:#3A2F14;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Heebo",Arial,"Helvetica Neue",sans-serif;font-size:17px;line-height:1.65}
+main{max-width:720px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 8px;font-weight:700}
+h2{font-size:1.25rem;margin:40px 0 12px;font-weight:700}
+h3{font-size:1.02rem;margin:0 0 6px;font-weight:700}
+p{margin:0 0 10px}
+.lead{color:var(--muted);margin-bottom:20px}
+.progress{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0 8px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:8px}
+.bar>span{display:block;height:100%;width:0;background:var(--math);transition:width .25s}
+.how{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:12px 16px;margin:14px 0}
+.how p{margin:0}
+details.day{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden}
+details.day>summary{list-style:none;cursor:pointer;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700;font-size:1.08rem}
+details.day>summary::-webkit-details-marker{display:none}
+details.day>summary:focus-visible,input:focus-visible{outline:3px solid var(--phys);outline-offset:2px}
+.count{font-weight:500;font-size:.9rem;color:var(--muted);white-space:nowrap}
+.body{padding:0 16px 16px}
+.block{border-inline-start:5px solid var(--math);background:var(--math-soft);border-radius:8px;padding:12px 14px;margin:10px 0}
+.block.phys{border-inline-start-color:var(--phys);background:var(--phys-soft)}
+.block.trig{border-inline-start-color:var(--trig);background:var(--trig-soft)}
+.block.trig .tag{color:var(--trig)}
+.block.trig .task input{accent-color:var(--trig)}
+.block .tag{font-weight:700;color:var(--math)}
+.block.phys .tag{color:var(--phys)}
+.focus{margin:2px 0 8px}
+.task{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line)}
+.task:first-of-type{border-top:0}
+.task input{margin-top:6px;width:20px;height:20px;flex:none;accent-color:var(--math)}
+.block.phys .task input{accent-color:var(--phys)}
+.task label{cursor:pointer;flex:1}
+.task .pg{color:var(--muted);font-size:.9rem;display:block}
+.task input:checked+label{opacity:.55;text-decoration:line-through}
+.formulas{margin:10px 0 4px;padding:10px 12px;border:1px dashed var(--line);border-radius:8px;background:var(--surface);font-size:.96rem}
+.formulas b{display:block;margin-bottom:4px}
+.extra{margin:8px 0}
+.extra details{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:6px 0}
+.extra summary{cursor:pointer;font-weight:700}
+.extra ol{margin:8px 0 0;padding-inline-start:22px}
+.extra li{margin-bottom:6px}
+.extra .ans{color:var(--muted);font-size:.93rem}
+.formulas ul{margin:0;padding-inline-start:20px}
+.min{margin-top:10px;font-size:.95rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.96rem}
+th,td{padding:9px 12px;text-align:start;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--bg);font-weight:700}
+tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto}
+ol.prio{padding-inline-start:22px}
+.note{color:var(--muted);font-size:.93rem}
+button.reset{margin-top:16px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.bar>span{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <h1>5 ימים: מתמטיקה ופיזיקה</h1>
+  <p class="lead">כל יום: מתמטיקה ופיזיקה, ובימים 3 ו-5 גם טריגונומטריה (עמ' 78–79). הפיזיקה בנויה לפי האתר של הקורס (קינמטיקה על ישר, עד שוות תאוצה ג נושא 18), ועוד חוקי ניוטון וקצת תרגילים מהחוברת. בסך הכול בערך שעתיים עד שעתיים וחצי ביום. בכל נושא מהאתר: קוראים את הסיכום ופותרים את התרגילים המסומנים.</p>
+
+  <div class="progress" aria-live="polite">
+    <div id="ptext">טוען…</div>
+    <div class="bar"><span id="pbar"></span></div>
+  </div>
+
+  <div class="how">
+    <p><b>חוברת הלימוד:</b> <a href="https://claude.ai/artifact/4bUg7gtjvLd3pTu2LNmZA8" target="_blank" rel="noopener">לכל נושא בתוכנית יש שם הסבר, דוגמאות פתורות ותרגילים עם תשובות</a>.</p>
+    <p><b>איך עובדים:</b> פותחים את היום, קוראים את ההסבר בחוברת (או מבקשים ממני להסביר), ורק אז מתרגלים. מסמנים ✓ על כל תרגיל שסיימת. אם תרגיל לא יוצא אחרי 10 דקות, מסתכלים בתשובה שבסוף התרגיל, מבינים, וחוזרים עליו למחרת.</p>
+  </div>
+
+  <div id="days"></div>
+
+  <h2>כל הנושאים בתוכנית</h2>
+  <h3>מתמטיקה (מהחוברת, עד עמוד 31)</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>נושא</th><th>עמודים</th><th>יום</th></tr>
+    <tr><td>מבוא: סימנים מתמטיים</td><td>3</td><td>1</td></tr>
+    <tr><td>ארבע פעולות חשבון ושברים</td><td>4–6</td><td>1</td></tr>
+    <tr><td>חזקות ושורשים</td><td>7–9</td><td>1</td></tr>
+    <tr><td>פתיחת סוגריים ונוסחאות כפל מקוצר</td><td>10–12</td><td>2</td></tr>
+    <tr><td>פירוק לגורמים</td><td>13–16</td><td>2</td></tr>
+    <tr><td>שברים אלגבריים (צמצום, כפל, חילוק, חיבור וחיסור)</td><td>17–19</td><td>3</td></tr>
+    <tr><td>משוואות עם נעלם אחד (כולל עם שברים)</td><td>21–22</td><td>3</td></tr>
+    <tr><td>משוואות ריבועיות</td><td>23–25</td><td>4</td></tr>
+    <tr><td>חילוק פולינומים</td><td>20</td><td>4</td></tr>
+    <tr><td>משוואות פולינומיות (מעלה שלישית ומעלה)</td><td>26–27</td><td>4</td></tr>
+    <tr><td>משוואות רציונליות (עם שברים אלגבריים)</td><td>28–29</td><td>5</td></tr>
+    <tr><td>משוואות אי-רציונליות (עם שורשים)</td><td>30–31</td><td>5</td></tr>
+  </table>
+  </div>
+
+  <h3 style="margin-top:22px">טריגונומטריה (חוברת נפרדת)</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>נושא</th><th>עמוד</th><th>יום</th></tr>
+    <tr><td>המעגל הטריגונומטרי ונוסחאות 90°, 180°, 270°, 360°</td><td>78</td><td>3</td></tr>
+    <tr><td>זהויות טריגונומטריות: הנוסחאות וההוכחות הראשונות</td><td>79</td><td>5</td></tr>
+  </table>
+  </div>
+
+  <h3 style="margin-top:22px">פיזיקה (מכניקה)</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>נושא (לפי האתר של הקורס)</th><th>תרגילים</th><th>יום</th></tr>
+    <tr><td>וקטורים: פירוק, חיבור וחיסור</td><td>5 תרגילים בעמוד התוכנית</td><td>1</td></tr>
+    <tr><td>שוות מהירות, נושאים 1–5</td><td>1.1, 2.1, 3.1, 4.1, 5.1</td><td>1</td></tr>
+    <tr><td>שוות מהירות, נושאים 6–7</td><td>6.1, 7.1</td><td>2</td></tr>
+    <tr><td>ש.מ למקוטעין</td><td>2.1, 3.1</td><td>2</td></tr>
+    <tr><td>שוות תאוצה א, נושאים 2–4 ו-6</td><td>2.1, 3.1, 4.1, 6.1</td><td>2</td></tr>
+    <tr><td>שוות תאוצה א, סיום</td><td>4.2, 5.1, 6.2</td><td>3</td></tr>
+    <tr><td>שוות תאוצה ב, נושאים 8–12</td><td>8.1, 8.2, 9.1, 10.1, 10.2, 11.1, 12.1</td><td>3</td></tr>
+    <tr><td>שוות תאוצה ג, נושאים 13–16</td><td>13.1, 13.2, 14.1, 15.1, 16.1, 16.2</td><td>4</td></tr>
+    <tr><td>חוק ראשון</td><td>87 א, ב1 (חוברת)</td><td>4</td></tr>
+    <tr><td>שוות תאוצה ג, נושאים 17–18</td><td>17.1, 17.2, 18.1, 18.2</td><td>5</td></tr>
+    <tr><td>חוק שני</td><td>87 ב2–ב3, 92, 4 (חוברת)</td><td>5</td></tr>
+    <tr><td>לא נכלל בחומר לפי הגיליון: חוק שלישי, זריקה אנכית, ושוות תאוצה ג נושאים 19–21</td><td>אפשר לדלג</td><td>—</td></tr>
+  </table>
+  </div>
+
+  <h2>אם נגמר הזמן: מה קודם</h2>
+  <ol class="prio">
+    <li>משוואות ריבועיות (עמ' 23–25). צריך אותן גם בפיזיקה, במפגשים בין גופים.</li>
+    <li>גרפי מהירות–זמן: שיפוע הוא תאוצה, שטח הוא העתק.</li>
+    <li>הנוסחאות ב-עמ' 79 (sin² + cos² = 1 ושתי הזהויות עם tan ו-cot) והכלל של המעגל. הן חוזרות בכל המשך הטריגונומטריה.</li>
+    <li>ארבע נוסחאות התנועה עם תאוצה קבועה.</li>
+    <li>חוק שני של ניוטון: סכום הכוחות שווה מסה כפול תאוצה.</li>
+    <li>מה שאפשר לדלג עליו ראשון: חילוק פולינומים (עמ' 20), משוואות פולינומיות (26–27) ואי-רציונליות (30–31).</li>
+  </ol>
+
+  <p class="note">בחוברת הפיזיקה אין תרגילי חימום. כל תרגיל בנוי מכמה סעיפים והם עולים בקושי, ולכן בכל תרגיל מתחילים מהסעיפים הראשונים ומשאירים את האחרונים לסוף. אחרי כל תרגיל מסתכלים בתשובות שבתחתית העמוד ובודקים שיצא אותו מספר.</p>
+
+  <p class="note">מספרי העמודים בחוברת המתמטיקה הם המספרים המודפסים על העמוד. בקובץ ה-PDF העמוד נמצא בדרך כלל אחד לפני. בחוברת הפיזיקה המספר המודפס זהה למספר בקובץ. החוברת מכילה תרגילים בלי הסברים, ולכן מומלץ ללמוד כל נושא קודם ורק אז לתרגל.</p>
+
+  <button class="reset" id="reset" type="button">איפוס הסימונים</button>
+</main>
+
+<script>
+const DAYS = [
+  {
+    title: "יום 1: יסודות בחשבון, וקטורים ושוות מהירות",
+    math: {
+      focus: "חשבון, שברים, חזקות ושורשים (עמ' 3–9). זה החומר הקל, וכדאי לסיים אותו מהר.",
+      tasks: [
+        ["עמ' 3: לקרוא את מבוא הסימנים", "5 דקות"],
+        ["עמ' 4–6: חשבון ושברים", "5 תרגילים מכל סוג: צמצום, חיבור וכפל"],
+        ["עמ' 7–9: חזקות ושורשים", "ללמוד את חוקי החזקות, ואז 6 תרגילים"]
+      ]
+    },
+    phys: {
+      focus: "וקטורים, ואז <a href=\"https://sites.google.com/view/kinematikayashar/שוות-מהירות\" target=\"_blank\" rel=\"noopener\">שוות מהירות באתר הקורס</a> (נושאים 1–5). בכל נושא קוראים את הסיכום ופותרים את התרגיל שלו.",
+      formulas: [
+        "וקטור הוא גודל עם כיוון: העתק, מהירות, תאוצה וכוח. בתנועה על קו ישר הכיוון הוא סימן (ימינה +, שמאלה −)",
+        "העתק הוא וקטור (מהתחלה לסוף), ודרך היא אורך המסלול כולו",
+        "פירוק וקטור: Vx = V·cosθ ו-Vy = V·sinθ, כשהזווית θ נמדדת מהציר האופקי",
+        "חיבור וקטורים: מחברים רכיב עם רכיב. הגודל V = √(Vx² + Vy²), והזווית לפי tanθ = Vy ÷ Vx",
+        "חיסור וקטורים: מחסרים רכיב מרכיב (למשל בשינוי מהירות: v₂ − v₁)",
+        "מהירות = שינוי המקום ÷ הזמן. בתנועה במהירות קבועה: x = x₀ + v·t",
+        "בגרף מקום–זמן השיפוע הוא המהירות"
+      ],
+      extra: '<details><summary>5 תרגילי וקטורים (עם תשובות)</summary><ol><li>וקטור באורך 10 בזווית 30° מעל האופק. מצא את הרכיב האופקי והאנכי.</li><li>לוקטור יש רכיב אופקי 6 ורכיב אנכי 8. מצא את גודלו ואת הזווית שלו מהאופק.</li><li>A הוא 3 ימינה ו-4 למעלה, ו-B הוא 5 ימינה ו-1 למטה. מצא את A + B (גודל וזווית).</li><li>הולכים 3 מטר מזרחה ואז 4 מטר צפונה. מה ההעתק (גודל וזווית מהמזרח) ומה הדרך שעברת?</li><li>מכונית נוסעת ב-20 מ\'/ש מזרחה ואז ב-20 מ\'/ש צפונה. מה שינוי המהירות (גודל וכיוון)?</li></ol><p class="ans">תשובות: (1) רכיב אופקי 8.66 ורכיב אנכי 5. (2) גודל 10, זווית 53°. (3) רכיבים (8, 3), גודל 8.54, זווית 20.6°. (4) העתק 5 מטר בזווית 53° צפונית למזרח, ודרך 7 מטר. (5) רכיבים (−20, +20), גודל 28.3 מ\'/ש, לכיוון צפון-מערב.</p></details>',
+      tasks: [
+        ["וקטורים: לקרוא את הכללים ולפתור את 5 התרגילים", "רק אחרי שפתרת, לפתוח את התשובות"],
+        ["שוות מהירות: תרגילים 1.1 ו-2.1", "מה זה מהירות, ותנועה במהירות קבועה"],
+        ["שוות מהירות: תרגילים 3.1 ו-4.1", "משוואת מקום–זמן ובניית גרף מקום"],
+        ["שוות מהירות: תרגיל 5.1", "קריאת גרף מקום"]
+      ]
+    },
+    min: "ביום עמוס: במתמטיקה רק עמ' 7–9, ובפיזיקה רק וקטורים ותרגילים 1.1 ו-2.1 מהאתר."
+  },
+  {
+    title: "יום 2: אלגברה בסיסית, מקוטעין ותאוצה",
+    math: {
+      focus: "נוסחאות כפל מקוצר ופירוק לגורמים (עמ' 10–16). זה הבסיס לכל המשוואות הבאות.",
+      tasks: [
+        ["עמ' 10–12: פתיחת סוגריים וכפל מקוצר", "לזכור את שלוש הנוסחאות, ואז 6 תרגילים"],
+        ["עמ' 13–16: פירוק לגורמים", "גורם משותף, לפי קבוצות ולפי נוסחאות. 6 תרגילים"]
+      ]
+    },
+    phys: {
+      focus: "סיום שוות מהירות, <a href=\"https://sites.google.com/view/kinematikayashar/ש-מ-למקוטעין\" target=\"_blank\" rel=\"noopener\">ש.מ למקוטעין</a> ו<a href=\"https://sites.google.com/view/kinematikayashar/שוות-תאוצה-א\" target=\"_blank\" rel=\"noopener\">שוות תאוצה א</a> (נושאים 1–6).",
+      formulas: [
+        "מהירות ממוצעת = ההעתק הכולל ÷ הזמן הכולל (לא ממוצע של מהירויות)",
+        "תאוצה = שינוי המהירות ÷ הזמן",
+        "אם התאוצה בכיוון המהירות, המהירות גדלה. אם בכיוון ההפוך, היא קטנה",
+        "תאוצה קבועה: v = v₀ + a·t",
+        "x = x₀ + v₀·t + ½·a·t²",
+        "בגרף מהירות–זמן: השיפוע הוא התאוצה, והשטח הוא ההעתק"
+      ],
+      tasks: [
+        ["שוות מהירות: תרגילים 6.1 ו-7.1", "שני גופים, וקריאת גרף מהירות"],
+        ["ש.מ למקוטעין: תרגילים 2.1 ו-3.1", "העתק ודרך, ומהירות ממוצעת"],
+        ["שוות תאוצה א: תרגילים 2.1 ו-3.1", "כיוון התאוצה, ותאוצה ומהירות"],
+        ["שוות תאוצה א: תרגילים 4.1 ו-6.1", "תאוצה ומיקום, וקריאת גרף מהירות. אם יש כוח: לקרוא את ניתוח המעבדה (נושא 7)"]
+      ]
+    },
+    min: "ביום עמוס: במתמטיקה רק עמ' 13–16, ובפיזיקה רק תרגילים 2.1 ו-3.1 של שוות תאוצה א."
+  },
+  {
+    title: "יום 3: שברים אלגבריים, משוואות ושוות תאוצה ב",
+    math: {
+      focus: "שברים אלגבריים ומשוואות עם נעלם אחד (עמ' 17–19 ו-21–22).",
+      tasks: [
+        ["עמ' 17–19: שברים אלגבריים", "צמצום, כפל וחילוק, חיבור וחיסור. 6 תרגילים"],
+        ["עמ' 21–22: משוואות עם נעלם אחד", "כולל משוואות עם שברים. 6 תרגילים"]
+      ]
+    },
+    phys: {
+      focus: "סיום שוות תאוצה א ו<a href=\"https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ב\" target=\"_blank\" rel=\"noopener\">שוות תאוצה ב</a> (נושאים 8–12).",
+      formulas: [
+        "שטח מתחת לגרף מהירות–זמן = העתק. שיפוע בגרף מהירות–זמן = תאוצה",
+        "שטח מתחת לגרף תאוצה–זמן = שינוי המהירות",
+        "שתי משוואות: v = v₀ + a·t ו-x = x₀ + v₀·t + ½·a·t²",
+        "כשיש שני נעלמים: מבודדים נעלם אחד מהמשוואה הפשוטה ומציבים בשנייה"
+      ],
+      tasks: [
+        ["שוות תאוצה א: תרגילים 4.2, 5.1 ו-6.2", "תאוצה ומיקום, ובניית גרף מהירות"],
+        ["שוות תאוצה ב: תרגילים 8.1 ו-8.2", "תיאור מילולי. לשניהם יש פתרון באתר, כדאי להשוות"],
+        ["שוות תאוצה ב: תרגילים 9.1, 10.1 ו-10.2", "גרף תאוצה וגרף מהירות–זמן"],
+        ["שוות תאוצה ב: תרגילים 11.1 ו-12.1", "מקום–זמן ושתי משוואות. אם יש כוח: עוד תרגילים בנושאים 10 ו-12"]
+      ]
+    },
+    trig: {
+      focus: "המעגל הטריגונומטרי ונוסחאות הזוויות (עמ' 78). קודם מבינים את המעגל, ואז משתמשים בכלל במקום לשנן את הטבלה.",
+      formulas: [
+        "על המעגל: sin הוא הגובה (ציר y), cos הוא המרחק לצד (ציר x), ו-tan = sin ÷ cos",
+        "סימנים לפי רבע: ברבע 1 הכול חיובי, ברבע 2 רק sin, ברבע 3 רק tan ו-cot, ברבע 4 רק cos",
+        "בנוסחאות עם 90° ו-270° הפונקציה מתחלפת (sin ↔ cos, tan ↔ cot). בנוסחאות עם 180° ו-360° היא נשארת",
+        "הסימן נקבע לפי הרבע של הזווית החדשה, כאילו α היא זווית חדה"
+      ],
+      tasks: [
+        ["לצייר בעצמך מעגל עם הרבעים והסימנים", "בלי להסתכל, עד שזה יוצא נכון"],
+        ["עמ' 78: לבדוק 6 נוסחאות מהטבלה בעזרת הכלל", "למשל sin(180°+α), cos(90°+α), tan(270°−α). לא לשנן את כל הטבלה"]
+      ]
+    },
+    min: "ביום עמוס: במתמטיקה רק עמ' 21–22, בפיזיקה רק תרגילים 8.1 ו-10.1, ובטריגונומטריה רק לצייר את המעגל."
+  },
+  {
+    title: "יום 4: משוואות ריבועיות, שוות תאוצה ג וחוק ראשון",
+    math: {
+      focus: "היום הכי חשוב במתמטיקה: משוואות ריבועיות (עמ' 23–25). את השאר עושים רק אם נשאר כוח.",
+      tasks: [
+        ["עמ' 23–25: משוואות ריבועיות", "נוסחת השורשים ופירוק לגורמים. 8 תרגילים"],
+        ["עמ' 20: חילוק פולינומים", "אם יש כוח: לקרוא את הדוגמאות ולעשות 2 תרגילים"],
+        ["עמ' 26–27: משוואות פולינומיות", "אם יש כוח: 3 תרגילים. אפשר להעביר למחר"]
+      ]
+    },
+    phys: {
+      focus: "<a href=\"https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג\" target=\"_blank\" rel=\"noopener\">שוות תאוצה ג</a> (נושאים 13–16), וחוק ראשון.",
+      formulas: [
+        "נוסחה בלי זמן: v² = v₀² + 2·a·(x − x₀)",
+        "שיפוע בגרף מקום–זמן הוא המהירות (בכל רגע)",
+        "שטח בגרף מהירות–זמן הוא ההעתק",
+        "חוק ראשון: אם סכום הכוחות הוא אפס, המהירות קבועה (גם אם היא אפס)"
+      ],
+      tasks: [
+        ["שוות תאוצה ג: תרגילים 13.1 ו-13.2", "מהירות ומקום בלי זמן. אם יש כוח: 13.3–13.5"],
+        ["שוות תאוצה ג: תרגילים 14.1 ו-15.1", "בניית גרף מקום, ושיפוע גרף מקום"],
+        ["שוות תאוצה ג: תרגילים 16.1 ו-16.2", "שטח גרף מהירות. אם יש כוח: 16.3–16.4"],
+        ["חוק ראשון: תרגיל 87 בחוברת, סעיפים א ו-ב1", "עמ' 64: כוחות על גוף שתלוי במעלית. במהירות קבועה סכום הכוחות הוא אפס"]
+      ]
+    },
+    min: "ביום עמוס: במתמטיקה רק עמ' 23–25, ובפיזיקה רק תרגילים 13.1 ו-14.1."
+  },
+  {
+    title: "יום 5: משוואות מתקדמות, חוק שני וחזרה",
+    math: {
+      focus: "משוואות עם שברים ועם שורשים (עמ' 28–31), ואז חזרה.",
+      tasks: [
+        ["עמ' 28–29: משוואות רציונליות", "5 תרגילים. תמיד לבדוק שהפתרון לא מאפס מכנה"],
+        ["עמ' 30–31: משוואות אי-רציונליות", "5 תרגילים. תמיד לבדוק את הפתרון במשוואה המקורית"],
+        ["חזרה", "לפתור מחדש משוואה אחת מכל סוג בלי להסתכל בפתרון"]
+      ]
+    },
+    phys: {
+      focus: "סיום שוות תאוצה ג (נושאים 17–18), חוק שני, וחזרה. חלק ג חייב להסתיים עד נושא 18.",
+      formulas: [
+        "שלוש הנוסחאות: v = v₀ + a·t, x = x₀ + v₀·t + ½·a·t², v² = v₀² + 2·a·(x − x₀)",
+        "בוחרים נוסחה לפי הנעלם שלא נתון ולא מבקשים",
+        "חוק שני: סכום הכוחות = מסה × תאוצה (בכיוון החיובי שבחרת)",
+        "משקל: W = m·g, ובחוברת g = 10. מעלית, כשלמעלה חיובי: T − m·g = m·a"
+      ],
+      tasks: [
+        ["שוות תאוצה ג: תרגילים 17.1 ו-17.2", "שלושה גרפים. לשניהם יש פתרון באתר"],
+        ["שוות תאוצה ג: תרגילים 18.1 ו-18.2", "שלוש משוואות. לשניהם יש תשובות באתר. אם יש כוח: 18.3–18.5"],
+        ["חוק שני: תרגיל 87 בחוברת, סעיפים ב2–ב3", "עמ' 64: מעלית שמאיצה למעלה ולמטה"],
+        ["חוק שני: תרגילים 92 (סעיף א) ו-4 (סעיפים א–ג) בחוברת", "עמ' 68 ו-4: בכל שלב מחשבים סכום כוחות ואז תאוצה"],
+        ["חזרה", "לפתור מחדש תרגיל אחד מכל נושא בלי להסתכל בפתרון"]
+      ]
+    },
+    trig: {
+      focus: "זהויות טריגונומטריות (עמ' 79). להוכיח זהות פירושו להתחיל מצד אחד ולהגיע לצד השני בעזרת הנוסחאות.",
+      formulas: [
+        "sin²α + cos²α = 1",
+        "tanα = sinα ÷ cosα,  cotα = cosα ÷ sinα,  tanα · cotα = 1",
+        "1 + tan²α = 1 ÷ cos²α,  1 + cot²α = 1 ÷ sin²α",
+        "sin(90°−α) = cosα,  cos(90°−α) = sinα",
+        "טיפ להוכחה: כשיש tan או cot, להפוך הכול ל-sin ו-cos"
+      ],
+      tasks: [
+        ["תרגילים 1–3", "הוכחות קצרות. להתחיל מהצד הפשוט פחות"],
+        ["תרגילים 6–7", "ריבוע של סכום או הפרש של sin ו-cos"],
+        ["תרגילים 9–10 ו-12–13", "שימוש ב-sin² + cos² = 1"],
+        ["תרגילים 14–17", "אם יש כוח. קשים יותר"]
+      ]
+    },
+    min: "ביום עמוס: במתמטיקה רק עמ' 28–31 בלי חזרה, בפיזיקה תרגילים 17.1, 18.1 ו-87, ובטריגונומטריה רק תרגילים 1–3 ו-6–7."
+  }
+];
+
+const KEY = "plan-progress-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+function el(tag, cls, html){ const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; }
+
+function taskRow(id, title, note){
+  const row = el("div", "task");
+  const cb = el("input"); cb.type = "checkbox"; cb.id = id; cb.checked = !!state[id];
+  cb.addEventListener("change", () => { state[id] = cb.checked; save(); updateCounts(); });
+  const lb = el("label"); lb.htmlFor = id;
+  lb.innerHTML = title + (note ? '<span class="pg">' + note + '</span>' : "");
+  row.append(cb, lb);
+  return row;
+}
+
+function block(kind, label, data, dayIdx){
+  const b = el("div", "block" + (kind === "p" ? " phys" : kind === "t" ? " trig" : ""));
+  b.append(el("div", "tag", label));
+  b.append(el("p", "focus", data.focus));
+  if (data.formulas){
+    const f = el("div", "formulas");
+    f.append(el("b", null, "מה צריך לזכור"));
+    const ul = el("ul");
+    data.formulas.forEach(t => ul.append(el("li", null, t)));
+    f.append(ul); b.append(f);
+  }
+  if (data.extra) b.append(el("div", "extra", data.extra));
+  data.tasks.forEach((t, i) => b.append(taskRow("d" + dayIdx + kind + i, t[0], t[1])));
+  return b;
+}
+
+const host = document.getElementById("days");
+DAYS.forEach((d, i) => {
+  const det = el("details", "day");
+  if (i === 0) det.open = true;
+  const sum = el("summary");
+  sum.append(el("span", null, d.title), el("span", "count"));
+  sum.lastChild.dataset.day = i;
+  det.append(sum);
+  const body = el("div", "body");
+  body.append(block("m", "מתמטיקה", d.math, i));
+  body.append(block("p", "פיזיקה", d.phys, i));
+  if (d.trig) body.append(block("t", "טריגונומטריה", d.trig, i));
+  body.append(el("p", "min", "<b>" + "אם היום עמוס:" + "</b> " + d.min.replace(/^ביום עמוס:\s*/, "")));
+  det.append(body);
+  host.append(det);
+});
+
+function updateCounts(){
+  let total = 0, done = 0;
+  DAYS.forEach((d, i) => {
+    let t = 0, c = 0;
+    ["m", "p", "t"].forEach(k => {
+      const arr = k === "m" ? d.math.tasks : k === "p" ? d.phys.tasks : (d.trig ? d.trig.tasks : []);
+      arr.forEach((_, j) => { t++; if (state["d" + i + k + j]) c++; });
+    });
+    total += t; done += c;
+    const span = document.querySelector('.count[data-day="' + i + '"]');
+    if (span) span.textContent = c + " מתוך " + t;
+  });
+  document.getElementById("ptext").textContent = "סימנת " + done + " מתוך " + total + " משימות";
+  document.getElementById("pbar").style.width = (total ? (done / total * 100) : 0) + "%";
+}
+updateCounts();
+
+document.getElementById("reset").addEventListener("click", () => {
+  if (!confirm("לאפס את כל הסימונים?")) return;
+  state = {}; save();
+  document.querySelectorAll(".task input").forEach(cb => cb.checked = false);
+  updateCounts();
+});
+</script>
+</body>
+</html>

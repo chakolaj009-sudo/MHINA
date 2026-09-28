@@ -123,6 +123,54 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 .diagnostic li{margin:8px 0}
 .fastpath{background:var(--warn-soft);color:var(--ink);border-radius:12px;padding:12px 14px;margin:12px 0}
 .fastpath b{color:var(--warn)}
+
+/* ===== v2: source-aware lightweight study layer ===== */
+.source-map{
+  margin:10px 0 14px;padding:10px 12px;border-radius:10px;
+  border:1px solid var(--line);background:var(--bg);font-size:.94rem
+}
+.source-map b{display:block;margin-bottom:4px}
+.source-map ul{margin:4px 0 0;padding-inline-start:20px}
+.quickreview{
+  margin:14px 0;border:1px solid var(--line);border-radius:12px;
+  background:var(--surface);overflow:hidden
+}
+.quickreview>summary{
+  cursor:pointer;padding:12px 14px;font-weight:700;
+  background:var(--bg);list-style:none
+}
+.quickreview>summary::-webkit-details-marker{display:none}
+.quickreview .qrbody{padding:12px 14px}
+.quickreview h4{margin:12px 0 6px;font-size:1rem}
+.quickreview ul,.quickreview ol{margin:5px 0;padding-inline-start:22px}
+.quickreview li{margin:4px 0}
+.quickreview .connect{
+  margin:8px 0;padding:9px 11px;border-inline-start:4px solid var(--phys);
+  background:var(--phys-soft);border-radius:8px
+}
+.quickreview .memory{
+  margin:8px 0;padding:9px 11px;border-inline-start:4px solid var(--math);
+  background:var(--math-soft);border-radius:8px
+}
+.quickreview .mini-q{
+  margin:7px 0;padding:9px 11px;border:1px solid var(--line);border-radius:8px
+}
+.quickreview .mini-q details{margin-top:5px}
+.quickreview .summary-ex{
+  margin:10px 0;padding:10px 12px;border:1px dashed var(--math);
+  border-radius:9px;background:var(--bg)
+}
+.study-visual{
+  display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:8px 0 12px;
+  padding:9px;border-radius:9px;background:var(--bg);border:1px solid var(--line)
+}
+.study-visual .step{
+  padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--surface)
+}
+.study-visual .arrow{font-weight:700;color:var(--muted)}
+.source-note{
+  margin:12px 0;padding:11px 13px;border-radius:10px;background:var(--math-soft)
+}
 </style>
 </head>
 <body>
@@ -139,7 +187,9 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 </nav>
 </div>
 <h1>מחברת לימוד: 5 ימים</h1>
-<p class="lead">מסמך אחד לכל החומר: מתמטיקה (עד עמ' 31), טריגונומטריה (עמ' 78–79) ופיזיקה (קינמטיקה על ישר עד שוות תאוצה ג נושא 18, וחוק ראשון ושני).</p>
+<p class="lead">מסמך אחד לכל החומר: מתמטיקה (עד עמ' 31), טריגונומטריה (עמ' 78–79) ופיזיקה (קינמטיקה על ישר עד שוות תאוצה ג נושא 18, וחוק ראשון ושני).</p><div class="source-note"><b>עדכון v2 — מותאם לחוברת המתמטיקה תשפ"ו</b>
+<p>הנושאים, סדרם ומיפוי העמודים במתמטיקה נבדקו מול <b>חוברת תשפ"ו מעודכן חלק א</b>.
+        מספרי העמודים כאן הם המספרים המודפסים בחוברת. ההסברים במחברת נשארים פשוטים יותר בכוונה — החוברת היא מקור התרגול, והמחברת היא מקור ההבנה.</p></div>
 <div class="intro">
 <b>איך עובדים עם כל נושא</b>
 <ul>
@@ -197,7 +247,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <section class="day" id="day1"><header class="dayhead"><h1>יום 1: יסודות בחשבון, וקטורים ושוות מהירות</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק חזקות ושורשים (עמ' 7–9), ובפיזיקה רק וקטורים ותרגילים 1.1 ו-2.1 מהאתר.</p><p class="daycnt"><span data-daycount="1"></span></p></header>
 <section class="topic math" id="m1">
 <h2>חשבון ושברים</h2>
-<p class="meta">מתמטיקה · עמ' 3–6 בחוברת · יום 1</p>
+<p class="meta">מתמטיקה · עמ' 3–6 בחוברת · יום 1</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 3–6: סימנים מתמטיים בסיסיים; פעולות בשלמים; צמצום שברים; שברים מדומים/מעורבים; כפל, חילוק, חיבור וחיסור שברים; סדר פעולות בשברים.</p></div>
 <h3>1. הסבר</h3>
 <p><b>סדר הפעולות:</b> קודם סוגריים, אחר כך חזקות, אחר כך כפל וחילוק (משמאל לימין), ובסוף חיבור וחיסור.</p>
 <p><b>שברים:</b> כדי לחבר או לחסר צריך מכנה משותף. כדי לכפול: מונה במונה ומכנה במכנה. כדי לחלק: הופכים את השבר השני וכופלים.</p>
@@ -239,7 +289,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="1" data-topic="m1" id="c-m1-11" type="checkbox"/><label for="c-m1-11"><span class="m" dir="ltr">−3 − (−5) + 2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−3 + 5 + 2 = 4</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 12" data-day="1" data-topic="m1" id="c-m1-12" type="checkbox"/><label for="c-m1-12"><span class="m" dir="ltr">(−2) · (−3) · (−1)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−6</span> (מספר אי-זוגי של מינוסים נותן מינוס)</p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">מכנה משותף</span><span class="arrow">→</span><span class="step">פעולה במונים</span><span class="arrow">→</span><span class="step">צמצום</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>השברים והסימנים יחזרו כמעט בכל נושא הבא: חזקות, פתיחת סוגריים, משוואות וגם הצבות בפיזיקה.</div><h4>5 דברים לזכור</h4><ol><li>בסדר פעולות: סוגריים → חזקות → כפל/חילוק → חיבור/חיסור.</li><li>בחיבור/חיסור שברים צריך אותה יחידת חלוקה — כלומר מכנה משותף.</li><li>בחילוק שברים הופכים רק את השבר השני ואז כופלים.</li><li>מינוס לפני סוגריים משנה את הסימן של כל האיברים שבתוכם.</li><li>אם טעות בסימן או בשבר חוזרת — מתקנים אותה לפני שממשיכים לאלגברה.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> תחשוב על שבר כמו חתיכות של פיצה: אי אפשר לחבר חצאים ושלישים לפני שמדברים באותו גודל חתיכה.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>מה קודם ב־ 3 + 4·5?</b><details><summary>תשובה</summary><p>הכפל. התוצאה היא 23.</p></details></div><div class="mini-q"><b>נכון/לא נכון: 1/2 + 1/3 = 2/5.</b><details><summary>תשובה</summary><p>לא נכון. צריך מכנה משותף: 5/6.</p></details></div><div class="mini-q"><b>מה עושה מינוס לפני סוגריים ב־ −(x−3)?</b><details><summary>תשובה</summary><p>הוא כופל את כל הסוגריים ב־−1: מתקבל −x+3.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> חשב: 2 − (3/4 ÷ 3/8) + 1/2.<details><summary>פתרון</summary><p>3/4 ÷ 3/8 = 2. לכן 2−2+1/2 = 1/2.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
 <li class="task"><input aria-label="סימון" data-day="1" data-topic="m1" id="c-m1-c1" type="checkbox"/><label for="c-m1-c1"><span class="tt">עמ' 4, סעיף 1 (פעולות חשבון)</span><span class="nt">תרגילים 1–8 ו-13–16</span></label></li>
 <li class="task"><input aria-label="סימון" data-day="1" data-topic="m1" id="c-m1-c2" type="checkbox"/><label for="c-m1-c2"><span class="tt">עמ' 4, סעיף 2א (צמצום שברים)</span><span class="nt">תרגילים 1–4</span></label></li>
@@ -252,7 +302,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 </section>
 <section class="topic math" id="m2">
 <h2>חזקות ושורשים</h2>
-<p class="meta">מתמטיקה · עמ' 7–9 בחוברת · יום 1</p>
+<p class="meta">מתמטיקה · עמ' 7–9 בחוברת · יום 1</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 7–9: חוקי חזקות, חזקה אפס ושלילית, חזקה של חזקה, בסיס שהוא מכפלה/מנה, הגדרת שורש מסדר n וקשר בין שורש לחזקה רציונלית.</p></div>
 <h3>1. הסבר</h3>
 <p>חזקה היא כפל חוזר: <span class="m" dir="ltr">2³ = 2 · 2 · 2 = 8</span>. בכפל חזקות עם אותו בסיס <b>מחברים</b> מעריכים, בחילוק <b>מחסרים</b>, ובחזקה של חזקה <b>כופלים</b>.</p>
 <p>חזקה שלילית היא ההופכי: <span class="m" dir="ltr">a⁻ⁿ = 1/aⁿ</span>. כל מספר (שונה מאפס) בחזקת 0 שווה 1.</p>
@@ -261,7 +311,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><span class="m" dir="ltr">aᵐ · aⁿ = aᵐ⁺ⁿ</span> <span class="m" dir="ltr">aᵐ : aⁿ = aᵐ⁻ⁿ</span> <span class="m" dir="ltr">(aᵐ)ⁿ = aᵐⁿ</span></li>
 <li><span class="m" dir="ltr">(ab)ⁿ = aⁿbⁿ</span> <span class="m" dir="ltr">a⁰ = 1</span> <span class="m" dir="ltr">a⁻ⁿ = 1/aⁿ</span></li>
 <li><span class="m" dir="ltr">√(ab) = √a · √b</span> <span class="m" dir="ltr">√(a²) = |a|</span></li>
-</ul></div>
+<li><span class="m" dir="ltr">a^(m/n) = ⁿ√(a^m)</span> — קשר בין חזקה רציונלית לשורש (בתחום המתאים)</li></ul></div>
 <p class="mistake"><b>טעות נפוצה:</b> <span class="m" dir="ltr">(a + b)² </span> אינו <span class="m" dir="ltr">a² + b²</span>. חוקי החזקות עובדים על כפל וחילוק, לא על חיבור.</p>
 <div class="bridge mathbridge">
 <h3>תוספת חשובה: סוגריים משנים הכול בחזקות</h3>
@@ -294,7 +344,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="1" data-topic="m2" id="c-m2-11" type="checkbox"/><label for="c-m2-11"><span class="m" dir="ltr">27^(1/3)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3</span> (שורש שלישי של 27)</p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 12" data-day="1" data-topic="m2" id="c-m2-12" type="checkbox"/><label for="c-m2-12"><span class="m" dir="ltr">(√5 + 2)(√5 − 2)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5 − 4 = 1</span> (כפל מקוצר)</p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">שורש n</span><span class="arrow">⇄</span><span class="step">חזקה 1/n</span><span class="arrow">→</span><span class="step">חזקה m/n</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>בחזקות ושורשים משתמשים מיד בפתיחת סוגריים, פירוק לגורמים, משוואות ריבועיות ומשוואות עם שורשים.</div><h4>5 דברים לזכור</h4><ol><li>אותו בסיס בכפל → מחברים מעריכים; בחילוק → מחסרים.</li><li>חזקה של חזקה → כופלים מעריכים.</li><li>חזקה שלילית אינה מספר שלילי — היא אומרת לקחת הופכי.</li><li>שורש מסדר זוגי במספרים ממשיים דורש ביטוי לא־שלילי.</li><li>שורש וחזקה רציונלית הן שתי דרכים לכתוב אותו רעיון.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> בכל חוק חזקות שאל קודם: יש כאן כפל/חילוק או חיבור? חוקי המעריכים לא 'קופצים' דרך חיבור.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>מהו 2³·2⁴?</b><details><summary>תשובה</summary><p>2⁷ = 128.</p></details></div><div class="mini-q"><b>מה פירוש 3⁻²?</b><details><summary>תשובה</summary><p>1/3² = 1/9.</p></details></div><div class="mini-q"><b>איך אפשר לכתוב √[3]{x²} כחזקה?</b><details><summary>תשובה</summary><p>x^(2/3), בתחום המתאים.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> חשב: (2³)²·2⁻⁴ + √72/√2.<details><summary>פתרון</summary><p>(2³)²·2⁻⁴ = 2² = 4, ו־√72/√2 = √36 = 6. סה״כ 10.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
 <li class="task"><input aria-label="סימון" data-day="1" data-topic="m2" id="c-m2-c1" type="checkbox"/><label for="c-m2-c1"><span class="tt">עמ' 7, חזקות</span><span class="nt">10 התרגילים הראשונים</span></label></li>
 <li class="task"><input aria-label="סימון" data-day="1" data-topic="m2" id="c-m2-c2" type="checkbox"/><label for="c-m2-c2"><span class="tt">עמ' 8, חישוב חזקות</span><span class="nt">8 התרגילים הראשונים</span></label></li>
@@ -304,7 +354,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 </section>
 <section class="topic phys" id="p0">
 <h2>וקטורים</h2>
-<p class="meta">פיזיקה · פרק 2 בקורס · יום 1</p>
+<p class="meta">פיזיקה · פרק 2 בקורס · יום 1</p><div class="source-map phys-workbook-note"><b>לגבי חוברת התרגילים בפיזיקה 2026</b><p>התרגילים בחוברת משלבים כמה מיומנויות באותה שאלה כבר מההתחלה (גרפים, תאוצה, כוחות ועוד). לכן במחברת הזו הם לא מחליפים את תרגילי החימום; נשתמש בהם אחרי שליטה בבסיס של כל נושא.</p></div>
 <h3>1. הסבר</h3>
 <p><b>סקלר</b> הוא מספר בלבד (מסה, זמן, דרך). <b>וקטור</b> הוא מספר וגם כיוון (העתק, מהירות, תאוצה, כוח).</p>
 <p>בתנועה על קו ישר הכיוון הוא סימן: ימינה (או למעלה) חיובי, שמאלה (או למטה) שלילי.</p>
@@ -411,7 +461,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <section class="day" id="day2"><header class="dayhead"><h1>יום 2: אלגברה בסיסית, מקוטעין ותאוצה</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק פירוק לגורמים (עמ' 13–16), ובפיזיקה רק תרגילים 2.1 ו-3.1 של שוות תאוצה א.</p><p class="daycnt"><span data-daycount="2"></span></p></header>
 <section class="topic math" id="m3">
 <h2>פתיחת סוגריים ונוסחאות כפל מקוצר</h2>
-<p class="meta">מתמטיקה · עמ' 10–12 בחוברת · יום 2</p>
+<p class="meta">מתמטיקה · עמ' 10–12 בחוברת · יום 2</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 10–12: חוקי הפילוג וכינוס איברים דומים, נוסחאות ריבוע מקוצר והפרש ריבועים, וגם נוסחאות (a+b)³ ו־(a−b)³.</p></div>
 <h3>1. הסבר</h3>
 <p>פתיחת סוגריים: כל איבר בסוגריים הראשונים נכפל בכל איבר בסוגריים השניים.</p>
 <p>יש שלוש נוסחאות שכדאי לדעת בעל פה, כי הן חוסכות הרבה חישוב ומופיעות בכל מקום, גם בפיזיקה.</p>
@@ -419,7 +469,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><span class="m" dir="ltr">(a + b)² = a² + 2ab + b²</span></li>
 <li><span class="m" dir="ltr">(a − b)² = a² − 2ab + b²</span></li>
 <li><span class="m" dir="ltr">(a − b)(a + b) = a² − b²</span></li>
-</ul></div>
+<li><span class="m" dir="ltr">(a+b)³ = a³+3a²b+3ab²+b³</span></li><li><span class="m" dir="ltr">(a−b)³ = a³−3a²b+3ab²−b³</span></li></ul></div>
 <p class="mistake"><b>טעות נפוצה:</b> הביטוי <span class="m" dir="ltr">(a + b)²</span> אינו <span class="m" dir="ltr">a² + b²</span>. חסר האיבר האמצעי <span class="m" dir="ltr">2ab</span>.</p>
 <h3>2. דוגמאות פתורות</h3>
 <div class="ex"><p class="q"><b>דוגמה 1.</b> פתח: <span class="m" dir="ltr">(x + 3)²</span> ואת <span class="m" dir="ltr">(2x − 5)²</span>.</p><div class="sol">
@@ -446,7 +496,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="2" data-topic="m3" id="c-m3-9" type="checkbox"/><label for="c-m3-9">פשט <span class="m" dir="ltr">(a + 2)² − (a − 2)²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a² + 4a + 4 − a² + 4a − 4 = 8a</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="2" data-topic="m3" id="c-m3-10" type="checkbox"/><label for="c-m3-10"><span class="m" dir="ltr">(5x³ + 7)(5x³ − 7)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">25x⁶ − 49</span></p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">(a+b)(c+d)</span><span class="arrow">→</span><span class="step">ac + ad + bc + bd</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>הנושא הבא, פירוק לגורמים, הוא כמעט בדיוק התהליך ההפוך: במקום לפתוח מכפלה — מחזירים סכום למכפלה.</div><h4>5 דברים לזכור</h4><ol><li>בפתיחת סוגריים כל איבר מוכפל בכל איבר.</li><li>אחרי הפתיחה תמיד מכנסים איברים דומים.</li><li>(a+b)² כולל את האיבר האמצעי 2ab.</li><li>(a−b)(a+b) הוא הפרש ריבועים — בלי איבר אמצעי.</li><li>בחוברת מופיעות גם נוסחאות הקובייה; כדאי לזהות אותן גם אם משתמשים בהן פחות.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> כשאתה נתקע, צייר חצים מכל איבר בסוגר הראשון לכל איבר בסוגר השני.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>פתח: (x+3)².</b><details><summary>תשובה</summary><p>x²+6x+9.</p></details></div><div class="mini-q"><b>פתח: (a−b)(a+b).</b><details><summary>תשובה</summary><p>a²−b².</p></details></div><div class="mini-q"><b>מה האיבר האמצעי ב־(2x−5)²?</b><details><summary>תשובה</summary><p>−20x.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> פשט: (2x−3)² − (x+4)(x−4).<details><summary>פתרון</summary><p>4x²−12x+9 − (x²−16) = 3x²−12x+25.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
 <li class="task"><input aria-label="סימון" data-day="2" data-topic="m3" id="c-m3-c1" type="checkbox"/><label for="c-m3-c1"><span class="tt">עמ' 10, חוקי הפילוג</span><span class="nt">6 התרגילים הראשונים</span></label></li>
 <li class="task"><input aria-label="סימון" data-day="2" data-topic="m3" id="c-m3-c2" type="checkbox"/><label for="c-m3-c2"><span class="tt">עמ' 11, נוסחאות כפל מקוצר</span><span class="nt">10 התרגילים הראשונים. התשובות בעמ' 12</span></label></li>
@@ -455,7 +505,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 </section>
 <section class="topic math" id="m4">
 <h2>פירוק לגורמים</h2>
-<p class="meta">מתמטיקה · עמ' 13–16 בחוברת · יום 2</p>
+<p class="meta">מתמטיקה · עמ' 13–16 בחוברת · יום 2</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 13–16: הוצאת גורם משותף, פירוק לפי קבוצות, פירוק בעזרת נוסחאות הכפל המקוצר, פירוק טרינום, ובחוברת מופיעים גם סכום/הפרש קוביות.</p></div>
 <h3>1. הסבר</h3>
 <p>פירוק לגורמים הוא ההפך מפתיחת סוגריים: הופכים סכום למכפלה. תמיד בודקים קודם <b>גורם משותף</b>, ואחר כך נוסחאות כפל מקוצר, ואחר כך טרינום.</p>
 <p><b>טרינום</b> <span class="m" dir="ltr">x² + bx + c</span>: מחפשים שני מספרים שהמכפלה שלהם <span class="m" dir="ltr">c</span> והסכום שלהם <span class="m" dir="ltr">b</span>. אם הם <span class="m" dir="ltr">p</span> ו-<span class="m" dir="ltr">q</span>, הפירוק הוא <span class="m" dir="ltr">(x + p)(x + q)</span>.</p>
@@ -465,7 +515,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><span class="m" dir="ltr">a² − b² = (a − b)(a + b)</span></li>
 <li><span class="m" dir="ltr">a² ± 2ab + b² = (a ± b)²</span></li>
 <li><span class="m" dir="ltr">x² + bx + c = (x + p)(x + q)</span>, כש-<span class="m" dir="ltr">p + q = b</span> ו-<span class="m" dir="ltr">pq = c</span></li>
-</ul></div>
+<li><span class="m" dir="ltr">a³−b³=(a−b)(a²+ab+b²)</span></li><li><span class="m" dir="ltr">a³+b³=(a+b)(a²−ab+b²)</span></li></ul></div>
 <p class="mistake"><b>טעות נפוצה:</b> אחרי הפירוק כדאי לפתוח חזרה ולוודא שיוצא הביטוי המקורי.</p>
 <h3>2. דוגמאות פתורות</h3>
 <div class="ex"><p class="q"><b>דוגמה 1.</b> פרק: <span class="m" dir="ltr">6x² + 9x</span>.</p><div class="sol">
@@ -494,7 +544,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="2" data-topic="m4" id="c-m4-11" type="checkbox"/><label for="c-m4-11"><span class="m" dir="ltr">x³ − 4x</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x(x² − 4) = x(x − 2)(x + 2)</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 12" data-day="2" data-topic="m4" id="c-m4-12" type="checkbox"/><label for="c-m4-12"><span class="m" dir="ltr">3x² − 12x + 12</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3(x² − 4x + 4) = 3(x − 2)²</span></p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">גורם משותף?</span><span class="arrow">→</span><span class="step">נוסחה?</span><span class="arrow">→</span><span class="step">טרינום?</span><span class="arrow">→</span><span class="step">קבוצות</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>בלי פירוק לגורמים, שברים אלגבריים ומשוואות רציונליות נהיים כמעט בלתי אפשריים לצמצום ולמציאת מכנה משותף.</div><h4>5 דברים לזכור</h4><ol><li>תמיד בדוק קודם גורם משותף — זו הבדיקה המהירה ביותר.</li><li>אם יש שני ריבועים עם מינוס ביניהם, בדוק הפרש ריבועים.</li><li>בטרינום חפש שני מספרים עם סכום ומכפלה מתאימים.</li><li>בקבוצות המטרה היא ליצור גורם סוגריים משותף.</li><li>בדיקה טובה לפירוק: פתח בחזרה וראה אם קיבלת את הביטוי המקורי.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> סדר חיפוש קבוע: גורם משותף → נוסחה מוכרת → טרינום → קבוצות. אל תנחש אקראית.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>מה הצעד הראשון ב־6x²+9x?</b><details><summary>תשובה</summary><p>להוציא גורם משותף 3x.</p></details></div><div class="mini-q"><b>פרק x²−25.</b><details><summary>תשובה</summary><p>(x−5)(x+5).</p></details></div><div class="mini-q"><b>מה שני המספרים ל־x²+5x+6?</b><details><summary>תשובה</summary><p>2 ו־3.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> פרק עד הסוף: 2x³−8x.<details><summary>פתרון</summary><p>2x(x²−4)=2x(x−2)(x+2).</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
 <li class="task"><input aria-label="סימון" data-day="2" data-topic="m4" id="c-m4-c1" type="checkbox"/><label for="c-m4-c1"><span class="tt">עמ' 13, הוצאת גורם משותף</span><span class="nt">6 התרגילים הראשונים</span></label></li>
 <li class="task"><input aria-label="סימון" data-day="2" data-topic="m4" id="c-m4-c2" type="checkbox"/><label for="c-m4-c2"><span class="tt">עמ' 14, פירוק לפי קבוצות</span><span class="nt">6 התרגילים הראשונים</span></label></li>
@@ -609,7 +659,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <section class="day" id="day3"><header class="dayhead"><h1>יום 3: שברים אלגבריים, משוואות, מעגל טריגונומטרי ושוות תאוצה ב</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק משוואות עם נעלם אחד (עמ' 21–22), בפיזיקה רק תרגילים 8.1 ו-10.1, ובטריגונומטריה רק לצייר את המעגל.</p><p class="daycnt"><span data-daycount="3"></span></p></header>
 <section class="topic math" id="m5">
 <h2>שברים אלגבריים</h2>
-<p class="meta">מתמטיקה · עמ' 17–19 בחוברת · יום 3</p>
+<p class="meta">מתמטיקה · עמ' 17–19 בחוברת · יום 3</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 17–19: צמצום שברים אלגבריים, כפל וחילוק, ואז חיבור וחיסור באמצעות פירוק המכנים ומציאת מכנה משותף.</p></div>
 <h3>1. הסבר</h3>
 <p>שבר אלגברי הוא שבר שיש בו נעלם. הכללים זהים לשברים רגילים, אבל <b>קודם מפרקים לגורמים</b>: כך רואים מה אפשר לצמצם ומהו המכנה המשותף.</p>
 <p>אפשר לצמצם רק <b>גורמים</b> (מכפלה), לא איברים בסכום. ב<span class="m" dir="ltr">(x + 3)/x</span> לא מצמצמים את ה-x.</p>
@@ -644,7 +694,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="3" data-topic="m5" id="c-m5-7" type="checkbox"/><label for="c-m5-7">חשב <span class="m" dir="ltr">(a² − 1)/a · a²/(a + 1)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(a − 1)(a + 1)/a · a²/(a + 1) = a(a − 1)</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="3" data-topic="m5" id="c-m5-8" type="checkbox"/><label for="c-m5-8">חשב <span class="m" dir="ltr">(x² − 9)/(x + 1) : (x − 3)/(x² − 1)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x − 3)(x + 3)/(x + 1) · (x − 1)(x + 1)/(x − 3) = (x + 3)(x − 1)</span></p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">פירוק לגורמים</span><span class="arrow">→</span><span class="step">תחום הגדרה</span><span class="arrow">→</span><span class="step">צמצום / מכנה משותף</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>המיומנות הזאת חוזרת כמעט אחד־לאחד במשוואות רציונליות: תחום הגדרה, פירוק מכנים ומכנה משותף.</div><h4>5 דברים לזכור</h4><ol><li>לפני צמצום — מפרקים לגורמים.</li><li>אפשר לצמצם גורמים במכפלה, לא איברים שמחוברים או מחוסרים.</li><li>תחום ההגדרה נקבע מהביטוי המקורי לפני הצמצום.</li><li>בחילוק הופכים את השבר השני ואז כופלים.</li><li>בחיבור/חיסור, פירוק המכנים הוא בדרך כלל המפתח למכנה משותף.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> חפש סוגריים זהים מעל ומתחת; רק גורם שלם וזהה יכול להצטמצם.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>האם מותר לצמצם x ב־(x+3)/x?</b><details><summary>תשובה</summary><p>לא. x אינו גורם של כל המונה.</p></details></div><div class="mini-q"><b>למה מפרקים x²−9?</b><details><summary>תשובה</summary><p>כדי לקבל (x−3)(x+3) ולראות גורמים שאפשר לצמצם או להשתמש בהם במכנה משותף.</p></details></div><div class="mini-q"><b>מתי רושמים תחום הגדרה?</b><details><summary>תשובה</summary><p>לפני שמצמצמים או מעלימים מכנים.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> פשט: [(x²−9)/(x²−x−6)]·[(x−3)/(x+3)].<details><summary>פתרון</summary><p>פירוק נותן (x−3)(x+3)/[(x−3)(x+2)] · (x−3)/(x+3) = (x−3)/(x+2). מהביטוי המקורי: x≠3,−2,−3.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
 <li class="task"><input aria-label="סימון" data-day="3" data-topic="m5" id="c-m5-c1" type="checkbox"/><label for="c-m5-c1"><span class="tt">עמ' 17, צמצום שברים אלגבריים</span><span class="nt">6 התרגילים הראשונים</span></label></li>
 <li class="task"><input aria-label="סימון" data-day="3" data-topic="m5" id="c-m5-c2" type="checkbox"/><label for="c-m5-c2"><span class="tt">עמ' 18, כפל וחילוק שברים אלגבריים</span><span class="nt">5 התרגילים הראשונים</span></label></li>
@@ -654,13 +704,13 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 </section>
 <section class="topic math" id="m6">
 <h2>משוואות עם נעלם אחד</h2>
-<p class="meta">מתמטיקה · עמ' 21–22 בחוברת · יום 3</p>
+<p class="meta">מתמטיקה · עמ' 21–22 בחוברת · יום 3</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 21–22: משוואות לינאריות בנעלם אחד, כולל סוגריים ומשוואות עם שברים ומכנים.</p></div>
 <h3>1. הסבר</h3>
 <p>משוואה היא כמו מאזניים: כדי לשמור על השוויון חייבים לעשות אותה פעולה לשני האגפים. פותחים סוגריים ומאחדים איברים דומים, ואז מוסיפים/מחסרים אותו דבר משני הצדדים ולבסוף מחלקים את שני הצדדים במקדם של x. הביטוי ״מעבירים אגף ומחליפים סימן״ הוא רק קיצור של הפעולה הזאת.</p>
 <p>כשיש שברים, <b>כופלים את שני האגפים במכנה המשותף</b> ואז הם נעלמים.</p>
 <p>בסוף מציבים את התשובה במשוואה המקורית כדי לוודא.</p>
 <div class="formulas"><b>מה צריך לזכור</b><ul>
-<li>מעבירים אגף: הופכים סימן</li>
+<li>שומרים על שוויון: מבצעים אותה פעולה בשני האגפים</li>
 <li>כופלים את <b>כל</b> האיברים בשני האגפים באותו מספר</li>
 </ul></div>
 <p class="mistake"><b>טעות נפוצה:</b> כשמכפילים במכנה משותף, צריך לכפול גם את האיברים בלי שבר, למשל את ה-1 בצד ימין.</p>
@@ -688,7 +738,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="3" data-topic="m6" id="c-m6-7" type="checkbox"/><label for="c-m6-7"><span class="m" dir="ltr">(2x − 1)/3 = (x + 4)/2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2(2x − 1) = 3(x + 4)</span>, ולכן <span class="m" dir="ltr">4x − 2 = 3x + 12</span> ו-<span class="m" dir="ltr">x = 14</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="3" data-topic="m6" id="c-m6-8" type="checkbox"/><label for="c-m6-8"><span class="m" dir="ltr">0.5x + 1.5 = 4</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">0.5x = 2.5</span>, ולכן <span class="m" dir="ltr">x = 5</span></p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">אגף שמאל</span><span class="arrow">⚖</span><span class="step">אגף ימין</span><span class="arrow">→</span><span class="step">אותה פעולה לשניהם</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>אותו רעיון של בידוד נעלם משמש בפיזיקה כשצריך לבודד זמן, מהירות, תאוצה או כוח מתוך נוסחה.</div><h4>5 דברים לזכור</h4><ol><li>משוואה היא שוויון: כל פעולה שעושים — עושים לשני האגפים.</li><li>פתח סוגריים וכנס איברים דומים לפני שאתה ממהר לבודד x.</li><li>בשברים, מכנה משותף יכול לנקות את כל המכנים בבת אחת.</li><li>כשמכפילים במכנה משותף, מכפילים כל איבר בשני האגפים.</li><li>הצבה במשוואה המקורית היא בדיקת שגיאות מצוינת.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> אל תזכור 'מעבירים אגף'. תזכור מאזניים: מה שעשית בצד אחד, עשית גם בצד השני.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>איזו פעולה עושים ל־3x+5=17 כדי להיפטר מ־5?</b><details><summary>תשובה</summary><p>מחסרים 5 משני האגפים.</p></details></div><div class="mini-q"><b>למה מכפילים במכנה משותף במשוואה עם שברים?</b><details><summary>תשובה</summary><p>כדי לבטל את המכנים בלי לשנות את השוויון.</p></details></div><div class="mini-q"><b>מה עושים אחרי שמצאנו x?</b><details><summary>תשובה</summary><p>מציבים במשוואה המקורית ובודקים.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> פתור: (x+1)/3 − (x−2)/2 = 1.<details><summary>פתרון</summary><p>כופלים ב־6: 2(x+1)−3(x−2)=6. מתקבל −x+8=6 ולכן x=2.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
 <li class="task"><input aria-label="סימון" data-day="3" data-topic="m6" id="c-m6-c1" type="checkbox"/><label for="c-m6-c1"><span class="tt">עמ' 21, משוואות לינאריות</span><span class="nt">תרגילים 1–10</span></label></li>
 <li class="task"><input aria-label="סימון" data-day="3" data-topic="m6" id="c-m6-c2" type="checkbox"/><label for="c-m6-c2"><span class="tt">עמ' 22, משוואות עם שברים</span><span class="nt">תרגילים 24–29</span></label></li>
@@ -822,11 +872,11 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <section class="day" id="day4"><header class="dayhead"><h1>יום 4: משוואות ריבועיות, שוות תאוצה ג וחוק ראשון</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק משוואות ריבועיות (עמ' 23–25), ובפיזיקה רק תרגילים 13.1 ו-14.1.</p><p class="daycnt"><span data-daycount="4"></span></p></header>
 <section class="topic math" id="m7">
 <h2>משוואות ריבועיות</h2>
-<p class="meta">מתמטיקה · עמ' 23–25 בחוברת · יום 4 (הנושא הכי חשוב)</p>
+<p class="meta">מתמטיקה · עמ' 23–25 בחוברת · יום 4 (הנושא הכי חשוב)</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 23–25: משוואה ריבועית, נוסחת השורשים ודיסקרימיננטה, פירוק טרינום ריבועי לפי השורשים, ושאלות פרמטר שבהן מחפשים מתי יש פתרון אחד.</p></div>
 <h3>1. הסבר</h3>
 <p>משוואה ריבועית היא משוואה מהצורה <span class="m" dir="ltr">ax² + bx + c = 0</span>. קודם מעבירים הכול לצד אחד כדי שיישאר 0 בצד השני.</p>
 <p><b>שיטה 1, פירוק:</b> אם אפשר לפרק לגורמים, כל גורם שווה 0.</p>
-<p><b>שיטה 2, נוסחת השורשים:</b> עובדת תמיד. הביטוי <span class="m" dir="ltr">D = b² − 4ac</span> נקרא דיסקרימיננטה: אם <span class="m" dir="ltr">D &gt; 0</span> יש שני פתרונות, אם <span class="m" dir="ltr">D = 0</span> יש פתרון אחד, ואם <span class="m" dir="ltr">D &lt; 0</span> אין פתרון.</p>
+<p><b>שיטה 2, נוסחת השורשים:</b> עובדת תמיד. הביטוי <span class="m" dir="ltr">D = b² − 4ac</span> נקרא דיסקרימיננטה: אם <span class="m" dir="ltr">D &gt; 0</span> יש שני פתרונות, אם <span class="m" dir="ltr">D = 0</span> יש פתרון אחד, ואם <span class="m" dir="ltr">D &lt; 0</span> אין פתרון ממשי.</p>
 <p>בפיזיקה, אחרי שפותרים, בודקים איזה פתרון הגיוני. זמן, למשל, לא יכול להיות שלילי.</p>
 <div class="formulas"><b>מה צריך לזכור</b><ul>
 <li><span class="m" dir="ltr">x = (−b ± √(b² − 4ac))/(2a)</span></li>
@@ -862,7 +912,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="4" data-topic="m7" id="c-m7-10" type="checkbox"/><label for="c-m7-10">לאילו ערכי m למשוואה <span class="m" dir="ltr">x² − 4x + m = 0</span> יש פתרון אחד?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">D = 16 − 4m = 0</span>, ולכן <span class="m" dir="ltr">m = 4</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="4" data-topic="m7" id="c-m7-11" type="checkbox"/><label for="c-m7-11">כדור נזרק והגובה שלו הוא <span class="m" dir="ltr">80 + 30t − 5t² = 0</span> כשהוא פוגע בקרקע. מתי זה קורה?</label></div><details class="ans"><summary>תשובה</summary><p>מחלקים את המשוואה במינוס 5: <span class="m" dir="ltr">t² − 6t − 16 = 0</span>, כלומר <span class="m" dir="ltr">(t − 8)(t + 2) = 0</span>. זמן לא שלילי, ולכן <span class="m" dir="ltr">t = 8</span> שניות</p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">D&gt;0: שניים</span><span class="arrow">|</span><span class="step">D=0: אחד</span><span class="arrow">|</span><span class="step">D&lt;0: אין פתרון ממשי</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>המשוואה הריבועית חוזרת במשוואות ממעלה גבוהה יותר, במשוואות רציונליות וגם בבעיות תנועה שבהן הזמן מופיע בריבוע.</div><h4>5 דברים לזכור</h4><ol><li>קודם מסדרים לצורה ax²+bx+c=0.</li><li>זהה נכון את a,b,c כולל הסימנים.</li><li>D=b²−4ac אומר כמה פתרונות ממשיים יש.</li><li>אם אפשר לפרק בקלות — פירוק מהיר; נוסחת השורשים עובדת באופן כללי.</li><li>בבעיה פיזיקלית בודקים גם אם הפתרון מתאים למציאות, למשל זמן שלילי.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> לפני הצבה בנוסחה, כתוב שורה נפרדת: a=…, b=…, c=…. זה חוסך המון טעויות סימן.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>אם D=0, כמה פתרונות ממשיים שונים יש?</b><details><summary>תשובה</summary><p>אחד.</p></details></div><div class="mini-q"><b>מהם a,b,c ב־2x²−5x−3=0?</b><details><summary>תשובה</summary><p>a=2, b=−5, c=−3.</p></details></div><div class="mini-q"><b>למה לא מחלקים משוואה כמו x(x+2)=0 ב־x?</b><details><summary>תשובה</summary><p>כי אפשר לאבד את הפתרון x=0.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> פתור: 2x²−7x+3=0.<details><summary>פתרון</summary><p>D=49−24=25. לכן x=(7±5)/4, כלומר x=3 או x=1/2.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
 <li class="task"><input aria-label="סימון" data-day="4" data-topic="m7" id="c-m7-c1" type="checkbox"/><label for="c-m7-c1"><span class="tt">עמ' 23, משוואות ריבועיות</span><span class="nt">תרגילים 1–12</span></label></li>
 <li class="task"><input aria-label="סימון" data-day="4" data-topic="m7" id="c-m7-c2" type="checkbox"/><label for="c-m7-c2"><span class="tt">עמ' 24, פירוק טרינום ריבועי</span><span class="nt">4 התרגילים הראשונים</span></label></li>
@@ -872,7 +922,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 </section>
 <section class="topic math" id="m8">
 <h2>חילוק פולינומים ומשוואות ממעלה שלישית (לא חובה)</h2>
-<p class="meta">מתמטיקה · עמ' 20 ו-26–27 בחוברת · יום 4, אם יש כוח</p>
+<p class="meta">מתמטיקה · עמ' 20 ו-26–27 בחוברת · יום 4, אם יש כוח</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 20 ו־26–27: חילוק פולינומים; משוואות ממעלה שלישית ומעלה באמצעות פירוק למכפלה, משתנה עזר, ובמקרה של שורש ידוע — חילוק ב־(x−a).</p></div>
 <h3>1. הסבר</h3>
 <p>אם <span class="m" dir="ltr">x = a</span> הוא פתרון של פולינום, אז הפולינום מתחלק ב-<span class="m" dir="ltr">(x − a)</span> בלי שארית. כך מורידים משוואה ממעלה שלישית למשוואה ריבועית.</p>
 <p>מנחשים פתרון (מנסים את המספרים 1, −1, 2, −2, …), מחלקים, ופותרים את הריבועית שנשארת.</p>
@@ -898,11 +948,11 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="4" data-topic="m8" id="c-m8-3" type="checkbox"/><label for="c-m8-3"><span class="m" dir="ltr">x³ − 2x² − 5x + 6 = 0</span>, ידוע ש-<span class="m" dir="ltr">x = 1</span> פתרון</label></div><details class="ans"><summary>תשובה</summary><p>חילוק ב-<span class="m" dir="ltr">(x − 1)</span> נותן <span class="m" dir="ltr">x² − x − 6 = (x − 3)(x + 2)</span>. הפתרונות <span class="m" dir="ltr">x = 1, 3, −2</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="4" data-topic="m8" id="c-m8-4" type="checkbox"/><label for="c-m8-4">חלק <span class="m" dir="ltr">(x³ + 8) : (x + 2)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² − 2x + 4</span>. בדיקה: <span class="m" dir="ltr">(x + 2)(x² − 2x + 4) = x³ + 8</span></p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">שורש ידוע a</span><span class="arrow">→</span><span class="step">חילוק ב־(x−a)</span><span class="arrow">→</span><span class="step">ריבועית</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>הנושא הזה פחות דחוף כרגע, אבל הוא משתמש כמעט בכל מה שלמדת קודם: פירוק, משוואות ריבועיות וחוק המכפלה השווה לאפס.</div><h4>5 דברים לזכור</h4><ol><li>בחילוק ארוך מתחילים תמיד מהחזקות הגבוהות ביותר.</li><li>אם P(a)=0, אז (x−a) הוא גורם של הפולינום.</li><li>אחרי חילוק בשורש ידוע אמורה להישאר שארית 0.</li><li>לפני חילוק ארוך בדוק אם אפשר פירוק פשוט יותר לפי קבוצות או גורם משותף.</li><li>בחוברת קיימת גם שיטת משתנה עזר כשאותו מבנה חוזר בכמה חזקות.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> אל תתחיל מחילוק ארוך אוטומטית. קודם נסה גורם משותף וקבוצות — לפעמים התרגיל נופל בשורה אחת.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>אם x=2 הוא פתרון, איזה גורם יש לפולינום?</b><details><summary>תשובה</summary><p>(x−2).</p></details></div><div class="mini-q"><b>מה צריכה להיות השארית כשמחלקים בגורם שמתאים לשורש אמיתי?</b><details><summary>תשובה</summary><p>0.</p></details></div><div class="mini-q"><b>מה עושים אחרי שמורידים משוואה ממעלה 3 למשוואה ריבועית?</b><details><summary>תשובה</summary><p>פותרים את הריבועית ומצרפים את השורש שכבר ידענו.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> פתור: x³−4x²−x+4=0.<details><summary>פתרון</summary><p>בקבוצות: x²(x−4)−1(x−4)=(x−4)(x²−1)=(x−4)(x−1)(x+1). הפתרונות: 4,1,−1.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
 <li class="task"><input aria-label="סימון" data-day="4" data-topic="m8" id="c-m8-c1" type="checkbox"/><label for="c-m8-c1"><span class="tt">עמ' 20, חילוק פולינומים</span><span class="nt">תרגילים 1–4</span></label></li>
 <li class="task"><input aria-label="סימון" data-day="4" data-topic="m8" id="c-m8-c2" type="checkbox"/><label for="c-m8-c2"><span class="tt">עמ' 26, משוואות פולינומיות</span><span class="nt">תרגילים 1–6</span></label></li>
-</ul>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="m8" type="checkbox"/><label><span class="tt">עמ' 27, שורש ידוע וחילוק פולינום</span><span class="nt">לעבור על הדוגמה שבה נתון פתרון אחד, ואז לפתור תרגיל אחד דומה</span></label></li></ul>
 <p class="cntline"><span class="cnt" data-topic="m8"></span></p>
 </section>
 <section class="topic phys" id="p5">
@@ -1043,7 +1093,7 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <section class="day" id="day5"><header class="dayhead"><h1>יום 5: משוואות מתקדמות, זהויות, חוק שני וחזרה</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק משוואות רציונליות ואי-רציונליות בלי חזרה, בפיזיקה תרגילים 17.1, 18.1 ו-87, ובטריגונומטריה רק זהויות 1–3 ו-6–7.</p><p class="daycnt"><span data-daycount="5"></span></p></header>
 <section class="topic math" id="m9">
 <h2>משוואות רציונליות (עם שברים אלגבריים)</h2>
-<p class="meta">מתמטיקה · עמ' 27–29 בחוברת · יום 5</p>
+<p class="meta">מתמטיקה · עמ' 28–29 בחוברת · יום 5</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 28–29: משוואות רציונליות. החוברת מדגישה תחום הגדרה, פירוק מכנים, כפל במכנה משותף, פתרון ובדיקה שהפתרון אינו אסור.</p></div>
 <h3>1. הסבר</h3>
 <p>משוואה רציונלית היא משוואה שהנעלם נמצא בה במכנה. הדרך: (1) קובעים איזה ערכים אסורים (המכנה לא יכול להיות 0), (2) כופלים בכל המכנים, (3) פותרים, (4) <b>פוסלים</b> פתרון אסור.</p>
 <div class="formulas"><b>מה צריך לזכור</b><ul>
@@ -1074,15 +1124,15 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="5" data-topic="m9" id="c-m9-6" type="checkbox"/><label for="c-m9-6"><span class="m" dir="ltr">x²/(x − 4) = 16/(x − 4)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² = 16</span>, אבל <span class="m" dir="ltr">x ≠ 4</span>, ולכן <span class="m" dir="ltr">x = −4</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="5" data-topic="m9" id="c-m9-7" type="checkbox"/><label for="c-m9-7"><span class="m" dir="ltr">1/x + 1/(x + 2) = 3/4</span></label></div><details class="ans"><summary>תשובה</summary><p>כופלים ב-<span class="m" dir="ltr">4x(x + 2)</span>: <span class="m" dir="ltr">4(x + 2) + 4x = 3x(x + 2)</span>, ולכן <span class="m" dir="ltr">3x² − 2x − 8 = 0</span>. <span class="m" dir="ltr">D = 100</span>, ו-<span class="m" dir="ltr">x = (2 ± 10)/6</span>: <span class="m" dir="ltr">x = 2</span> או <span class="m" dir="ltr">x = −4/3</span></p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">תחום הגדרה</span><span class="arrow">→</span><span class="step">מכנה משותף</span><span class="arrow">→</span><span class="step">פתרון</span><span class="arrow">→</span><span class="step">בדיקה</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>כאן כל מה שעשית בשברים אלגבריים הופך מכלי לפישוט לכלי לפתרון משוואה.</div><h4>5 דברים לזכור</h4><ol><li>תחום הגדרה כותבים לפני שמעלימים מכנים.</li><li>מפרקים מכנים לגורמים כדי למצוא מכנה משותף נכון.</li><li>כופלים כל איבר בשני האגפים במכנה המשותף.</li><li>אחרי שנעלמו המכנים פותרים את המשוואה האלגברית הרגילה.</li><li>בסוף פוסלים כל פתרון שמאפס מכנה מקורי.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> כתוב בראש הדף 'אסור:' ורק אחר כך תתחיל לפתור. כך לא תשכח את תחום ההגדרה כשהמכנים ייעלמו.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>מה הדבר הראשון ב־1/(x−2)=3?</b><details><summary>תשובה</summary><p>לכתוב x≠2.</p></details></div><div class="mini-q"><b>האם האיסור נעלם אחרי שכופלים ב־x−2?</b><details><summary>תשובה</summary><p>לא. הוא מגיע מהמשוואה המקורית.</p></details></div><div class="mini-q"><b>מתי פוסלים פתרון?</b><details><summary>תשובה</summary><p>אם הוא מאפס אחד המכנים המקוריים.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> פתור: 2/(x−1)=3/(x+1).<details><summary>פתרון</summary><p>תחום: x≠1,−1. כפל במכנים: 2(x+1)=3(x−1), ולכן 2x+2=3x−3 ו־x=5, והוא מותר.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
-<li class="task"><input aria-label="סימון" data-day="5" data-topic="m9" id="c-m9-c1" type="checkbox"/><label for="c-m9-c1"><span class="tt">עמ' 29, משוואות רציונליות</span><span class="nt">תרגילים 1, 2, 3, 5 ו-7. בחוברת הרמה גבוהה יותר, ואם קשה חוזרים לתרגילים שכאן</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="m9" id="c-m9-c1" type="checkbox"/><label for="c-m9-c1"><span class="tt">עמ' 28–29, משוואות רציונליות</span><span class="nt">תרגילים 1, 2, 3, 5 ו-7. בחוברת הרמה גבוהה יותר, ואם קשה חוזרים לתרגילים שכאן</span></label></li>
 </ul>
 <p class="cntline"><span class="cnt" data-topic="m9"></span></p>
 </section>
 <section class="topic math" id="m10">
 <h2>משוואות אי-רציונליות (עם שורשים)</h2>
-<p class="meta">מתמטיקה · עמ' 29–31 בחוברת · יום 5</p>
+<p class="meta">מתמטיקה · עמ' 30–31 בחוברת · יום 5</p><div class="source-map"><b>מה החוברת הרשמית דורשת כאן</b><p>עמ' 30–31: משוואות אי־רציונליות עם שורשים. השיטה בחוברת: בידוד שורש, העלאת שני האגפים בריבוע, פתרון ובדיקת התוצאות במשוואה המקורית; מופיעה גם אפשרות של משתנה עזר.</p></div>
 <h3>1. הסבר</h3>
 <p>הדרך: (1) מבודדים את השורש בצד אחד, (2) מעלים את שני האגפים בריבוע, (3) פותרים, (4) <b>בודקים</b> כל פתרון במשוואה המקורית.</p>
 <p>הבדיקה הכרחית, כי העלאה בריבוע יכולה להוסיף פתרונות שלא מתאימים. שורש ריבועי אף פעם אינו שלילי.</p>
@@ -1112,9 +1162,9 @@ details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
 <li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="5" data-topic="m10" id="c-m10-5" type="checkbox"/><label for="c-m10-5"><span class="m" dir="ltr">√(3x + 1) = √(x + 9)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3x + 1 = x + 9</span>, ולכן <span class="m" dir="ltr">x = 4</span>. בדיקה: <span class="m" dir="ltr">√13 = √13</span></p></details></li>
 <li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="5" data-topic="m10" id="c-m10-6" type="checkbox"/><label for="c-m10-6"><span class="m" dir="ltr">√(x² − 5) = 2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² − 5 = 4</span>, ולכן <span class="m" dir="ltr">x = ±3</span>. שניהם מקיימים</p></details></li>
 </ol>
-<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<details class="quickreview"><summary>סגירת נושא — 2 דקות</summary><div class="qrbody"><div class="study-visual"><span class="step">בודד שורש</span><span class="arrow">→</span><span class="step">ריבוע</span><span class="arrow">→</span><span class="step">פתור</span><span class="arrow">→</span><span class="step">בדוק במקור</span></div><div class="connect"><b>איך זה מתחבר להמשך?</b><br/>הנושא משתמש יחד בשורשים, משוואות ריבועיות ובדיקת תחום — ולכן הוא מבחן טוב לשליטה באלגברה של הימים הקודמים.</div><h4>5 דברים לזכור</h4><ol><li>לפני ריבוע, מבודדים את השורש שרוצים להעלים.</li><li>ביטוי מתחת לשורש ריבועי צריך להיות לא־שלילי.</li><li>מעלים את שני האגפים בריבוע — לא רק צד אחד.</li><li>הריבוע יכול ליצור פתרונות זרים.</li><li>לכן כל פתרון חייב לחזור לבדיקה במשוואה המקורית.</li></ol><div class="memory"><b>איך לזכור / במה להתמקד:</b> זכור את השרשרת: בידוד → ריבוע → פתרון → בדיקה. אם אין בדיקה, התרגיל עדיין לא הסתיים.</div><h4>בדיקת 2 דקות</h4><div class="mini-q"><b>למה √x = −3 חסר פתרון ממשי?</b><details><summary>תשובה</summary><p>שורש ריבועי ראשי אינו שלילי.</p></details></div><div class="mini-q"><b>מה עושים לפני שמעלים בריבוע?</b><details><summary>תשובה</summary><p>מבודדים את השורש ככל האפשר.</p></details></div><div class="mini-q"><b>למה מציבים בסוף במשוואה המקורית?</b><details><summary>תשובה</summary><p>כי העלאה בריבוע עלולה ליצור פתרון זר.</p></details></div><div class="summary-ex"><b>תרגיל שמסכם את הנושא:</b> פתור: √(x+5)=x−1.<details><summary>פתרון</summary><p>צריך x≥1. בריבוע: x+5=x²−2x+1, כלומר x²−3x−4=0, ולכן x=4 או x=−1. רק x=4 עומד בתנאי ובמשוואה המקורית.</p></details></div></div></details><h3>4. תרגילים מהקורס ומהחוברת</h3>
 <ul class="tasks">
-<li class="task"><input aria-label="סימון" data-day="5" data-topic="m10" id="c-m10-c1" type="checkbox"/><label for="c-m10-c1"><span class="tt">עמ' 31, משוואות אי-רציונליות</span><span class="nt">תרגילים 1, 2, 3 ו-6. בחוברת הרמה גבוהה יותר, ואם קשה חוזרים לתרגילים שכאן</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="m10" id="c-m10-c1" type="checkbox"/><label for="c-m10-c1"><span class="tt">עמ' 30–31, משוואות אי-רציונליות</span><span class="nt">תרגילים 1, 2, 3 ו-6. בחוברת הרמה גבוהה יותר, ואם קשה חוזרים לתרגילים שכאן</span></label></li>
 </ul>
 <p class="cntline"><span class="cnt" data-topic="m10"></span></p>
 </section>
