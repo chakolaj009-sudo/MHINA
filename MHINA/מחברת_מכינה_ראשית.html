@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>מחברת לימוד: 5 ימים</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#1B2333; --muted:#5B6578; --line:#DCE1E9;
+  --math:#1F6B57; --math-soft:#E4F1EC; --trig:#8A3F7A; --trig-soft:#F5E8F2; --phys:#3848A6; --phys-soft:#E7EAF8;
+  --warn:#8A5A00; --warn-soft:#FFF3D6; --onaccent:#FFFFFF;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151E; --surface:#1A2030; --ink:#E8ECF4; --muted:#9BA6BB; --line:#2B3348;
+    --math:#66C7A8; --math-soft:#1B2D29; --trig:#E0A3D3; --trig-soft:#38233A; --phys:#93A0EE; --phys-soft:#212749;
+    --warn:#F0C674; --warn-soft:#3A2F14; --onaccent:#11151E;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151E; --surface:#1A2030; --ink:#E8ECF4; --muted:#9BA6BB; --line:#2B3348;
+  --math:#66C7A8; --math-soft:#1B2D29; --trig:#E0A3D3; --trig-soft:#38233A; --phys:#93A0EE; --phys-soft:#212749;
+  --warn:#F0C674; --warn-soft:#3A2F14; --onaccent:#11151E;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 110px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Heebo",Arial,"Helvetica Neue",sans-serif;font-size:17px;line-height:1.7}
+main{max-width:780px;margin:0 auto;padding:20px 16px 80px}
+h1{font-size:1.7rem;line-height:1.25;margin:0 0 8px;font-weight:700}
+h2{font-size:1.3rem;margin:0 0 2px;font-weight:700}
+h3{font-size:1.02rem;margin:22px 0 8px;font-weight:700}
+p{margin:0 0 10px}
+.lead{color:var(--muted)}
+.m{direction:ltr;unicode-bidi:isolate;display:inline-block;font-family:"Cambria Math","STIX Two Math","Noto Sans Math","Segoe UI Symbol","Heebo",sans-serif;font-size:1.02em;white-space:nowrap}
+a{color:var(--phys)}
+button,.btn{background:var(--surface);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--phys);outline-offset:2px}
+
+.sticky{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin:6px 0 8px}
+.bar>span{display:block;height:100%;width:0;background:var(--math);transition:width .25s}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;text-decoration:none;color:var(--ink);font-size:.93rem}
+.chip .dc{color:var(--muted);font-size:.85rem}
+#total{font-weight:700}
+.intro{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:14px 0}
+.intro ul{margin:6px 0 0;padding-inline-start:20px}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+
+.day{margin:38px 0}
+.dayhead{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.busy{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:8px 12px;margin:8px 0}
+.daycnt{color:var(--muted);margin:0}
+
+.topic{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:14px 0;border-inline-start:6px solid var(--math)}
+.topic.trig{border-inline-start-color:var(--trig)}
+.topic.phys{border-inline-start-color:var(--phys)}
+.topic.review{border-inline-start-color:var(--muted)}
+.meta{color:var(--muted);font-size:.93rem;margin-bottom:6px}
+.formulas{margin:12px 0;padding:12px 14px;border-radius:10px;background:var(--math-soft)}
+.topic.trig .formulas{background:var(--trig-soft)}
+.topic.phys .formulas{background:var(--phys-soft)}
+.formulas b{display:block;margin-bottom:4px}
+.formulas ul{margin:0;padding-inline-start:20px}
+.formulas li{margin-bottom:5px}
+.mistake{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 14px}
+.ex{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}
+.ex .q{margin-bottom:8px}
+.sol{border-inline-start:3px solid var(--line);padding-inline-start:12px}
+.sol p{margin-bottom:6px}
+.exs{list-style:decimal;padding-inline-start:26px;margin:0}
+.exs li{padding:8px 0;border-top:1px solid var(--line)}
+.exs li:first-child{border-top:0}
+.row,.task{display:flex;gap:10px;align-items:flex-start}
+.row input,.task input{margin-top:6px;width:20px;height:20px;flex:none;accent-color:var(--math)}
+.topic.trig input{accent-color:var(--trig)}
+.topic.phys input{accent-color:var(--phys)}
+.row label,.task label{flex:1;cursor:pointer}
+.row input:checked+label,.task input:checked+label{opacity:.55}
+.tasks{list-style:none;margin:0;padding:0}
+.task{padding:8px 0;border-top:1px solid var(--line)}
+.task:first-child{border-top:0}
+.tt{display:block;font-weight:500}
+.nt{display:block;color:var(--muted);font-size:.93rem}
+details.ans{margin:4px 0 0}
+details.ans summary{cursor:pointer;color:var(--muted);font-size:.93rem;width:max-content}
+details.ans[open] summary{margin-bottom:4px}
+details.ans p{margin:0;padding:8px 12px;background:var(--bg);border-radius:8px}
+.cnt{font-weight:500;color:var(--muted);font-size:.9rem}
+.cntline{margin:12px 0 0;text-align:end}
+.prio{padding-inline-start:22px}
+.cont h3{margin-top:10px}
+@media (prefers-reduced-motion:reduce){.bar>span{transition:none}html{scroll-behavior:auto}}
+@media print{
+  body{background:#fff;color:#000;font-size:12pt}
+  .sticky,.tools{display:none}
+  details.ans{display:block}
+  details.ans>*{display:block}
+  details.ans summary{display:none}
+  .topic{border:1px solid #999}
+}
+
+/* ===== תוספות חיזוק ===== */
+.bridge{margin:12px 0;padding:12px 14px;border:1px dashed var(--phys);border-radius:10px;background:var(--bg)}
+.bridge.mathbridge{border-color:var(--math)}
+.bridge.trigbridge{border-color:var(--trig)}
+.bridge h3,.bridge h4{margin:0 0 7px;font-size:1rem}
+.bridge p{margin:0 0 7px}
+.bridge ul,.bridge ol{margin:6px 0;padding-inline-start:22px}
+.bridge .mini{color:var(--muted);font-size:.94rem}
+.bridge details{margin-top:6px}
+.bridge summary{cursor:pointer;font-weight:500}
+.diagnostic{background:var(--surface);border:2px solid var(--phys);border-radius:14px;padding:16px;margin:18px 0}
+.diagnostic h2{margin-bottom:6px}
+.diagnostic ol{padding-inline-start:24px}
+.diagnostic li{margin:8px 0}
+.fastpath{background:var(--warn-soft);color:var(--ink);border-radius:12px;padding:12px 14px;margin:12px 0}
+.fastpath b{color:var(--warn)}
+</style>
+</head>
+<body>
+<main>
+<div aria-live="polite" class="sticky">
+<div><span id="total">טוען…</span></div>
+<div class="bar"><span id="pbar"></span></div>
+<nav aria-label="ימים" class="chips">
+<a class="chip" href="#day1"><span>יום 1</span><span class="dc" data-daycount="1"></span></a>
+<a class="chip" href="#day2"><span>יום 2</span><span class="dc" data-daycount="2"></span></a>
+<a class="chip" href="#day3"><span>יום 3</span><span class="dc" data-daycount="3"></span></a>
+<a class="chip" href="#day4"><span>יום 4</span><span class="dc" data-daycount="4"></span></a>
+<a class="chip" href="#day5"><span>יום 5</span><span class="dc" data-daycount="5"></span></a>
+</nav>
+</div>
+<h1>מחברת לימוד: 5 ימים</h1>
+<p class="lead">מסמך אחד לכל החומר: מתמטיקה (עד עמ' 31), טריגונומטריה (עמ' 78–79) ופיזיקה (קינמטיקה על ישר עד שוות תאוצה ג נושא 18, וחוק ראשון ושני).</p>
+<div class="intro">
+<b>איך עובדים עם כל נושא</b>
+<ul>
+<li><b>1. הסבר:</b> קוראים לאט ומבינים כל שורה.</li>
+<li><b>2. דוגמאות פתורות:</b> קוראים, ואז מכסים את הפתרון ופותרים בעצמך.</li>
+<li><b>3. תרגול נוסף (174 תרגילים בסך הכול):</b> תרגילים שכתבתי, מהקל אל הקשה. פותרים ורק אז פותחים את התשובה. מסמנים ✓.</li>
+<li><b>4. תרגילים מהקורס ומהחוברת (73 פריטים):</b> עושים אחרי התרגול, ומסמנים ✓. התשובות בחוברת נמצאות בסוף הסעיף.</li>
+<li>אם תרגיל לא יוצא אחרי 10 דקות, מסתכלים בתשובה, מבינים, וחוזרים אליו למחרת.</li>
+</ul>
+<div class="tools">
+<button id="openAll" type="button">פתח את כל התשובות</button>
+<button id="closeAll" type="button">סגור את כל התשובות</button>
+<button id="reset" type="button">איפוס הסימונים</button>
+</div>
+</div><div class="fastpath">
+<b>אם אתה בפיגור בחומר — אל תנסה "לסמן הכול".</b>
+<p>בכל נושא: קרא את ההסבר, פתר דוגמה אחת בלי להסתכל, ואז 3–5 תרגילים. אם הצלחת בערך 80% לבד — המשך. אם לא, חזור בדיוק לנקודה שבה נתקעת. המטרה היא לבנות בסיס, לא לנצח את מונה התרגילים.</p>
+<p><b>במתמטיקה:</b> אם נפלת בגלל סימן, שבר או פתיחת סוגריים — זו לא "טעות קטנה"; תקן אותה לפני שממשיכים. <b>בפיזיקה:</b> לפני נוסחה כתוב תמיד: ציר חיובי, נתונים, מה מבקשים, יחידות.</p>
+</div><section class="diagnostic" id="diagnostic">
+<h2>בדיקת פערים קצרה — 15 דקות לפני שמתחילים</h2>
+<p class="lead">פתור בלי חומר פתוח. המטרה אינה ציון; היא לדעת איפה להשקיע זמן.</p>
+<ol>
+<li><span class="m" dir="ltr">5/6 − 1/4</span></li>
+<li><span class="m" dir="ltr">(2³)² : 2⁴</span></li>
+<li>פתח: <span class="m" dir="ltr">(2x − 3)²</span></li>
+<li>פרק: <span class="m" dir="ltr">x² − 5x + 6</span></li>
+<li>פתור: <span class="m" dir="ltr">3(x − 2) = 2x + 5</span></li>
+<li>וקטור בגודל 10 בזווית 37° מעל ציר x. מצא רכיבים.</li>
+<li><span class="m" dir="ltr">x(t)=20−4t</span>. מתי הגוף מגיע ל-<span class="m" dir="ltr">x=0</span>?</li>
+<li><span class="m" dir="ltr">v₀=5, a=2, t=3</span>. מצא מהירות והעתק.</li>
+<li>מהירות משתנה מ-<span class="m" dir="ltr">+6</span> ל-<span class="m" dir="ltr">−2</span> בתוך 4 שניות. מצא תאוצה ומתי הגוף משנה כיוון.</li>
+<li>כוח 30 N ימינה וכוח 10 N שמאלה פועלים על מסה 5 kg. מצא תאוצה.</li>
+<li>חשב <span class="m" dir="ltr">cos 120°</span>.</li>
+<li>פתור ובדוק: <span class="m" dir="ltr">√(x+1)=x−1</span>.</li>
+</ol>
+<details class="ans">
+<summary>תשובות + לאן לחזור אם נתקעת</summary>
+<p>
+      1) <span class="m" dir="ltr">7/12</span>.
+      2) <span class="m" dir="ltr">4</span>.
+      3) <span class="m" dir="ltr">4x²−12x+9</span>.
+      4) <span class="m" dir="ltr">(x−2)(x−3)</span>.
+      5) <span class="m" dir="ltr">x=11</span>.
+      6) <span class="m" dir="ltr">(8,6)</span>.
+      7) <span class="m" dir="ltr">t=5 s</span>.
+      8) <span class="m" dir="ltr">v=11 m/s, Δx=24 m</span>.
+      9) <span class="m" dir="ltr">a=−2 m/s²</span>, שינוי כיוון ב-<span class="m" dir="ltr">t=3 s</span>.
+      10) <span class="m" dir="ltr">a=4 m/s²</span> ימינה.
+      11) <span class="m" dir="ltr">−1/2</span>.
+      12) <span class="m" dir="ltr">x=3</span>.
+      אם טעית ב-1–5: חזור ליסודות האלגברה. ב-6–10: חזור לפיזיקה לפי הסדר. ב-11: המעגל הטריגונומטרי. ב-12: משוואות עם שורשים.
+    </p>
+</details>
+</section>
+<section class="day" id="day1"><header class="dayhead"><h1>יום 1: יסודות בחשבון, וקטורים ושוות מהירות</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק חזקות ושורשים (עמ' 7–9), ובפיזיקה רק וקטורים ותרגילים 1.1 ו-2.1 מהאתר.</p><p class="daycnt"><span data-daycount="1"></span></p></header>
+<section class="topic math" id="m1">
+<h2>חשבון ושברים</h2>
+<p class="meta">מתמטיקה · עמ' 3–6 בחוברת · יום 1</p>
+<h3>1. הסבר</h3>
+<p><b>סדר הפעולות:</b> קודם סוגריים, אחר כך חזקות, אחר כך כפל וחילוק (משמאל לימין), ובסוף חיבור וחיסור.</p>
+<p><b>שברים:</b> כדי לחבר או לחסר צריך מכנה משותף. כדי לכפול: מונה במונה ומכנה במכנה. כדי לחלק: הופכים את השבר השני וכופלים.</p>
+<p><b>צמצום:</b> מחלקים את המונה ואת המכנה באותו מספר.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">a/b + c/d = (ad + bc)/(bd)</span></li>
+<li><span class="m" dir="ltr">a/b · c/d = ac/(bd)</span></li>
+<li><span class="m" dir="ltr">a/b : c/d = a/b · d/c</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> לא מחברים מונים ומכנים בנפרד. <span class="m" dir="ltr">1/2 + 1/3</span> הוא <span class="m" dir="ltr">5/6</span> ולא <span class="m" dir="ltr">2/5</span>.</p>
+<div class="bridge mathbridge">
+<h3>תוספת חשובה: סימנים לפני שעוברים הלאה</h3>
+<p>מינוס לפני סוגריים אומר כפל ב-<span class="m" dir="ltr">−1</span>, ולכן הוא מחליף את הסימן של <b>כל</b> איבר: <span class="m" dir="ltr">−(a−b)=−a+b</span>.</p>
+<p>בשברים, מכנה משותף אינו טריק: הוא פשוט כותב את שני השברים באותה יחידת חלוקה. למשל <span class="m" dir="ltr">3/4−(−1/6)=9/12+2/12=11/12</span>.</p>
+<details><summary>תרגיל גשר</summary><p>חשב <span class="m" dir="ltr">−3−(2−5)</span> ואת <span class="m" dir="ltr">2/3−(−5/12)</span>. תשובות: <span class="m" dir="ltr">0</span>, <span class="m" dir="ltr">13/12</span>.</p></details>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> חשב <span class="m" dir="ltr">15 + 10 : 5</span> וגם <span class="m" dir="ltr">(15 + 10) : 5</span>.</p><div class="sol">
+<p>בלי סוגריים קודם חילוק: <span class="m" dir="ltr">10 : 5 = 2</span>, ואז <span class="m" dir="ltr">15 + 2 = 17</span>.</p>
+<p>עם סוגריים: <span class="m" dir="ltr">25 : 5 = 5</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> חשב <span class="m" dir="ltr">2/3 + 3/4</span>.</p><div class="sol">
+<p>מכנה משותף 12: <span class="m" dir="ltr">8/12 + 9/12 = 17/12</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> חשב <span class="m" dir="ltr">3/5 : 9/10</span>.</p><div class="sol">
+<p>הופכים וכופלים: <span class="m" dir="ltr">3/5 · 10/9 = 30/45 = 2/3</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="1" data-topic="m1" id="c-m1-1" type="checkbox"/><label for="c-m1-1"><span class="m" dir="ltr">3 + 4 · 5</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">23</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="1" data-topic="m1" id="c-m1-2" type="checkbox"/><label for="c-m1-2"><span class="m" dir="ltr">(3 + 4) · 5</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">35</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="1" data-topic="m1" id="c-m1-3" type="checkbox"/><label for="c-m1-3"><span class="m" dir="ltr">20 − 12 : 4 + 2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">20 − 3 + 2 = 19</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="1" data-topic="m1" id="c-m1-4" type="checkbox"/><label for="c-m1-4"><span class="m" dir="ltr">18 : (2 + 4) · 3</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">18 : 6 · 3 = 3 · 3 = 9</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="1" data-topic="m1" id="c-m1-5" type="checkbox"/><label for="c-m1-5"><span class="m" dir="ltr">1/2 + 1/3</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5/6</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="1" data-topic="m1" id="c-m1-6" type="checkbox"/><label for="c-m1-6"><span class="m" dir="ltr">5/6 − 3/8</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">20/24 − 9/24 = 11/24</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="1" data-topic="m1" id="c-m1-7" type="checkbox"/><label for="c-m1-7"><span class="m" dir="ltr">2/3 · 9/10</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">18/30 = 3/5</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="1" data-topic="m1" id="c-m1-8" type="checkbox"/><label for="c-m1-8"><span class="m" dir="ltr">4/5 : 2/15</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">4/5 · 15/2 = 60/10 = 6</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="1" data-topic="m1" id="c-m1-9" type="checkbox"/><label for="c-m1-9"><span class="m" dir="ltr">1 1/2 + 2 2/3</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3/2 + 8/3 = 9/6 + 16/6 = 25/6</span> (כלומר 4 ושישית)</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="1" data-topic="m1" id="c-m1-10" type="checkbox"/><label for="c-m1-10"><span class="m" dir="ltr">(1/2 + 1/3) : (1/6)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5/6 · 6 = 5</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="1" data-topic="m1" id="c-m1-11" type="checkbox"/><label for="c-m1-11"><span class="m" dir="ltr">−3 − (−5) + 2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−3 + 5 + 2 = 4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 12" data-day="1" data-topic="m1" id="c-m1-12" type="checkbox"/><label for="c-m1-12"><span class="m" dir="ltr">(−2) · (−3) · (−1)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−6</span> (מספר אי-זוגי של מינוסים נותן מינוס)</p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m1" id="c-m1-c1" type="checkbox"/><label for="c-m1-c1"><span class="tt">עמ' 4, סעיף 1 (פעולות חשבון)</span><span class="nt">תרגילים 1–8 ו-13–16</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m1" id="c-m1-c2" type="checkbox"/><label for="c-m1-c2"><span class="tt">עמ' 4, סעיף 2א (צמצום שברים)</span><span class="nt">תרגילים 1–4</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m1" id="c-m1-c3" type="checkbox"/><label for="c-m1-c3"><span class="tt">עמ' 5, כפל שברים</span><span class="nt">תרגילים 1–4</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m1" id="c-m1-c4" type="checkbox"/><label for="c-m1-c4"><span class="tt">עמ' 5, חילוק שברים</span><span class="nt">תרגילים 1–6</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m1" id="c-m1-c5" type="checkbox"/><label for="c-m1-c5"><span class="tt">עמ' 5, חיבור וחיסור שברים</span><span class="nt">תרגילים 1–4</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m1" id="c-m1-c6" type="checkbox"/><label for="c-m1-c6"><span class="tt">עמ' 5, סדר פעולות בשברים</span><span class="nt">תרגילים 1–2. התשובות של כל הסעיפים בעמ' 6</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m1"></span></p>
+</section>
+<section class="topic math" id="m2">
+<h2>חזקות ושורשים</h2>
+<p class="meta">מתמטיקה · עמ' 7–9 בחוברת · יום 1</p>
+<h3>1. הסבר</h3>
+<p>חזקה היא כפל חוזר: <span class="m" dir="ltr">2³ = 2 · 2 · 2 = 8</span>. בכפל חזקות עם אותו בסיס <b>מחברים</b> מעריכים, בחילוק <b>מחסרים</b>, ובחזקה של חזקה <b>כופלים</b>.</p>
+<p>חזקה שלילית היא ההופכי: <span class="m" dir="ltr">a⁻ⁿ = 1/aⁿ</span>. כל מספר (שונה מאפס) בחזקת 0 שווה 1.</p>
+<p>שורש ריבועי הוא חזקה של חצי: <span class="m" dir="ltr">√a = a^(1/2)</span>. אפשר לפרק שורש: <span class="m" dir="ltr">√(ab) = √a · √b</span>.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">aᵐ · aⁿ = aᵐ⁺ⁿ</span> <span class="m" dir="ltr">aᵐ : aⁿ = aᵐ⁻ⁿ</span> <span class="m" dir="ltr">(aᵐ)ⁿ = aᵐⁿ</span></li>
+<li><span class="m" dir="ltr">(ab)ⁿ = aⁿbⁿ</span> <span class="m" dir="ltr">a⁰ = 1</span> <span class="m" dir="ltr">a⁻ⁿ = 1/aⁿ</span></li>
+<li><span class="m" dir="ltr">√(ab) = √a · √b</span> <span class="m" dir="ltr">√(a²) = |a|</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> <span class="m" dir="ltr">(a + b)² </span> אינו <span class="m" dir="ltr">a² + b²</span>. חוקי החזקות עובדים על כפל וחילוק, לא על חיבור.</p>
+<div class="bridge mathbridge">
+<h3>תוספת חשובה: סוגריים משנים הכול בחזקות</h3>
+<p><span class="m" dir="ltr">(−2)⁴=16</span>, אבל <span class="m" dir="ltr">−2⁴=−16</span>, כי בלי סוגריים החזקה שייכת ל-2 והמינוס נשאר בחוץ.</p>
+<p>עוד נקודה: <span class="m" dir="ltr">√(a²)=|a|</span>. לדוגמה, אם <span class="m" dir="ltr">a=−5</span>, אז <span class="m" dir="ltr">√(a²)=5</span>, לא <span class="m" dir="ltr">−5</span>. בחומר ממשי, חוק <span class="m" dir="ltr">√(ab)=√a√b</span> משמש כשכמויות השורש מתאימות לתחום.</p>
+<details><summary>תרגיל גשר</summary><p>חשב <span class="m" dir="ltr">(−3)²−3²</span> ופשט <span class="m" dir="ltr">√(49x²)</span>. תשובות: <span class="m" dir="ltr">0</span>, <span class="m" dir="ltr">7|x|</span>.</p></details>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> חשב <span class="m" dir="ltr">2³ · 2⁴</span> ואת <span class="m" dir="ltr">(3²)³ : 3⁴</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">2³ · 2⁴ = 2⁷ = 128</span>.</p>
+<p><span class="m" dir="ltr">(3²)³ = 3⁶</span>, ואז <span class="m" dir="ltr">3⁶ : 3⁴ = 3² = 9</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> פשט <span class="m" dir="ltr">√50</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">√50 = √(25 · 2) = 5√2</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> חשב <span class="m" dir="ltr">(1/2)⁻³</span>.</p><div class="sol">
+<p>חזקה שלילית הופכת את השבר: <span class="m" dir="ltr">(1/2)⁻³ = 2³ = 8</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="1" data-topic="m2" id="c-m2-1" type="checkbox"/><label for="c-m2-1"><span class="m" dir="ltr">5² · 5³</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5⁵ = 3125</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="1" data-topic="m2" id="c-m2-2" type="checkbox"/><label for="c-m2-2"><span class="m" dir="ltr">2⁷ : 2⁴</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2³ = 8</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="1" data-topic="m2" id="c-m2-3" type="checkbox"/><label for="c-m2-3"><span class="m" dir="ltr">(2³)²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2⁶ = 64</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="1" data-topic="m2" id="c-m2-4" type="checkbox"/><label for="c-m2-4"><span class="m" dir="ltr">3⁻²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">1/9</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="1" data-topic="m2" id="c-m2-5" type="checkbox"/><label for="c-m2-5"><span class="m" dir="ltr">(2/3)⁻²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(3/2)² = 9/4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="1" data-topic="m2" id="c-m2-6" type="checkbox"/><label for="c-m2-6"><span class="m" dir="ltr">√(9 · 16)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3 · 4 = 12</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="1" data-topic="m2" id="c-m2-7" type="checkbox"/><label for="c-m2-7">פשט <span class="m" dir="ltr">√72</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">√(36 · 2) = 6√2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="1" data-topic="m2" id="c-m2-8" type="checkbox"/><label for="c-m2-8"><span class="m" dir="ltr">√3 · √12</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">√36 = 6</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="1" data-topic="m2" id="c-m2-9" type="checkbox"/><label for="c-m2-9">פשט <span class="m" dir="ltr">(x³)² · x⁻⁴</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x⁶ · x⁻⁴ = x²</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="1" data-topic="m2" id="c-m2-10" type="checkbox"/><label for="c-m2-10">פשט <span class="m" dir="ltr">(2a²b)³</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">8a⁶b³</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="1" data-topic="m2" id="c-m2-11" type="checkbox"/><label for="c-m2-11"><span class="m" dir="ltr">27^(1/3)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3</span> (שורש שלישי של 27)</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 12" data-day="1" data-topic="m2" id="c-m2-12" type="checkbox"/><label for="c-m2-12"><span class="m" dir="ltr">(√5 + 2)(√5 − 2)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5 − 4 = 1</span> (כפל מקוצר)</p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m2" id="c-m2-c1" type="checkbox"/><label for="c-m2-c1"><span class="tt">עמ' 7, חזקות</span><span class="nt">10 התרגילים הראשונים</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m2" id="c-m2-c2" type="checkbox"/><label for="c-m2-c2"><span class="tt">עמ' 8, חישוב חזקות</span><span class="nt">8 התרגילים הראשונים</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="m2" id="c-m2-c3" type="checkbox"/><label for="c-m2-c3"><span class="tt">עמ' 9, שורשים</span><span class="nt">8 התרגילים הראשונים. התשובות בסוף כל עמוד</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m2"></span></p>
+</section>
+<section class="topic phys" id="p0">
+<h2>וקטורים</h2>
+<p class="meta">פיזיקה · פרק 2 בקורס · יום 1</p>
+<h3>1. הסבר</h3>
+<p><b>סקלר</b> הוא מספר בלבד (מסה, זמן, דרך). <b>וקטור</b> הוא מספר וגם כיוון (העתק, מהירות, תאוצה, כוח).</p>
+<p>בתנועה על קו ישר הכיוון הוא סימן: ימינה (או למעלה) חיובי, שמאלה (או למטה) שלילי.</p>
+<p><b>פירוק וקטור:</b> וקטור באורך <span class="m" dir="ltr">V</span> בזווית θ מהאופק מתפרק לרכיב אופקי <span class="m" dir="ltr">Vx = V cos θ</span> ולרכיב אנכי <span class="m" dir="ltr">Vy = V sin θ</span>.</p>
+<p><b>חיבור וקטורים:</b> מחברים רכיב עם רכיב. אחר כך מוצאים גודל בעזרת פיתגורס ואת הזווית בעזרת tan. <b>חיסור:</b> מחסרים רכיב מרכיב.</p>
+<p><b>העתק ודרך:</b> העתק הוא וקטור מנקודת ההתחלה לנקודת הסוף. דרך היא אורך המסלול כולו, וקטורית אין לה כיוון.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">Vx = V cos θ</span> <span class="m" dir="ltr">Vy = V sin θ</span></li>
+<li><span class="m" dir="ltr">V = √(Vx² + Vy²)</span> <span class="m" dir="ltr">tan θ = Vy / Vx</span></li>
+<li><span class="m" dir="ltr">sin 37° = 0.6</span> <span class="m" dir="ltr">cos 37° = 0.8</span>   (משולש 3-4-5)</li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> חיסור וקטורים הוא חיסור רכיבים. הגודל של הפרש אינו הפרש הגדלים.</p>
+<div class="bridge">
+<h3>תוספת חשובה: איך מוצאים זווית בלי ליפול ברבע</h3>
+<p>קודם בוחרים צירים ומסתכלים על הסימנים של הרכיבים. לאחר מכן מוצאים <b>זווית ייחוס</b> עם <span class="m" dir="ltr">tan⁻¹(|Vy/Vx|)</span>, ורק אז ממקמים אותה ברבע הנכון. <span class="m" dir="ltr">tan⁻¹</span> כאן היא פונקציה הפוכה (arctan), לא <span class="m" dir="ltr">1/tan</span>.</p>
+<p>דוגמה: <span class="m" dir="ltr">V=(−3,4)</span>. הגודל 5. זווית הייחוס <span class="m" dir="ltr">tan⁻¹(4/3)≈53.1°</span>. הווקטור ברבע 2, לכן הזווית מהציר החיובי היא <span class="m" dir="ltr">180°−53.1°=126.9°</span>.</p>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> וקטור באורך 10 בזווית 30° מעל האופק. מצא את הרכיבים.</p><div class="sol">
+<p><span class="m" dir="ltr">Vx = 10 cos 30° = 10 · 0.866 = 8.66</span>.</p>
+<p><span class="m" dir="ltr">Vy = 10 sin 30° = 10 · 0.5 = 5</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> A הוא 3 ימינה ו-4 למעלה, ו-B הוא 5 ימינה ו-1 למטה. מצא את <span class="m" dir="ltr">A + B</span>.</p><div class="sol">
+<p>רכיב x: <span class="m" dir="ltr">3 + 5 = 8</span>. רכיב y: <span class="m" dir="ltr">4 + (−1) = 3</span>.</p>
+<p>גודל: <span class="m" dir="ltr">√(8² + 3²) = √73 ≈ 8.54</span>. זווית: <span class="m" dir="ltr">tan θ = 3/8</span>, כלומר <span class="m" dir="ltr">θ ≈ 20.6°</span> מעל האופק.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> הולכים 3 מטר מזרחה ואז 4 מטר צפונה. מה ההעתק ומה הדרך?</p><div class="sol">
+<p>העתק: <span class="m" dir="ltr">√(3² + 4²) = 5</span> מטר, בזווית <span class="m" dir="ltr">tan θ = 4/3</span>, כלומר <span class="m" dir="ltr">θ ≈ 53°</span> צפונית למזרח.</p>
+<p>דרך: <span class="m" dir="ltr">3 + 4 = 7</span> מטר.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="1" data-topic="p0" id="c-p0-1" type="checkbox"/><label for="c-p0-1">וקטור באורך 20 בזווית 37° מעל האופק. מצא את הרכיבים.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">Vx = 20 · 0.8 = 16</span>, <span class="m" dir="ltr">Vy = 20 · 0.6 = 12</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="1" data-topic="p0" id="c-p0-2" type="checkbox"/><label for="c-p0-2">לוקטור רכיב אופקי 5 ורכיב אנכי 12. מצא גודל וזווית מהאופק.</label></div><details class="ans"><summary>תשובה</summary><p>גודל <span class="m" dir="ltr">√(25 + 144) = 13</span>. זווית: <span class="m" dir="ltr">tan θ = 12/5</span>, כלומר <span class="m" dir="ltr">θ ≈ 67.4°</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="1" data-topic="p0" id="c-p0-3" type="checkbox"/><label for="c-p0-3">A הוא (2, 7) ו-B הוא (−5, −3). מצא את <span class="m" dir="ltr">A + B</span>, גודל וזווית מהציר החיובי.</label></div><details class="ans"><summary>תשובה</summary><p>סכום <span class="m" dir="ltr">(−3, 4)</span>. גודל <span class="m" dir="ltr">5</span>. הזווית מהציר החיובי <span class="m" dir="ltr">≈ 126.9°</span> (רבע 2)</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="1" data-topic="p0" id="c-p0-4" type="checkbox"/><label for="c-p0-4">הולכים 6 מטר מזרחה ואז 8 מטר צפונה. מה ההעתק ומה הדרך?</label></div><details class="ans"><summary>תשובה</summary><p>העתק 10 מטר, בזווית <span class="m" dir="ltr">≈ 53.1°</span> צפונית למזרח. דרך 14 מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="1" data-topic="p0" id="c-p0-5" type="checkbox"/><label for="c-p0-5">מטוס טס צפונה ב-300 קמ״ש, ורוח נושבת מזרחה ב-100 קמ״ש. מה המהירות התוצאתית?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">√(300² + 100²) = √100000 ≈ 316</span> קמ״ש, בזווית <span class="m" dir="ltr">tan θ = 100/300</span>, כלומר <span class="m" dir="ltr">≈ 18.4°</span> מזרחית לצפון</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="1" data-topic="p0" id="c-p0-6" type="checkbox"/><label for="c-p0-6">כדור פוגע בקיר במהירות 10 מ'/ש ימינה וחוזר ב-10 מ'/ש שמאלה. מה שינוי המהירות?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">Δv = v₂ − v₁ = (−10) − (+10) = −20</span> מ'/ש, כלומר 20 מ'/ש שמאלה</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="1" data-topic="p0" id="c-p0-7" type="checkbox"/><label for="c-p0-7">A הוא (6, 2) ו-B הוא (1, 5). מצא את <span class="m" dir="ltr">A − B</span> ואת גודלו.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">A − B = (5, −3)</span>, גודל <span class="m" dir="ltr">√34 ≈ 5.83</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="1" data-topic="p0" id="c-p0-8" type="checkbox"/><label for="c-p0-8">כוח של 50 ניוטון פועל בזווית 30° מעל האופק. מצא את הרכיבים.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">Fx = 50 cos 30° ≈ 43.3</span> ניוטון, <span class="m" dir="ltr">Fy = 50 sin 30° = 25</span> ניוטון</p></details></li>
+</ol>
+<p class="cntline"><span class="cnt" data-topic="p0"></span></p>
+</section>
+<section class="topic phys" id="p1">
+<h2>תנועה במהירות קבועה (שוות מהירות)</h2>
+<p class="meta">פיזיקה · באתר: שוות מהירות, נושאים 1–7 · יום 1–2</p>
+<h3>1. הסבר</h3>
+<p><b>מהירות</b> היא כמה המקום משתנה בכל שנייה: <span class="m" dir="ltr">v = Δx/Δt</span>. היחידה מטר לשנייה. להמרה: מחלקים קמ״ש ב-3.6 ומקבלים מ'/ש.</p>
+<p>כשהמהירות קבועה, המקום נתון במשוואה <b><span class="m" dir="ltr">x = x₀ + v·t</span></b>. <span class="m" dir="ltr">x₀</span> הוא המקום ברגע 0, ו-<span class="m" dir="ltr">v</span> חיובי או שלילי לפי הכיוון.</p>
+<p><b>גרף מקום–זמן:</b> קו ישר. <b>השיפוע הוא המהירות.</b> קו אופקי אומר שהגוף עומד.</p>
+<p><b>גרף מהירות–זמן:</b> קו אופקי. <b>השטח מתחת לגרף הוא ההעתק</b> (שטח מתחת לציר הזמן נחשב שלילי).</p>
+<p><b>שני גופים נפגשים</b> כשהמקומות שלהם שווים באותו זמן: כותבים משוואת מקום לכל גוף ומשווים אותן.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">v = Δx/Δt</span></li>
+<li><span class="m" dir="ltr">x = x₀ + v·t</span></li>
+<li>72 קמ״ש הם 20 מ'/ש</li>
+<li>מפגש: <span class="m" dir="ltr">x₁(t) = x₂(t)</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> מהירות בכיוון שמאל (או למטה) צריכה סימן שלילי במשוואה, אחרת התשובה יוצאת לא נכונה.</p>
+<div class="bridge">
+<h3>תוספת חשובה: מקום, העתק ודרך אינם אותו דבר</h3>
+<p><b>מקום x</b> הוא ה״כתובת״ על הציר. <b>העתק</b> הוא <span class="m" dir="ltr">Δx=x_f−x_i</span>. <b>דרך</b> היא כמה מטרים עברנו בפועל. לכן בנוסחה <span class="m" dir="ltr">v=Δx/Δt</span> לא מחליפים אוטומטית את <span class="m" dir="ltr">Δx</span> ב-<span class="m" dir="ltr">x</span>.</p>
+<p>דוגמה: מתחילים ב-<span class="m" dir="ltr">x=20</span> ומסיימים ב-<span class="m" dir="ltr">x=5</span>. ההעתק הוא <span class="m" dir="ltr">−15</span> מטר, גם אם הדרך שעברנו הייתה גדולה מ-15.</p>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> מכונית נוסעת ב-20 מ'/ש. כמה זמן תיקח לה נסיעה של 1.2 ק״מ?</p><div class="sol">
+<p>1.2 ק״מ הם 1200 מטר. <span class="m" dir="ltr">t = Δx/v = 1200/20 = 60</span> שניות.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> גוף נמצא ברגע 0 במקום 50 מטר ונע ב-4 מ'/ש לכיוון ראשית הצירים (שמאלה). כתוב משוואת מקום ומצא מתי יגיע לראשית.</p><div class="sol">
+<p><span class="m" dir="ltr">x = 50 − 4t</span>.</p>
+<p>מגיע לראשית כש-<span class="m" dir="ltr">x = 0</span>: <span class="m" dir="ltr">50 − 4t = 0</span>, ולכן <span class="m" dir="ltr">t = 12.5</span> שניות.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> גוף A יוצא מהראשית ב-6 מ'/ש ימינה. גוף B נמצא ב-100 מטר ונע ב-4 מ'/ש שמאלה, לעברו. מתי ואיפה ייפגשו?</p><div class="sol">
+<p><span class="m" dir="ltr">xA = 6t</span>, <span class="m" dir="ltr">xB = 100 − 4t</span>.</p>
+<p>מפגש: <span class="m" dir="ltr">6t = 100 − 4t</span>, ולכן <span class="m" dir="ltr">10t = 100</span> ו-<span class="m" dir="ltr">t = 10</span> שניות.</p>
+<p>המקום: <span class="m" dir="ltr">x = 6 · 10 = 60</span> מטר.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 4.</b> גרף מקום–זמן עובר דרך הנקודות (0, 0), (4, 8), (10, 8), (14, 0). תאר את התנועה.</p><div class="sol">
+<p>0 עד 4 שניות: השיפוע <span class="m" dir="ltr">8/4 = 2</span>, כלומר <span class="m" dir="ltr">v = +2</span> מ'/ש.</p>
+<p>4 עד 10: קו אופקי, הגוף עומד (<span class="m" dir="ltr">v = 0</span>).</p>
+<p>10 עד 14: השיפוע <span class="m" dir="ltr">−8/4 = −2</span>, כלומר <span class="m" dir="ltr">v = −2</span> מ'/ש והגוף חוזר לראשית.</p>
+<p>העתק כולל 0, ודרך <span class="m" dir="ltr">8 + 8 = 16</span> מטר.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="1" data-topic="p1" id="c-p1-1" type="checkbox"/><label for="c-p1-1">רוכב אופניים נוסע ב-5 מ'/ש במשך 2 דקות. מה המרחק?</label></div><details class="ans"><summary>תשובה</summary><p>2 דקות הן 120 שניות. <span class="m" dir="ltr">x = 5 · 120 = 600</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="1" data-topic="p1" id="c-p1-2" type="checkbox"/><label for="c-p1-2">מהירות של 72 קמ״ש. כמה זמן ייקח לעבור 5 ק״מ?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">72/3.6 = 20</span> מ'/ש. <span class="m" dir="ltr">t = 5000/20 = 250</span> שניות</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="1" data-topic="p1" id="c-p1-3" type="checkbox"/><label for="c-p1-3"><span class="m" dir="ltr">x = −10 + 3t</span>. מה המקום ב-<span class="m" dir="ltr">t = 4</span>, ומתי <span class="m" dir="ltr">x = 20</span>?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x(4) = −10 + 12 = 2</span>. <span class="m" dir="ltr">−10 + 3t = 20</span>, ולכן <span class="m" dir="ltr">t = 10</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="1" data-topic="p1" id="c-p1-4" type="checkbox"/><label for="c-p1-4">גוף במקום 15 מטר נע ב-2 מ'/ש שמאלה. כתוב משוואה ומצא מתי יגיע לראשית.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x = 15 − 2t</span>. <span class="m" dir="ltr">t = 7.5</span> שניות</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="1" data-topic="p1" id="c-p1-5" type="checkbox"/><label for="c-p1-5">רץ A יוצא מהראשית ב-5 מ'/ש. רץ B נמצא 30 מטר לפניו ורץ באותו כיוון ב-3 מ'/ש. מתי A יגיע ל-B?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5t = 30 + 3t</span>, ולכן <span class="m" dir="ltr">t = 15</span> שניות, במקום <span class="m" dir="ltr">x = 75</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="1" data-topic="p1" id="c-p1-6" type="checkbox"/><label for="c-p1-6">שני אנשים במרחק 200 מטר הולכים זה לקראת זה ב-8 מ'/ש וב-12 מ'/ש. מתי ואיפה ייפגשו (מנקודת ההתחלה של הראשון)?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">8t + 12t = 200</span>, ולכן <span class="m" dir="ltr">t = 10</span> שניות. מקום <span class="m" dir="ltr">8 · 10 = 80</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="1" data-topic="p1" id="c-p1-7" type="checkbox"/><label for="c-p1-7">גרף מקום–זמן עובר דרך (0, 10), (5, 30), (8, 30), (12, 10). מצא מהירות בכל קטע, העתק כולל ודרך.</label></div><details class="ans"><summary>תשובה</summary><p>מהירויות: <span class="m" dir="ltr">+4</span>, <span class="m" dir="ltr">0</span>, <span class="m" dir="ltr">−5</span> מ'/ש. העתק כולל 0. דרך <span class="m" dir="ltr">20 + 20 = 40</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="1" data-topic="p1" id="c-p1-8" type="checkbox"/><label for="c-p1-8">גרף מהירות–זמן: <span class="m" dir="ltr">v = +6</span> בין 0 ל-5 שניות, ואז <span class="m" dir="ltr">v = −2</span> בין 5 ל-10 שניות. מצא העתק ודרך, ומקום סופי אם התחלנו ב-<span class="m" dir="ltr">x = 5</span>.</label></div><details class="ans"><summary>תשובה</summary><p>העתק: <span class="m" dir="ltr">30 − 10 = 20</span>. דרך: <span class="m" dir="ltr">30 + 10 = 40</span>. מקום סופי <span class="m" dir="ltr">5 + 20 = 25</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="p1" id="c-p1-c1" type="checkbox"/><label for="c-p1-c1"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-מהירות/1-מה-זה-מהירות/תרגיל-1-1" rel="noopener" target="_blank">שוות מהירות, תרגיל 1.1</a></span><span class="nt">מה זה מהירות</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="p1" id="c-p1-c2" type="checkbox"/><label for="c-p1-c2"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-מהירות/2-שוות-מהירות/תרגיל-2-1" rel="noopener" target="_blank">שוות מהירות, תרגיל 2.1</a></span><span class="nt">תנועה במהירות קבועה</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="p1" id="c-p1-c3" type="checkbox"/><label for="c-p1-c3"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-מהירות/3-משוואת-מקום-זמן/תרגיל-3-1" rel="noopener" target="_blank">שוות מהירות, תרגיל 3.1</a></span><span class="nt">משוואת מקום–זמן</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="p1" id="c-p1-c4" type="checkbox"/><label for="c-p1-c4"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-מהירות/4-בניית-גרף-מקום/תרגיל-4-1" rel="noopener" target="_blank">שוות מהירות, תרגיל 4.1</a></span><span class="nt">בניית גרף מקום</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="1" data-topic="p1" id="c-p1-c5" type="checkbox"/><label for="c-p1-c5"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-מהירות/5-קריאת-גרף-מקום/תרגיל-5-1" rel="noopener" target="_blank">שוות מהירות, תרגיל 5.1</a></span><span class="nt">קריאת גרף מקום</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="p1"></span></p>
+</section>
+</section>
+<section class="day" id="day2"><header class="dayhead"><h1>יום 2: אלגברה בסיסית, מקוטעין ותאוצה</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק פירוק לגורמים (עמ' 13–16), ובפיזיקה רק תרגילים 2.1 ו-3.1 של שוות תאוצה א.</p><p class="daycnt"><span data-daycount="2"></span></p></header>
+<section class="topic math" id="m3">
+<h2>פתיחת סוגריים ונוסחאות כפל מקוצר</h2>
+<p class="meta">מתמטיקה · עמ' 10–12 בחוברת · יום 2</p>
+<h3>1. הסבר</h3>
+<p>פתיחת סוגריים: כל איבר בסוגריים הראשונים נכפל בכל איבר בסוגריים השניים.</p>
+<p>יש שלוש נוסחאות שכדאי לדעת בעל פה, כי הן חוסכות הרבה חישוב ומופיעות בכל מקום, גם בפיזיקה.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">(a + b)² = a² + 2ab + b²</span></li>
+<li><span class="m" dir="ltr">(a − b)² = a² − 2ab + b²</span></li>
+<li><span class="m" dir="ltr">(a − b)(a + b) = a² − b²</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> הביטוי <span class="m" dir="ltr">(a + b)²</span> אינו <span class="m" dir="ltr">a² + b²</span>. חסר האיבר האמצעי <span class="m" dir="ltr">2ab</span>.</p>
+<h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> פתח: <span class="m" dir="ltr">(x + 3)²</span> ואת <span class="m" dir="ltr">(2x − 5)²</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">(x + 3)² = x² + 2 · x · 3 + 9 = x² + 6x + 9</span>.</p>
+<p><span class="m" dir="ltr">(2x − 5)² = 4x² − 2 · 2x · 5 + 25 = 4x² − 20x + 25</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> פתח: <span class="m" dir="ltr">(3x − 4)(3x + 4)</span>.</p><div class="sol">
+<p>זו נוסחת ההפרש: <span class="m" dir="ltr">(3x)² − 4² = 9x² − 16</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> פשט: <span class="m" dir="ltr">3(x − 2)² + (x + 1)(x − 1)</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">3(x² − 4x + 4) + (x² − 1)</span></p>
+<p><span class="m" dir="ltr">3x² − 12x + 12 + x² − 1 = 4x² − 12x + 11</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="2" data-topic="m3" id="c-m3-1" type="checkbox"/><label for="c-m3-1"><span class="m" dir="ltr">(x + 5)²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² + 10x + 25</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="2" data-topic="m3" id="c-m3-2" type="checkbox"/><label for="c-m3-2"><span class="m" dir="ltr">(x − 4)²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² − 8x + 16</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="2" data-topic="m3" id="c-m3-3" type="checkbox"/><label for="c-m3-3"><span class="m" dir="ltr">(3x + 2)²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">9x² + 12x + 4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="2" data-topic="m3" id="c-m3-4" type="checkbox"/><label for="c-m3-4"><span class="m" dir="ltr">(x − 7)(x + 7)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² − 49</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="2" data-topic="m3" id="c-m3-5" type="checkbox"/><label for="c-m3-5"><span class="m" dir="ltr">(2a − 3b)²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">4a² − 12ab + 9b²</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="2" data-topic="m3" id="c-m3-6" type="checkbox"/><label for="c-m3-6"><span class="m" dir="ltr">(x + 3)(x − 5)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² − 5x + 3x − 15 = x² − 2x − 15</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="2" data-topic="m3" id="c-m3-7" type="checkbox"/><label for="c-m3-7"><span class="m" dir="ltr">(2x − 1)(x + 4)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2x² + 8x − x − 4 = 2x² + 7x − 4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="2" data-topic="m3" id="c-m3-8" type="checkbox"/><label for="c-m3-8">פשט <span class="m" dir="ltr">2(x + 1)² − 3(x − 2)(x + 2)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2x² + 4x + 2 − 3x² + 12 = −x² + 4x + 14</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="2" data-topic="m3" id="c-m3-9" type="checkbox"/><label for="c-m3-9">פשט <span class="m" dir="ltr">(a + 2)² − (a − 2)²</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a² + 4a + 4 − a² + 4a − 4 = 8a</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="2" data-topic="m3" id="c-m3-10" type="checkbox"/><label for="c-m3-10"><span class="m" dir="ltr">(5x³ + 7)(5x³ − 7)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">25x⁶ − 49</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="m3" id="c-m3-c1" type="checkbox"/><label for="c-m3-c1"><span class="tt">עמ' 10, חוקי הפילוג</span><span class="nt">6 התרגילים הראשונים</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="m3" id="c-m3-c2" type="checkbox"/><label for="c-m3-c2"><span class="tt">עמ' 11, נוסחאות כפל מקוצר</span><span class="nt">10 התרגילים הראשונים. התשובות בעמ' 12</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m3"></span></p>
+</section>
+<section class="topic math" id="m4">
+<h2>פירוק לגורמים</h2>
+<p class="meta">מתמטיקה · עמ' 13–16 בחוברת · יום 2</p>
+<h3>1. הסבר</h3>
+<p>פירוק לגורמים הוא ההפך מפתיחת סוגריים: הופכים סכום למכפלה. תמיד בודקים קודם <b>גורם משותף</b>, ואחר כך נוסחאות כפל מקוצר, ואחר כך טרינום.</p>
+<p><b>טרינום</b> <span class="m" dir="ltr">x² + bx + c</span>: מחפשים שני מספרים שהמכפלה שלהם <span class="m" dir="ltr">c</span> והסכום שלהם <span class="m" dir="ltr">b</span>. אם הם <span class="m" dir="ltr">p</span> ו-<span class="m" dir="ltr">q</span>, הפירוק הוא <span class="m" dir="ltr">(x + p)(x + q)</span>.</p>
+<p><b>לפי קבוצות:</b> מפרקים בנפרד כל זוג איברים ומוציאים גורם משותף חדש.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">ab + ac = a(b + c)</span></li>
+<li><span class="m" dir="ltr">a² − b² = (a − b)(a + b)</span></li>
+<li><span class="m" dir="ltr">a² ± 2ab + b² = (a ± b)²</span></li>
+<li><span class="m" dir="ltr">x² + bx + c = (x + p)(x + q)</span>, כש-<span class="m" dir="ltr">p + q = b</span> ו-<span class="m" dir="ltr">pq = c</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> אחרי הפירוק כדאי לפתוח חזרה ולוודא שיוצא הביטוי המקורי.</p>
+<h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> פרק: <span class="m" dir="ltr">6x² + 9x</span>.</p><div class="sol">
+<p>הגורם המשותף הגדול הוא <span class="m" dir="ltr">3x</span>: <span class="m" dir="ltr">6x² + 9x = 3x(2x + 3)</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> פרק: <span class="m" dir="ltr">x² + 5x + 6</span>.</p><div class="sol">
+<p>מחפשים מכפלה 6 וסכום 5: המספרים 2 ו-3.</p>
+<p><span class="m" dir="ltr">x² + 5x + 6 = (x + 2)(x + 3)</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> פרק: <span class="m" dir="ltr">ax + ay + bx + by</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">a(x + y) + b(x + y)</span></p>
+<p><span class="m" dir="ltr">= (a + b)(x + y)</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="2" data-topic="m4" id="c-m4-1" type="checkbox"/><label for="c-m4-1"><span class="m" dir="ltr">5a + 10b</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5(a + 2b)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="2" data-topic="m4" id="c-m4-2" type="checkbox"/><label for="c-m4-2"><span class="m" dir="ltr">12x² − 18x</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">6x(2x − 3)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="2" data-topic="m4" id="c-m4-3" type="checkbox"/><label for="c-m4-3"><span class="m" dir="ltr">x² − 25</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x − 5)(x + 5)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="2" data-topic="m4" id="c-m4-4" type="checkbox"/><label for="c-m4-4"><span class="m" dir="ltr">4x² − 9</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(2x − 3)(2x + 3)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="2" data-topic="m4" id="c-m4-5" type="checkbox"/><label for="c-m4-5"><span class="m" dir="ltr">x² + 6x + 9</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x + 3)²</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="2" data-topic="m4" id="c-m4-6" type="checkbox"/><label for="c-m4-6"><span class="m" dir="ltr">x² + 7x + 12</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x + 3)(x + 4)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="2" data-topic="m4" id="c-m4-7" type="checkbox"/><label for="c-m4-7"><span class="m" dir="ltr">x² − 5x − 14</span></label></div><details class="ans"><summary>תשובה</summary><p>מכפלה −14 וסכום −5: −7 ו-2. <span class="m" dir="ltr">(x − 7)(x + 2)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="2" data-topic="m4" id="c-m4-8" type="checkbox"/><label for="c-m4-8"><span class="m" dir="ltr">x² − x − 12</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x − 4)(x + 3)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="2" data-topic="m4" id="c-m4-9" type="checkbox"/><label for="c-m4-9"><span class="m" dir="ltr">ax + ay + bx + by</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(a + b)(x + y)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="2" data-topic="m4" id="c-m4-10" type="checkbox"/><label for="c-m4-10"><span class="m" dir="ltr">2x² − 8</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2(x² − 4) = 2(x − 2)(x + 2)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="2" data-topic="m4" id="c-m4-11" type="checkbox"/><label for="c-m4-11"><span class="m" dir="ltr">x³ − 4x</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x(x² − 4) = x(x − 2)(x + 2)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 12" data-day="2" data-topic="m4" id="c-m4-12" type="checkbox"/><label for="c-m4-12"><span class="m" dir="ltr">3x² − 12x + 12</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3(x² − 4x + 4) = 3(x − 2)²</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="m4" id="c-m4-c1" type="checkbox"/><label for="c-m4-c1"><span class="tt">עמ' 13, הוצאת גורם משותף</span><span class="nt">6 התרגילים הראשונים</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="m4" id="c-m4-c2" type="checkbox"/><label for="c-m4-c2"><span class="tt">עמ' 14, פירוק לפי קבוצות</span><span class="nt">6 התרגילים הראשונים</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="m4" id="c-m4-c3" type="checkbox"/><label for="c-m4-c3"><span class="tt">עמ' 15, פירוק לפי נוסחאות כפל מקוצר</span><span class="nt">6 התרגילים הראשונים. התשובות בעמ' 16</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m4"></span></p>
+</section>
+<section class="topic phys cont" id="p1b"><h2>המשך שוות מהירות (נושאים 6–7)</h2>
+<p class="meta">ההסבר נמצא ביום 1, בנושא תנועה במהירות קבועה. <a href="#p1">לקפוץ להסבר</a></p>
+<h3>תרגילים <span class="cnt" data-topic="p1b"></span></h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="p1b" id="c-p1b-c1" type="checkbox"/><label for="c-p1b-c1"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-מהירות/6-שני-גופים/תרגיל-6-1" rel="noopener" target="_blank">שוות מהירות, תרגיל 6.1</a></span><span class="nt">שני גופים. מפגש: משווים משוואות מקום</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="p1b" id="c-p1b-c2" type="checkbox"/><label for="c-p1b-c2"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-מהירות/7-קריאת-גרף-מהירות/תרגיל-7-1" rel="noopener" target="_blank">שוות מהירות, תרגיל 7.1</a></span><span class="nt">קריאת גרף מהירות. השטח הוא ההעתק</span></label></li>
+</ul>
+</section>
+<section class="topic phys" id="p2">
+<h2>תנועה בקטעים: העתק, דרך ומהירות ממוצעת</h2>
+<p class="meta">פיזיקה · באתר: ש.מ למקוטעין, נושאים 1–3 · יום 2</p>
+<h3>1. הסבר</h3>
+<p>כשהתנועה מורכבת מכמה קטעים במהירויות שונות, מחשבים כל קטע בנפרד ואז מחברים.</p>
+<p><b>העתק</b> = מקום סופי פחות מקום התחלתי (עם כיוון). <b>דרך</b> = כל המרחק שעבר הגוף (תמיד חיובית).</p>
+<p>מהירות ממוצעת = העתק כולל ÷ זמן כולל (עם סימן/כיוון). מהירות סקלרית ממוצעת (average speed) = דרך כוללת ÷ זמן כולל. אלה שני גדלים שונים.</p>
+<p>מהירות ממוצעת היא <b>לא</b> ממוצע של המהירויות, אלא אם הזמנים שווים.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li>מהירות ממוצעת = העתק כולל ÷ זמן כולל</li>
+<li>מהירות סקלרית ממוצעת = דרך כוללת ÷ זמן כולל</li>
+<li>אם חוזרים לנקודת ההתחלה, ההעתק הוא 0</li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> ממוצע של שתי מהירויות נכון רק אם הזמנים בכל קטע שווים. אם המרחקים שווים, יוצא ממוצע אחר.</p>
+<h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> הולכים 60 מטר מזרחה ב-40 שניות ואז 20 מטר מערבה ב-20 שניות. מצא העתק, דרך, מהירות ממוצעת ומהירות סקלרית ממוצעת.</p><div class="sol">
+<p>העתק: <span class="m" dir="ltr">60 − 20 = 40</span> מטר מזרחה. דרך: <span class="m" dir="ltr">60 + 20 = 80</span> מטר. זמן כולל 60 שניות.</p>
+<p>מהירות ממוצעת <span class="m" dir="ltr">40/60 ≈ 0.67</span> מ'/ש מזרחה. מהירות סקלרית ממוצעת <span class="m" dir="ltr">80/60 ≈ 1.33</span> מ'/ש.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> נוסעים 100 ק״מ ב-50 קמ״ש ואז עוד 100 ק״מ ב-100 קמ״ש. מה המהירות הממוצעת?</p><div class="sol">
+<p>זמנים: <span class="m" dir="ltr">100/50 = 2</span> שעות ו-<span class="m" dir="ltr">100/100 = 1</span> שעה, סך הכול 3 שעות.</p>
+<p><span class="m" dir="ltr">v̄ = 200/3 ≈ 66.7</span> קמ״ש. זה לא 75, שהוא ממוצע המהירויות.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="2" data-topic="p2" id="c-p2-1" type="checkbox"/><label for="c-p2-1">הולכים 30 מטר ב-20 שניות, עומדים 10 שניות, ואז הולכים 50 מטר ב-20 שניות (באותו כיוון). מה המהירות הממוצעת?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">80/50 = 1.6</span> מ'/ש</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="2" data-topic="p2" id="c-p2-2" type="checkbox"/><label for="c-p2-2">נוסעים 4 ק״מ צפונה ואז 3 ק״מ מזרחה, בסך הכול שעה. מצא העתק, דרך ומהירויות.</label></div><details class="ans"><summary>תשובה</summary><p>העתק <span class="m" dir="ltr">5</span> ק״מ (זווית <span class="m" dir="ltr">≈ 36.9°</span> מזרחית לצפון). דרך 7 ק״מ. מהירות ממוצעת 5 קמ״ש, מהירות סקלרית ממוצעת 7 קמ״ש</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="2" data-topic="p2" id="c-p2-3" type="checkbox"/><label for="c-p2-3">60 קמ״ש במשך שעה, ואז 90 קמ״ש במשך שעתיים. מה המהירות הממוצעת?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(60 + 180)/3 = 80</span> קמ״ש</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="2" data-topic="p2" id="c-p2-4" type="checkbox"/><label for="c-p2-4">הולכים 120 מטר ב-6 מ'/ש וחוזרים באותו מסלול ב-4 מ'/ש. מצא מהירות ממוצעת ומהירות סקלרית ממוצעת.</label></div><details class="ans"><summary>תשובה</summary><p>זמנים 20 ו-30 שניות, סך 50. דרך 240 מטר. מהירות סקלרית ממוצעת <span class="m" dir="ltr">240/50 = 4.8</span> מ'/ש. מהירות ממוצעת 0 כי ההעתק 0</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="2" data-topic="p2" id="c-p2-5" type="checkbox"/><label for="c-p2-5">רץ עושה הקפה של 400 מטר ב-80 שניות ומגיע לנקודת ההתחלה. מצא מהירות ממוצעת ומהירות סקלרית ממוצעת.</label></div><details class="ans"><summary>תשובה</summary><p>מהירות ממוצעת 0. מהירות סקלרית ממוצעת <span class="m" dir="ltr">400/80 = 5</span> מ'/ש</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="2" data-topic="p2" id="c-p2-6" type="checkbox"/><label for="c-p2-6">גוף נע 10 שניות ב-<span class="m" dir="ltr">+3</span> מ'/ש, עומד 5 שניות, ואז 10 שניות ב-<span class="m" dir="ltr">−2</span> מ'/ש. מצא העתק, דרך ומהירות ממוצעת.</label></div><details class="ans"><summary>תשובה</summary><p>העתק <span class="m" dir="ltr">30 − 20 = 10</span>. דרך <span class="m" dir="ltr">30 + 20 = 50</span>. זמן 25. מהירות ממוצעת <span class="m" dir="ltr">10/25 = 0.4</span> מ'/ש</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="2" data-topic="p2" id="c-p2-7" type="checkbox"/><label for="c-p2-7">חצי מהזמן נוסעים ב-20 קמ״ש וחצי מהזמן ב-40 קמ״ש. מה הממוצעת? ואם חצי מהדרך ב-20 וחצי מהדרך ב-40?</label></div><details class="ans"><summary>תשובה</summary><p>חצי זמן: <span class="m" dir="ltr">30</span> קמ״ש. חצי דרך: נניח 40 ק״מ בכל חצי. זמנים 2 ו-1 שעות, <span class="m" dir="ltr">80/3 ≈ 26.7</span> קמ״ש</p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="p2" id="c-p2-c1" type="checkbox"/><label for="c-p2-c1"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/ש-מ-למקוטעין/2-העתק-ודרך/תרגיל-2-1" rel="noopener" target="_blank">ש.מ למקוטעין, תרגיל 2.1</a></span><span class="nt">העתק ודרך</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="p2" id="c-p2-c2" type="checkbox"/><label for="c-p2-c2"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/ש-מ-למקוטעין/3-מהירות-ממוצעת/תרגיל-3-1" rel="noopener" target="_blank">ש.מ למקוטעין, תרגיל 3.1</a></span><span class="nt">מהירות ממוצעת</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="p2"></span></p>
+</section>
+<section class="topic phys" id="p3">
+<h2>תאוצה קבועה: מושגים ושתי משוואות</h2>
+<p class="meta">פיזיקה · באתר: שוות תאוצה א, נושאים 1–6 · יום 2–3</p>
+<h3>1. הסבר</h3>
+<p><b>תאוצה</b> היא כמה המהירות משתנה בכל שנייה: <span class="m" dir="ltr">a = Δv/Δt</span>. היחידה היא מטר לשנייה בריבוע.</p>
+<p><b>כיוון התאוצה:</b> אם התאוצה והמהירות באותו כיוון, הגוף מאיץ (מהירות גדלה). אם בכיוונים הפוכים, הגוף מאט. גוף יכול להאט, לעצור ולהתחיל לנוע לכיוון ההפוך.</p>
+<p>כשהתאוצה קבועה: <b><span class="m" dir="ltr">v = v₀ + a·t</span></b> ו-<b><span class="m" dir="ltr">x = x₀ + v₀·t + ½·a·t²</span></b>.</p>
+<p><b>בגרף מהירות–זמן:</b> השיפוע הוא התאוצה והשטח הוא ההעתק.</p>
+<p><b>בלימה:</b> כשגוף עוצר, מהירותו הסופית 0. תאוצת בלימה שלילית (אם כיוון התנועה חיובי).</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">a = Δv/Δt</span></li>
+<li><span class="m" dir="ltr">v = v₀ + a·t</span></li>
+<li><span class="m" dir="ltr">x = x₀ + v₀·t + ½·a·t²</span></li>
+<li>העתק = <span class="m" dir="ltr">(v₀ + v)/2 · t</span>  (רק כשהתאוצה קבועה)</li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> בבלימה מציבים <span class="m" dir="ltr">a</span> שלילית (או <span class="m" dir="ltr">v₀</span> שלילית, אם הכיוון החיובי הפוך). שוכחים סימן ומקבלים זמן שלילי.</p>
+<div class="bridge">
+<h3>תוספת חשובה: סימן התאוצה לא אומר לבד אם הגוף מאיץ או מאט</h3>
+<p>הסימן נקבע רק לפי הציר שבחרת. הגוף <b>מגדיל את גודל המהירות</b> כש-<span class="m" dir="ltr">v</span> ו-<span class="m" dir="ltr">a</span> באותו סימן, ומקטין אותו כשהם בסימנים הפוכים.</p>
+<p>לפני כל תרגיל כתוב שורה כזו: <span class="m" dir="ltr">x₀=?, v₀=?, a=?, t=?, x=?, v=?</span>. מלא את מה שנתון וסמן מה מבקשים. רק אז בחר נוסחה.</p>
+<details><summary>תרגיל גשר</summary><p><span class="m" dir="ltr">v=−10 m/s</span> ו-<span class="m" dir="ltr">a=−2 m/s²</span>. הגוף נע שמאלה וגם התאוצה שמאלה, לכן <b>גודל</b> המהירות גדל — הוא מאיץ, אף ש-<span class="m" dir="ltr">a</span> שלילית.</p></details>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> מכונית יוצאת ממנוחה ומגיעה ל-20 מ'/ש ב-8 שניות. מהי התאוצה, וכמה מטרים עברה?</p><div class="sol">
+<p><span class="m" dir="ltr">a = 20/8 = 2.5</span> מ'/ש².</p>
+<p><span class="m" dir="ltr">x = ½ · 2.5 · 8² = ½ · 2.5 · 64 = 80</span> מטר.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> גוף נע ב-30 מ'/ש ובולם בתאוצה <span class="m" dir="ltr">−5</span> מ'/ש². כמה זמן ומרחק עד העצירה?</p><div class="sol">
+<p><span class="m" dir="ltr">0 = 30 − 5t</span>, ולכן <span class="m" dir="ltr">t = 6</span> שניות.</p>
+<p><span class="m" dir="ltr">x = 30 · 6 − ½ · 5 · 36 = 180 − 90 = 90</span> מטר.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> גוף נע ב-<span class="m" dir="ltr">v₀ = −8</span> מ'/ש (שמאלה) ותאוצתו <span class="m" dir="ltr">+2</span> מ'/ש² (ימינה). מה קורה?</p><div class="sol">
+<p>תאוצה והמהירות בכיוונים הפוכים, ולכן הגוף מאט.</p>
+<p><span class="m" dir="ltr">0 = −8 + 2t</span>, ולכן <span class="m" dir="ltr">t = 4</span> שניות. ברגע זה הוא עוצר, ואחר כך מתחיל לנוע ימינה.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="2" data-topic="p3" id="c-p3-1" type="checkbox"/><label for="c-p3-1">יוצאים ממנוחה בתאוצה 3 מ'/ש² במשך 5 שניות. מצא מהירות ומרחק.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v = 15</span> מ'/ש, <span class="m" dir="ltr">x = ½ · 3 · 25 = 37.5</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="2" data-topic="p3" id="c-p3-2" type="checkbox"/><label for="c-p3-2"><span class="m" dir="ltr">v₀ = 4</span>, <span class="m" dir="ltr">a = 2</span>, <span class="m" dir="ltr">t = 6</span>. מצא מהירות ומרחק.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v = 4 + 12 = 16</span>. <span class="m" dir="ltr">x = 24 + 36 = 60</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="2" data-topic="p3" id="c-p3-3" type="checkbox"/><label for="c-p3-3">מכונית נוסעת ב-25 מ'/ש ובולמת בתאוצה <span class="m" dir="ltr">−5</span>. כמה זמן ומרחק עד עצירה?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">t = 5</span> שניות. <span class="m" dir="ltr">x = 25 · 5 − ½ · 5 · 25 = 62.5</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="2" data-topic="p3" id="c-p3-4" type="checkbox"/><label for="c-p3-4">אופניים מאיצים מ-2 ל-8 מ'/ש ב-12 שניות. מצא תאוצה ומרחק.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = 6/12 = 0.5</span>. <span class="m" dir="ltr">x = (2 + 8)/2 · 12 = 60</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="2" data-topic="p3" id="c-p3-5" type="checkbox"/><label for="c-p3-5"><span class="m" dir="ltr">v₀ = −6</span> מ'/ש, <span class="m" dir="ltr">a = +3</span>. מתי הגוף עוצר ומה העתקו עד אז?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">0 = −6 + 3t</span>, ולכן <span class="m" dir="ltr">t = 2</span>. <span class="m" dir="ltr">x = −12 + 6 = −6</span>, כלומר 6 מטר שמאלה</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="2" data-topic="p3" id="c-p3-6" type="checkbox"/><label for="c-p3-6">יוצאים ממנוחה ל-72 קמ״ש ב-10 שניות. מצא תאוצה ומרחק.</label></div><details class="ans"><summary>תשובה</summary><p>72 קמ״ש הם 20 מ'/ש. <span class="m" dir="ltr">a = 2</span>, <span class="m" dir="ltr">x = ½ · 2 · 100 = 100</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="2" data-topic="p3" id="c-p3-7" type="checkbox"/><label for="c-p3-7">רכבת בולמת בתאוצה <span class="m" dir="ltr">−0.5</span> מ-15 מ'/ש עד עצירה. כמה זמן ומרחק?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">t = 30</span> שניות. <span class="m" dir="ltr">x = 15 · 30 − ½ · 0.5 · 900 = 225</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="2" data-topic="p3" id="c-p3-8" type="checkbox"/><label for="c-p3-8">המהירות משתנה מ-10 ל-4 מ'/ש ב-3 שניות. מהי התאוצה, ומה כיוונה?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = −6/3 = −2</span>. כיוונה הפוך לתנועה: הגוף מאט</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="2" data-topic="p3" id="c-p3-9" type="checkbox"/><label for="c-p3-9"><span class="m" dir="ltr">x = 5 + 2t + 3t²</span>. מהם <span class="m" dir="ltr">x₀</span>, <span class="m" dir="ltr">v₀</span>, <span class="m" dir="ltr">a</span>? מה המקום והמהירות ב-<span class="m" dir="ltr">t = 2</span>?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x₀ = 5</span>, <span class="m" dir="ltr">v₀ = 2</span>, <span class="m" dir="ltr">½a = 3</span> ולכן <span class="m" dir="ltr">a = 6</span>. <span class="m" dir="ltr">x(2) = 5 + 4 + 12 = 21</span>, <span class="m" dir="ltr">v(2) = 2 + 12 = 14</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="p3" id="c-p3-c1" type="checkbox"/><label for="c-p3-c1"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-א/2-כיוון-התאוצה/תרגיל-2-1" rel="noopener" target="_blank">שוות תאוצה א, תרגיל 2.1</a></span><span class="nt">כיוון התאוצה</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="p3" id="c-p3-c2" type="checkbox"/><label for="c-p3-c2"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-א/3-תאוצה-ומהירות/תרגיל-3-1" rel="noopener" target="_blank">שוות תאוצה א, תרגיל 3.1</a></span><span class="nt">תאוצה ומהירות</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="p3" id="c-p3-c3" type="checkbox"/><label for="c-p3-c3"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-א/4-תאוצה-ומיקום/תרגיל-4-1" rel="noopener" target="_blank">שוות תאוצה א, תרגיל 4.1</a></span><span class="nt">תאוצה ומיקום</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="2" data-topic="p3" id="c-p3-c4" type="checkbox"/><label for="c-p3-c4"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-א/6-קריאת-גרף-מהירות/תרגיל-6-1" rel="noopener" target="_blank">שוות תאוצה א, תרגיל 6.1</a></span><span class="nt">קריאת גרף מהירות. אם יש כוח: לקרוא את ניתוח המעבדה (נושא 7)</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="p3"></span></p>
+</section>
+</section>
+<section class="day" id="day3"><header class="dayhead"><h1>יום 3: שברים אלגבריים, משוואות, מעגל טריגונומטרי ושוות תאוצה ב</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק משוואות עם נעלם אחד (עמ' 21–22), בפיזיקה רק תרגילים 8.1 ו-10.1, ובטריגונומטריה רק לצייר את המעגל.</p><p class="daycnt"><span data-daycount="3"></span></p></header>
+<section class="topic math" id="m5">
+<h2>שברים אלגבריים</h2>
+<p class="meta">מתמטיקה · עמ' 17–19 בחוברת · יום 3</p>
+<h3>1. הסבר</h3>
+<p>שבר אלגברי הוא שבר שיש בו נעלם. הכללים זהים לשברים רגילים, אבל <b>קודם מפרקים לגורמים</b>: כך רואים מה אפשר לצמצם ומהו המכנה המשותף.</p>
+<p>אפשר לצמצם רק <b>גורמים</b> (מכפלה), לא איברים בסכום. ב<span class="m" dir="ltr">(x + 3)/x</span> לא מצמצמים את ה-x.</p>
+<p>מציינים תמיד את הערכים שאסורים (שהמכנה מתאפס בהם).</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li>צמצום: <span class="m" dir="ltr">ac/(bc) = a/b</span>  (<span class="m" dir="ltr">c ≠ 0</span>)</li>
+<li>חיבור: מפרקים את המכנים, מוצאים מכנה משותף, ואז מחברים מונים</li>
+<li>חילוק: הופכים את השבר השני וכופלים</li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> אסור לצמצם איבר בסכום. ב-<span class="m" dir="ltr">(x + 3)/x</span> לא קורה כלום.</p>
+<h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> צמצם: <span class="m" dir="ltr">(x² − 9)/(x² − 3x)</span>.</p><div class="sol">
+<p>מפרקים: מונה <span class="m" dir="ltr">(x − 3)(x + 3)</span>, מכנה <span class="m" dir="ltr">x(x − 3)</span>.</p>
+<p>מצמצמים <span class="m" dir="ltr">x − 3</span>: <span class="m" dir="ltr">(x + 3)/x</span>, כשה-<span class="m" dir="ltr">x ≠ 0, 3</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> חשב: <span class="m" dir="ltr">1/(x − 1) + 1/(x + 1)</span>.</p><div class="sol">
+<p>המכנה המשותף <span class="m" dir="ltr">(x − 1)(x + 1)</span>.</p>
+<p><span class="m" dir="ltr">((x + 1) + (x − 1))/((x − 1)(x + 1)) = 2x/(x² − 1)</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> חשב: <span class="m" dir="ltr">(x² − 4)/x : (x + 2)/x²</span>.</p><div class="sol">
+<p>הופכים וכופלים: <span class="m" dir="ltr">(x − 2)(x + 2)/x · x²/(x + 2)</span>.</p>
+<p>מצמצמים <span class="m" dir="ltr">(x + 2)</span> ו-<span class="m" dir="ltr">x</span>: <span class="m" dir="ltr">x(x − 2)</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="3" data-topic="m5" id="c-m5-1" type="checkbox"/><label for="c-m5-1">צמצם <span class="m" dir="ltr">(x² − 4)/(x − 2)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x + 2</span>, כש-<span class="m" dir="ltr">x ≠ 2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="3" data-topic="m5" id="c-m5-2" type="checkbox"/><label for="c-m5-2">צמצם <span class="m" dir="ltr">(2x + 6)/(x² − 9)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2(x + 3)/((x − 3)(x + 3)) = 2/(x − 3)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="3" data-topic="m5" id="c-m5-3" type="checkbox"/><label for="c-m5-3">צמצם <span class="m" dir="ltr">(x² − 5x + 6)/(x² − 4)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x − 2)(x − 3)/((x − 2)(x + 2)) = (x − 3)/(x + 2)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="3" data-topic="m5" id="c-m5-4" type="checkbox"/><label for="c-m5-4">חשב <span class="m" dir="ltr">3/x + 2/(x + 1)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(3(x + 1) + 2x)/(x(x + 1)) = (5x + 3)/(x(x + 1))</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="3" data-topic="m5" id="c-m5-5" type="checkbox"/><label for="c-m5-5">חשב <span class="m" dir="ltr">1/(x − 2) − 1/(x + 2)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">((x + 2) − (x − 2))/((x − 2)(x + 2)) = 4/(x² − 4)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="3" data-topic="m5" id="c-m5-6" type="checkbox"/><label for="c-m5-6">חשב <span class="m" dir="ltr">x/(x − 3) − 9/(x² − 3x)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x/(x − 3) − 9/(x(x − 3)) = (x² − 9)/(x(x − 3)) = (x + 3)/x</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="3" data-topic="m5" id="c-m5-7" type="checkbox"/><label for="c-m5-7">חשב <span class="m" dir="ltr">(a² − 1)/a · a²/(a + 1)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(a − 1)(a + 1)/a · a²/(a + 1) = a(a − 1)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="3" data-topic="m5" id="c-m5-8" type="checkbox"/><label for="c-m5-8">חשב <span class="m" dir="ltr">(x² − 9)/(x + 1) : (x − 3)/(x² − 1)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x − 3)(x + 3)/(x + 1) · (x − 1)(x + 1)/(x − 3) = (x + 3)(x − 1)</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="m5" id="c-m5-c1" type="checkbox"/><label for="c-m5-c1"><span class="tt">עמ' 17, צמצום שברים אלגבריים</span><span class="nt">6 התרגילים הראשונים</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="m5" id="c-m5-c2" type="checkbox"/><label for="c-m5-c2"><span class="tt">עמ' 18, כפל וחילוק שברים אלגבריים</span><span class="nt">5 התרגילים הראשונים</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="m5" id="c-m5-c3" type="checkbox"/><label for="c-m5-c3"><span class="tt">עמ' 19, חיבור וחיסור שברים אלגבריים</span><span class="nt">6 התרגילים הראשונים</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m5"></span></p>
+</section>
+<section class="topic math" id="m6">
+<h2>משוואות עם נעלם אחד</h2>
+<p class="meta">מתמטיקה · עמ' 21–22 בחוברת · יום 3</p>
+<h3>1. הסבר</h3>
+<p>משוואה היא כמו מאזניים: כדי לשמור על השוויון חייבים לעשות אותה פעולה לשני האגפים. פותחים סוגריים ומאחדים איברים דומים, ואז מוסיפים/מחסרים אותו דבר משני הצדדים ולבסוף מחלקים את שני הצדדים במקדם של x. הביטוי ״מעבירים אגף ומחליפים סימן״ הוא רק קיצור של הפעולה הזאת.</p>
+<p>כשיש שברים, <b>כופלים את שני האגפים במכנה המשותף</b> ואז הם נעלמים.</p>
+<p>בסוף מציבים את התשובה במשוואה המקורית כדי לוודא.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li>מעבירים אגף: הופכים סימן</li>
+<li>כופלים את <b>כל</b> האיברים בשני האגפים באותו מספר</li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> כשמכפילים במכנה משותף, צריך לכפול גם את האיברים בלי שבר, למשל את ה-1 בצד ימין.</p>
+<div class="bridge mathbridge">
+<h3>תוספת חשובה: אל תחשוב ״העברתי אגף״</h3>
+<p>ב-<span class="m" dir="ltr">3x+5=17</span> לא באמת ״מעבירים 5״. מחסרים 5 משני האגפים: <span class="m" dir="ltr">3x+5−5=17−5</span>, ולכן <span class="m" dir="ltr">3x=12</span>, ואז מחלקים את שני האגפים ב-3.</p>
+<p>השיטה הזו קצת ארוכה יותר בהתחלה, אבל היא מונעת טעויות כשיש מינוסים, שברים וסוגריים.</p>
+<details><summary>תרגיל גשר</summary><p>פתור בלי ״העברת אגף״: <span class="m" dir="ltr">5−2x=13</span>. תשובה: <span class="m" dir="ltr">x=−4</span>.</p></details>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> פתור: <span class="m" dir="ltr">3x − 7 = 11</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">3x = 18</span>, ולכן <span class="m" dir="ltr">x = 6</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> פתור: <span class="m" dir="ltr">(x + 3)/4 − (x − 1)/6 = 1</span>.</p><div class="sol">
+<p>מכנה משותף 12: <span class="m" dir="ltr">3(x + 3) − 2(x − 1) = 12</span></p>
+<p><span class="m" dir="ltr">3x + 9 − 2x + 2 = 12</span>, ולכן <span class="m" dir="ltr">x + 11 = 12</span> ו-<span class="m" dir="ltr">x = 1</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="3" data-topic="m6" id="c-m6-1" type="checkbox"/><label for="c-m6-1"><span class="m" dir="ltr">5x + 3 = 28</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x = 5</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="3" data-topic="m6" id="c-m6-2" type="checkbox"/><label for="c-m6-2"><span class="m" dir="ltr">4(x − 2) = 3x + 1</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">4x − 8 = 3x + 1</span>, ולכן <span class="m" dir="ltr">x = 9</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="3" data-topic="m6" id="c-m6-3" type="checkbox"/><label for="c-m6-3"><span class="m" dir="ltr">2x − 7 = 5x + 8</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−15 = 3x</span>, ולכן <span class="m" dir="ltr">x = −5</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="3" data-topic="m6" id="c-m6-4" type="checkbox"/><label for="c-m6-4"><span class="m" dir="ltr">x/3 + x/2 = 10</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5x/6 = 10</span>, ולכן <span class="m" dir="ltr">x = 12</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="3" data-topic="m6" id="c-m6-5" type="checkbox"/><label for="c-m6-5"><span class="m" dir="ltr">(x + 1)/2 − (x − 2)/3 = 2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3(x + 1) − 2(x − 2) = 12</span>, ולכן <span class="m" dir="ltr">x + 7 = 12</span> ו-<span class="m" dir="ltr">x = 5</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="3" data-topic="m6" id="c-m6-6" type="checkbox"/><label for="c-m6-6"><span class="m" dir="ltr">3(2x − 1) − 2(x + 4) = 1</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">6x − 3 − 2x − 8 = 1</span>, ולכן <span class="m" dir="ltr">4x = 12</span> ו-<span class="m" dir="ltr">x = 3</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="3" data-topic="m6" id="c-m6-7" type="checkbox"/><label for="c-m6-7"><span class="m" dir="ltr">(2x − 1)/3 = (x + 4)/2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2(2x − 1) = 3(x + 4)</span>, ולכן <span class="m" dir="ltr">4x − 2 = 3x + 12</span> ו-<span class="m" dir="ltr">x = 14</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="3" data-topic="m6" id="c-m6-8" type="checkbox"/><label for="c-m6-8"><span class="m" dir="ltr">0.5x + 1.5 = 4</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">0.5x = 2.5</span>, ולכן <span class="m" dir="ltr">x = 5</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="m6" id="c-m6-c1" type="checkbox"/><label for="c-m6-c1"><span class="tt">עמ' 21, משוואות לינאריות</span><span class="nt">תרגילים 1–10</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="m6" id="c-m6-c2" type="checkbox"/><label for="c-m6-c2"><span class="tt">עמ' 22, משוואות עם שברים</span><span class="nt">תרגילים 24–29</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m6"></span></p>
+</section>
+<section class="topic trig" id="t1">
+<h2>המעגל הטריגונומטרי ונוסחאות הזוויות</h2>
+<p class="meta">טריגונומטריה · עמ' 78 בחוברת הטריגונומטריה · יום 3</p>
+<h3>1. הסבר</h3>
+<p><b>בזווית חדה במשולש ישר-זווית:</b> <span class="m" dir="ltr">sin α</span> הוא היחס בין הניצב שמול הזווית ליתר, <span class="m" dir="ltr">cos α</span> הוא היחס בין הניצב שליד הזווית ליתר, ו-<span class="m" dir="ltr">tan α</span> הוא היחס בין הניצב שמול לניצב שליד.</p>
+<p><b>על המעגל:</b> מציירים מעגל ברדיוס 1. לזווית α מתאימה נקודה על המעגל, וקואורדינטות הנקודה הן (<span class="m" dir="ltr">cos α</span>, <span class="m" dir="ltr">sin α</span>). לכן <span class="m" dir="ltr">cos</span> הוא הרוחק האופקי (ציר x) ו-<span class="m" dir="ltr">sin</span> הוא הגובה (ציר y).</p>
+<p><b>סימנים לפי רבע:</b> ברבע 1 (0° עד 90°) הכול חיובי. ברבע 2 רק <span class="m" dir="ltr">sin</span> חיובי. ברבע 3 רק <span class="m" dir="ltr">tan</span> ו-<span class="m" dir="ltr">cot</span> חיוביים. ברבע 4 רק <span class="m" dir="ltr">cos</span> חיובי.</p>
+<p><b>כלל הנוסחאות (90°, 180°, 270°, 360°):</b> עם 90° ו-270° הפונקציה מתחלפת (<span class="m" dir="ltr">sin ↔ cos</span>, <span class="m" dir="ltr">tan ↔ cot</span>). עם 180° ו-360° היא נשארת. את הסימן קובעים לפי הרבע של הזווית, כאילו α חדה.</p>
+<p>ערכים שכדאי לדעת: <span class="m" dir="ltr">sin 30° = 1/2</span>, <span class="m" dir="ltr">sin 45° = √2/2</span>, <span class="m" dir="ltr">sin 60° = √3/2</span>, <span class="m" dir="ltr">cos 30° = √3/2</span>, <span class="m" dir="ltr">cos 45° = √2/2</span>, <span class="m" dir="ltr">cos 60° = 1/2</span>, <span class="m" dir="ltr">tan 45° = 1</span>.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">sin(180° − α) = sin α</span> <span class="m" dir="ltr">cos(180° − α) = −cos α</span></li>
+<li><span class="m" dir="ltr">sin(90° + α) = cos α</span> <span class="m" dir="ltr">cos(90° + α) = −sin α</span></li>
+<li><span class="m" dir="ltr">sin(−α) = −sin α</span> <span class="m" dir="ltr">cos(−α) = cos α</span> <span class="m" dir="ltr">tan(−α) = −tan α</span></li>
+<li><span class="m" dir="ltr">sin(360° − α) = −sin α</span> <span class="m" dir="ltr">cos(360° − α) = cos α</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> שוכחים לבדוק את הרבע. למשל <span class="m" dir="ltr">cos 120°</span> הוא שלילי, כי ברבע 2 רק sin חיובי.</p>
+<div class="bridge trigbridge">
+<h3>תוספת חשובה: כשמחפשים את הזווית עצמה</h3>
+<p>אם נתון יחס ורוצים זווית משתמשים בפונקציה ההפוכה במחשבון: <span class="m" dir="ltr">α=sin⁻¹(...)</span>, <span class="m" dir="ltr">cos⁻¹(...)</span> או <span class="m" dir="ltr">tan⁻¹(...)</span>. זה לא אותו דבר כמו <span class="m" dir="ltr">1/sin</span>.</p>
+<p>לדוגמה, אם במשולש ישר-זווית הניצב שמול α הוא 3 והניצב שלידו 4, אז <span class="m" dir="ltr">tan α=3/4</span> ולכן <span class="m" dir="ltr">α≈36.9°</span>.</p>
+<p class="mini">במחשבון ודא שאתה במצב מעלות (DEG) כשכל החומר כתוב במעלות.</p>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> חשב <span class="m" dir="ltr">sin 150°</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">150° = 180° − 30°</span>, ברבע 2, שם sin חיובי.</p>
+<p><span class="m" dir="ltr">sin 150° = sin 30° = 1/2</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> חשב <span class="m" dir="ltr">cos 240°</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">240° = 180° + 60°</span>, ברבע 3, שם cos שלילי.</p>
+<p><span class="m" dir="ltr">cos 240° = −cos 60° = −1/2</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> פשט <span class="m" dir="ltr">tan(270° − α)</span>.</p><div class="sol">
+<p>עם 270° הפונקציה מתחלפת: <span class="m" dir="ltr">tan → cot</span>.</p>
+<p>הזווית <span class="m" dir="ltr">270° − α</span> ברבע 3, שם tan חיובי. לכן <span class="m" dir="ltr">tan(270° − α) = cot α</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="3" data-topic="t1" id="c-t1-1" type="checkbox"/><label for="c-t1-1"><span class="m" dir="ltr">sin 120°</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">sin(180° − 60°) = sin 60° = √3/2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="3" data-topic="t1" id="c-t1-2" type="checkbox"/><label for="c-t1-2"><span class="m" dir="ltr">cos 135°</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">cos(180° − 45°) = −cos 45° = −√2/2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="3" data-topic="t1" id="c-t1-3" type="checkbox"/><label for="c-t1-3"><span class="m" dir="ltr">tan 225°</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">tan(180° + 45°) = tan 45° = 1</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="3" data-topic="t1" id="c-t1-4" type="checkbox"/><label for="c-t1-4"><span class="m" dir="ltr">sin 210°</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">sin(180° + 30°) = −sin 30° = −1/2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="3" data-topic="t1" id="c-t1-5" type="checkbox"/><label for="c-t1-5"><span class="m" dir="ltr">cos 300°</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">cos(360° − 60°) = cos 60° = 1/2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="3" data-topic="t1" id="c-t1-6" type="checkbox"/><label for="c-t1-6"><span class="m" dir="ltr">tan 150°</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">tan(180° − 30°) = −tan 30° = −√3/3</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="3" data-topic="t1" id="c-t1-7" type="checkbox"/><label for="c-t1-7"><span class="m" dir="ltr">sin(−60°)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−sin 60° = −√3/2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="3" data-topic="t1" id="c-t1-8" type="checkbox"/><label for="c-t1-8">פשט <span class="m" dir="ltr">sin(90° + α)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">cos α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="3" data-topic="t1" id="c-t1-9" type="checkbox"/><label for="c-t1-9">פשט <span class="m" dir="ltr">cos(180° − α)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−cos α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="3" data-topic="t1" id="c-t1-10" type="checkbox"/><label for="c-t1-10">פשט <span class="m" dir="ltr">sin(270° − α)</span></label></div><details class="ans"><summary>תשובה</summary><p>עם 270° הפונקציה מתחלפת ל-cos. הזווית ברבע 3, שם sin שלילי. <span class="m" dir="ltr">−cos α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="3" data-topic="t1" id="c-t1-11" type="checkbox"/><label for="c-t1-11">פשט <span class="m" dir="ltr">tan(360° − α)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−tan α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 12" data-day="3" data-topic="t1" id="c-t1-12" type="checkbox"/><label for="c-t1-12">פשט <span class="m" dir="ltr">cos(90° + α)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">−sin α</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="t1" id="c-t1-c1" type="checkbox"/><label for="c-t1-c1"><span class="tt">עמ' 78 בחוברת הטריגונומטריה: לצייר את המעגל בעצמך</span><span class="nt">הרבעים, הסימנים ומיקום sin ו-cos, בלי להסתכל</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="t1" id="c-t1-c2" type="checkbox"/><label for="c-t1-c2"><span class="tt">עמ' 78: לבדוק 6 נוסחאות מהטבלה בעזרת הכלל</span><span class="nt">למשל sin(180°+α), cos(90°+α), tan(270°−α). לא לשנן את כל הטבלה</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="t1"></span></p>
+</section>
+<section class="topic phys cont" id="p3b"><h2>המשך שוות תאוצה א (נושאים 4–6)</h2>
+<p class="meta">ההסבר נמצא ביום 2, בנושא תאוצה קבועה. <a href="#p3">לקפוץ להסבר</a></p>
+<h3>תרגילים <span class="cnt" data-topic="p3b"></span></h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p3b" id="c-p3b-c1" type="checkbox"/><label for="c-p3b-c1"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-א/4-תאוצה-ומיקום/תרגיל-4-2" rel="noopener" target="_blank">שוות תאוצה א, תרגיל 4.2</a></span><span class="nt">תאוצה ומיקום</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p3b" id="c-p3b-c2" type="checkbox"/><label for="c-p3b-c2"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-א/5-בניית-גרף-מהירות/תרגיל-5-1" rel="noopener" target="_blank">שוות תאוצה א, תרגיל 5.1</a></span><span class="nt">בניית גרף מהירות</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p3b" id="c-p3b-c3" type="checkbox"/><label for="c-p3b-c3"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-א/6-קריאת-גרף-מהירות/תרגיל-6-2" rel="noopener" target="_blank">שוות תאוצה א, תרגיל 6.2</a></span><span class="nt">קריאת גרף מהירות</span></label></li>
+</ul>
+</section>
+<section class="topic phys" id="p4">
+<h2>גרפים בתנועה בתאוצה קבועה</h2>
+<p class="meta">פיזיקה · באתר: שוות תאוצה ב, נושאים 8–12 · יום 3</p>
+<h3>1. הסבר</h3>
+<p><b>גרף תאוצה–זמן:</b> כל קטע הוא קו אופקי. השטח מתחתיו הוא <b>שינוי המהירות</b>.</p>
+<p><b>גרף מהירות–זמן:</b> כל קטע הוא קו ישר. השיפוע הוא התאוצה, והשטח מתחתיו הוא ההעתק. שטח מתחת לציר הזמן נחשב שלילי.</p>
+<p><b>איך בונים גרף מהירות מגרף תאוצה:</b> מתחילים מ-<span class="m" dir="ltr">v₀</span>. בכל קטע <span class="m" dir="ltr">v</span> משתנה ב-<span class="m" dir="ltr">a·Δt</span>.</p>
+<p><b>מתי הגוף משנה כיוון?</b> ברגע שהמהירות עוברת דרך 0 ומשנה סימן.</p>
+<p><b>שתי משוואות:</b> כשיש שני נעלמים משתמשים בשתי המשוואות יחד: מבודדים נעלם אחד מהפשוטה ומציבים בשנייה.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li>שיפוע של <span class="m" dir="ltr">v(t)</span> = <span class="m" dir="ltr">a</span></li>
+<li>שטח מתחת ל-<span class="m" dir="ltr">v(t)</span> = העתק</li>
+<li>שטח מתחת ל-<span class="m" dir="ltr">a(t)</span> = <span class="m" dir="ltr">Δv</span></li>
+<li>שטח משולש = בסיס · גובה ÷ 2, ושטח טרפז = ממוצע הבסיסים · גובה</li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> דרך והעתק לא זהים כשהגוף משנה כיוון. לחשב דרך צריך לחבר שטחים בערך מוחלט.</p>
+<div class="bridge">
+<h3>תוספת חשובה: מה קוראים מכל גרף</h3>
+<ul>
+<li>בגרף <span class="m" dir="ltr">x−t</span>: <b>השיפוע</b> הוא מהירות. הגובה של הגרף הוא מקום, לא מהירות.</li>
+<li>בגרף <span class="m" dir="ltr">v−t</span>: השיפוע הוא תאוצה והשטח הוא העתק.</li>
+<li>בגרף <span class="m" dir="ltr">a−t</span>: השטח הוא שינוי במהירות.</li>
+</ul>
+<p>הגוף משנה כיוון רק כשהמהירות עוברת דרך 0 ומשנה סימן. עצם זה ש-<span class="m" dir="ltr">v=0</span> ברגע מסוים לא מספיק בלי לבדוק מה קורה לפני ואחרי.</p>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> <span class="m" dir="ltr">v₀ = 0</span>. התאוצה: <span class="m" dir="ltr">+2</span> ב-0 עד 5 שניות, <span class="m" dir="ltr">0</span> ב-5 עד 8, ו-<span class="m" dir="ltr">−4</span> ב-8 עד 10. מצא מהירות בסוף כל קטע ואת ההעתק הכולל.</p><div class="sol">
+<p>סוף קטע 1: <span class="m" dir="ltr">v = 0 + 2 · 5 = 10</span>. סוף קטע 2: <span class="m" dir="ltr">v = 10</span>. סוף קטע 3: <span class="m" dir="ltr">v = 10 − 4 · 2 = 2</span>.</p>
+<p>העתק קטע 1: <span class="m" dir="ltr">½ · 10 · 5 = 25</span>. קטע 2: <span class="m" dir="ltr">10 · 3 = 30</span>. קטע 3: <span class="m" dir="ltr">(10 + 2)/2 · 2 = 12</span>.</p>
+<p>סה״כ <span class="m" dir="ltr">25 + 30 + 12 = 67</span> מטר.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> גרף v–t עובר דרך (0, 6), (4, −2), (8, −2). מצא תאוצה בכל קטע, מתי הגוף משנה כיוון, וההעתק.</p><div class="sol">
+<p>קטע 0–4: <span class="m" dir="ltr">a = (−2 − 6)/4 = −2</span>. קטע 4–8: <span class="m" dir="ltr">a = 0</span>.</p>
+<p>משנה כיוון כש-<span class="m" dir="ltr">v = 0</span>: <span class="m" dir="ltr">6 − 2t = 0</span>, ולכן <span class="m" dir="ltr">t = 3</span>.</p>
+<p>העתק: <span class="m" dir="ltr">+½ · 3 · 6 = +9</span>, אחר כך <span class="m" dir="ltr">−½ · 1 · 2 = −1</span>, ואז <span class="m" dir="ltr">−2 · 4 = −8</span>. סה״כ 0. הדרך <span class="m" dir="ltr">9 + 1 + 8 = 18</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="3" data-topic="p4" id="c-p4-1" type="checkbox"/><label for="c-p4-1"><span class="m" dir="ltr">v₀ = 0</span>. <span class="m" dir="ltr">a = 3</span> ב-0 עד 4 שניות, אחר כך <span class="m" dir="ltr">a = 0</span> עד 10 שניות. מצא <span class="m" dir="ltr">v</span> ב-4 וב-10, והעתק כולל.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v(4) = 12</span>, <span class="m" dir="ltr">v(10) = 12</span>. העתק <span class="m" dir="ltr">½ · 12 · 4 + 12 · 6 = 24 + 72 = 96</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="3" data-topic="p4" id="c-p4-2" type="checkbox"/><label for="c-p4-2"><span class="m" dir="ltr">v₀ = 0</span>. <span class="m" dir="ltr">a = 2</span> במשך 6 שניות ואז <span class="m" dir="ltr">a = −3</span> במשך 4 שניות. מצא מהירות סופית והעתק.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v(6) = 12</span>. <span class="m" dir="ltr">v(10) = 12 − 12 = 0</span>. העתק <span class="m" dir="ltr">36 + 24 = 60</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="3" data-topic="p4" id="c-p4-3" type="checkbox"/><label for="c-p4-3">גרף v–t עובר דרך (0, 0), (5, 10), (10, 10), (14, 0). מצא תאוצות והעתק.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = 2</span>, <span class="m" dir="ltr">0</span>, <span class="m" dir="ltr">−2.5</span>. העתק <span class="m" dir="ltr">25 + 50 + 20 = 95</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="3" data-topic="p4" id="c-p4-4" type="checkbox"/><label for="c-p4-4">גרף v–t עובר דרך (0, 8), (4, 0), (8, −8). מצא תאוצה, מתי משנה כיוון, העתק ודרך.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = −2</span>. משנה כיוון ב-<span class="m" dir="ltr">t = 4</span>. העתק <span class="m" dir="ltr">16 − 16 = 0</span>. דרך 32</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="3" data-topic="p4" id="c-p4-5" type="checkbox"/><label for="c-p4-5">גוף מאיץ ממנוחה בתאוצה 2 במשך 6 שניות, נע במהירות קבועה 10 שניות, ובולם עד עצירה תוך 4 שניות. מצא תאוצת הבלימה, מרחק כולל ומהירות סקלרית ממוצעת.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v = 12</span>. <span class="m" dir="ltr">a = −3</span>. מרחקים <span class="m" dir="ltr">36 + 120 + 24 = 180</span>. זמן 20. מהירות סקלרית ממוצעת <span class="m" dir="ltr">9</span> מ'/ש</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="3" data-topic="p4" id="c-p4-6" type="checkbox"/><label for="c-p4-6">בנה טבלה של <span class="m" dir="ltr">v</span> ב-<span class="m" dir="ltr">t = 0, 2, 4, 6</span> כש-<span class="m" dir="ltr">v₀ = 2</span> ו-<span class="m" dir="ltr">a = 3</span>. מצא גם <span class="m" dir="ltr">x(4)</span> אם <span class="m" dir="ltr">x₀ = 0</span>.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v = 2, 8, 14, 20</span>. <span class="m" dir="ltr">x(4) = 2 · 4 + ½ · 3 · 16 = 32</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="3" data-topic="p4" id="c-p4-7" type="checkbox"/><label for="c-p4-7"><span class="m" dir="ltr">v₀ = 10</span>. <span class="m" dir="ltr">a = −2</span> במשך 5 שניות ואז <span class="m" dir="ltr">a = +2</span> במשך 3 שניות. מצא <span class="m" dir="ltr">v</span> ב-5 וב-8, ומקום ב-<span class="m" dir="ltr">t = 8</span>.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v(5) = 0</span>, <span class="m" dir="ltr">v(8) = 6</span>. מקום: <span class="m" dir="ltr">10 · 5 − 25 = 25</span>, ואז <span class="m" dir="ltr">½ · 2 · 9 = 9</span>. סה״כ <span class="m" dir="ltr">34</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="3" data-topic="p4" id="c-p4-8" type="checkbox"/><label for="c-p4-8">גרף v–t עובר דרך (0, −4), (4, 4), (6, 4). מצא תאוצה, מתי <span class="m" dir="ltr">v = 0</span>, העתק ודרך.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = 2</span>. <span class="m" dir="ltr">v = 0</span> ב-<span class="m" dir="ltr">t = 2</span>. העתק <span class="m" dir="ltr">−4 + 4 + 8 = 8</span>. דרך <span class="m" dir="ltr">4 + 4 + 8 = 16</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p4" id="c-p4-c1" type="checkbox"/><label for="c-p4-c1"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ב/8-תיאור-מילולי/תרגיל-8-1" rel="noopener" target="_blank">שוות תאוצה ב, תרגיל 8.1</a></span><span class="nt">תיאור מילולי. יש פתרון באתר, כדאי להשוות</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p4" id="c-p4-c2" type="checkbox"/><label for="c-p4-c2"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ב/8-תיאור-מילולי/תרגיל-8-2" rel="noopener" target="_blank">שוות תאוצה ב, תרגיל 8.2</a></span><span class="nt">תיאור מילולי. יש פתרון באתר</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p4" id="c-p4-c3" type="checkbox"/><label for="c-p4-c3"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ב/9-גרף-תאוצה/תרגיל-9-1" rel="noopener" target="_blank">שוות תאוצה ב, תרגיל 9.1</a></span><span class="nt">גרף תאוצה</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p4" id="c-p4-c4" type="checkbox"/><label for="c-p4-c4"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ב/10-מהירות-זמן/תרגיל-10-1" rel="noopener" target="_blank">שוות תאוצה ב, תרגיל 10.1</a></span><span class="nt">מהירות–זמן</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p4" id="c-p4-c5" type="checkbox"/><label for="c-p4-c5"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ב/10-מהירות-זמן/תרגיל-10-2" rel="noopener" target="_blank">שוות תאוצה ב, תרגיל 10.2</a></span><span class="nt">מהירות–זמן</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p4" id="c-p4-c6" type="checkbox"/><label for="c-p4-c6"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ב/11-מקום-זמן/תרגיל-11-1" rel="noopener" target="_blank">שוות תאוצה ב, תרגיל 11.1</a></span><span class="nt">מקום–זמן</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="3" data-topic="p4" id="c-p4-c7" type="checkbox"/><label for="c-p4-c7"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ב/12-שתי-משוואות/תרגיל-12-1" rel="noopener" target="_blank">שוות תאוצה ב, תרגיל 12.1</a></span><span class="nt">שתי משוואות. אם יש כוח: עוד תרגילים בנושאים 10 ו-12</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="p4"></span></p>
+</section>
+</section>
+<section class="day" id="day4"><header class="dayhead"><h1>יום 4: משוואות ריבועיות, שוות תאוצה ג וחוק ראשון</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק משוואות ריבועיות (עמ' 23–25), ובפיזיקה רק תרגילים 13.1 ו-14.1.</p><p class="daycnt"><span data-daycount="4"></span></p></header>
+<section class="topic math" id="m7">
+<h2>משוואות ריבועיות</h2>
+<p class="meta">מתמטיקה · עמ' 23–25 בחוברת · יום 4 (הנושא הכי חשוב)</p>
+<h3>1. הסבר</h3>
+<p>משוואה ריבועית היא משוואה מהצורה <span class="m" dir="ltr">ax² + bx + c = 0</span>. קודם מעבירים הכול לצד אחד כדי שיישאר 0 בצד השני.</p>
+<p><b>שיטה 1, פירוק:</b> אם אפשר לפרק לגורמים, כל גורם שווה 0.</p>
+<p><b>שיטה 2, נוסחת השורשים:</b> עובדת תמיד. הביטוי <span class="m" dir="ltr">D = b² − 4ac</span> נקרא דיסקרימיננטה: אם <span class="m" dir="ltr">D &gt; 0</span> יש שני פתרונות, אם <span class="m" dir="ltr">D = 0</span> יש פתרון אחד, ואם <span class="m" dir="ltr">D &lt; 0</span> אין פתרון.</p>
+<p>בפיזיקה, אחרי שפותרים, בודקים איזה פתרון הגיוני. זמן, למשל, לא יכול להיות שלילי.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">x = (−b ± √(b² − 4ac))/(2a)</span></li>
+<li><span class="m" dir="ltr">D = b² − 4ac</span></li>
+<li><span class="m" dir="ltr">x² + bx = 0 → x(x + b) = 0</span> <span class="m" dir="ltr">x² = k → x = ±√k</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> שוכחים להעביר הכול לצד אחד לפני שקובעים את a, b ו-c. וכשמחלקים ב-x מאבדים פתרון: עדיף להוציא גורם משותף.</p>
+<h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> פתור: <span class="m" dir="ltr">x² − 5x + 6 = 0</span>.</p><div class="sol">
+<p>פירוק: <span class="m" dir="ltr">(x − 2)(x − 3) = 0</span>, ולכן <span class="m" dir="ltr">x = 2</span> או <span class="m" dir="ltr">x = 3</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> פתור: <span class="m" dir="ltr">2x² + 3x − 2 = 0</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">a = 2, b = 3, c = −2</span>, ולכן <span class="m" dir="ltr">D = 9 + 16 = 25</span>.</p>
+<p><span class="m" dir="ltr">x = (−3 ± 5)/4</span>, כלומר <span class="m" dir="ltr">x = 1/2</span> או <span class="m" dir="ltr">x = −2</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> פתור: <span class="m" dir="ltr">x² + 4x + 5 = 0</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">D = 16 − 20 = −4 &lt; 0</span>, ולכן אין פתרון.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 4.</b> לאילו ערכי m למשוואה <span class="m" dir="ltr">x² − 6x + m = 0</span> יש פתרון אחד בלבד?</p><div class="sol">
+<p>פתרון אחד כש-<span class="m" dir="ltr">D = 0</span>: <span class="m" dir="ltr">36 − 4m = 0</span>, ולכן <span class="m" dir="ltr">m = 9</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="4" data-topic="m7" id="c-m7-1" type="checkbox"/><label for="c-m7-1"><span class="m" dir="ltr">x² − 7x + 12 = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x − 3)(x − 4) = 0</span>, ולכן <span class="m" dir="ltr">x = 3</span> או <span class="m" dir="ltr">x = 4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="4" data-topic="m7" id="c-m7-2" type="checkbox"/><label for="c-m7-2"><span class="m" dir="ltr">x² − 9 = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x = ±3</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="4" data-topic="m7" id="c-m7-3" type="checkbox"/><label for="c-m7-3"><span class="m" dir="ltr">x² + 5x = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x(x + 5) = 0</span>, ולכן <span class="m" dir="ltr">x = 0</span> או <span class="m" dir="ltr">x = −5</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="4" data-topic="m7" id="c-m7-4" type="checkbox"/><label for="c-m7-4"><span class="m" dir="ltr">x² − 2x − 15 = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(x − 5)(x + 3) = 0</span>, ולכן <span class="m" dir="ltr">x = 5</span> או <span class="m" dir="ltr">x = −3</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="4" data-topic="m7" id="c-m7-5" type="checkbox"/><label for="c-m7-5"><span class="m" dir="ltr">2x² − 5x − 3 = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">D = 25 + 24 = 49</span>, ולכן <span class="m" dir="ltr">x = (5 ± 7)/4</span>: <span class="m" dir="ltr">x = 3</span> או <span class="m" dir="ltr">x = −1/2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="4" data-topic="m7" id="c-m7-6" type="checkbox"/><label for="c-m7-6"><span class="m" dir="ltr">x² + 2x + 5 = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">D = 4 − 20 &lt; 0</span>, ולכן אין פתרון</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="4" data-topic="m7" id="c-m7-7" type="checkbox"/><label for="c-m7-7"><span class="m" dir="ltr">3x² − 12x + 12 = 0</span></label></div><details class="ans"><summary>תשובה</summary><p>מחלקים ב-3: <span class="m" dir="ltr">x² − 4x + 4 = 0</span>, כלומר <span class="m" dir="ltr">(x − 2)² = 0</span>, ולכן <span class="m" dir="ltr">x = 2</span> (פתרון אחד)</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="4" data-topic="m7" id="c-m7-8" type="checkbox"/><label for="c-m7-8"><span class="m" dir="ltr">(x − 3)² = 16</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x − 3 = ±4</span>, ולכן <span class="m" dir="ltr">x = 7</span> או <span class="m" dir="ltr">x = −1</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="4" data-topic="m7" id="c-m7-9" type="checkbox"/><label for="c-m7-9"><span class="m" dir="ltr">x(x + 2) = 3</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² + 2x − 3 = 0</span>, כלומר <span class="m" dir="ltr">(x + 3)(x − 1) = 0</span>: <span class="m" dir="ltr">x = −3</span> או <span class="m" dir="ltr">x = 1</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="4" data-topic="m7" id="c-m7-10" type="checkbox"/><label for="c-m7-10">לאילו ערכי m למשוואה <span class="m" dir="ltr">x² − 4x + m = 0</span> יש פתרון אחד?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">D = 16 − 4m = 0</span>, ולכן <span class="m" dir="ltr">m = 4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="4" data-topic="m7" id="c-m7-11" type="checkbox"/><label for="c-m7-11">כדור נזרק והגובה שלו הוא <span class="m" dir="ltr">80 + 30t − 5t² = 0</span> כשהוא פוגע בקרקע. מתי זה קורה?</label></div><details class="ans"><summary>תשובה</summary><p>מחלקים את המשוואה במינוס 5: <span class="m" dir="ltr">t² − 6t − 16 = 0</span>, כלומר <span class="m" dir="ltr">(t − 8)(t + 2) = 0</span>. זמן לא שלילי, ולכן <span class="m" dir="ltr">t = 8</span> שניות</p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="m7" id="c-m7-c1" type="checkbox"/><label for="c-m7-c1"><span class="tt">עמ' 23, משוואות ריבועיות</span><span class="nt">תרגילים 1–12</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="m7" id="c-m7-c2" type="checkbox"/><label for="c-m7-c2"><span class="tt">עמ' 24, פירוק טרינום ריבועי</span><span class="nt">4 התרגילים הראשונים</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="m7" id="c-m7-c3" type="checkbox"/><label for="c-m7-c3"><span class="tt">עמ' 25, מציאת m כך שיש פתרון אחד</span><span class="nt">4 התרגילים הראשונים</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m7"></span></p>
+</section>
+<section class="topic math" id="m8">
+<h2>חילוק פולינומים ומשוואות ממעלה שלישית (לא חובה)</h2>
+<p class="meta">מתמטיקה · עמ' 20 ו-26–27 בחוברת · יום 4, אם יש כוח</p>
+<h3>1. הסבר</h3>
+<p>אם <span class="m" dir="ltr">x = a</span> הוא פתרון של פולינום, אז הפולינום מתחלק ב-<span class="m" dir="ltr">(x − a)</span> בלי שארית. כך מורידים משוואה ממעלה שלישית למשוואה ריבועית.</p>
+<p>מנחשים פתרון (מנסים את המספרים 1, −1, 2, −2, …), מחלקים, ופותרים את הריבועית שנשארת.</p>
+<p>חילוק פולינומים עובד כמו חילוק ארוך: מחלקים את האיבר הראשון, כופלים, מחסרים, וחוזרים.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li>אם <span class="m" dir="ltr">P(a) = 0</span> אז <span class="m" dir="ltr">P(x) = (x − a) · Q(x)</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> אחרי החילוק בודקים שהשארית אפס. אם לא, הניחוש של הפתרון לא נכון.</p>
+<h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> חלק: <span class="m" dir="ltr">(x² + 5x + 6) : (x + 2)</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">x² : x = x</span>, כופלים <span class="m" dir="ltr">x(x + 2) = x² + 2x</span> ומחסרים: נשאר <span class="m" dir="ltr">3x + 6</span>.</p>
+<p><span class="m" dir="ltr">3x : x = 3</span>, כופלים <span class="m" dir="ltr">3(x + 2) = 3x + 6</span>, ונשאר 0. התוצאה <span class="m" dir="ltr">x + 3</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> פתור: <span class="m" dir="ltr">x³ − 6x² + 11x − 6 = 0</span>.</p><div class="sol">
+<p>מנסים <span class="m" dir="ltr">x = 1</span>: <span class="m" dir="ltr">1 − 6 + 11 − 6 = 0</span>, לכן זה פתרון.</p>
+<p>מחלקים ב-<span class="m" dir="ltr">(x − 1)</span> ומקבלים <span class="m" dir="ltr">x² − 5x + 6</span>.</p>
+<p><span class="m" dir="ltr">x² − 5x + 6 = (x − 2)(x − 3)</span>. הפתרונות: <span class="m" dir="ltr">x = 1, 2, 3</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="4" data-topic="m8" id="c-m8-1" type="checkbox"/><label for="c-m8-1"><span class="m" dir="ltr">x³ − x = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x(x − 1)(x + 1) = 0</span>, ולכן <span class="m" dir="ltr">x = 0, 1, −1</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="4" data-topic="m8" id="c-m8-2" type="checkbox"/><label for="c-m8-2"><span class="m" dir="ltr">x³ − 4x² + 3x = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x(x − 1)(x − 3) = 0</span>, ולכן <span class="m" dir="ltr">x = 0, 1, 3</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="4" data-topic="m8" id="c-m8-3" type="checkbox"/><label for="c-m8-3"><span class="m" dir="ltr">x³ − 2x² − 5x + 6 = 0</span>, ידוע ש-<span class="m" dir="ltr">x = 1</span> פתרון</label></div><details class="ans"><summary>תשובה</summary><p>חילוק ב-<span class="m" dir="ltr">(x − 1)</span> נותן <span class="m" dir="ltr">x² − x − 6 = (x − 3)(x + 2)</span>. הפתרונות <span class="m" dir="ltr">x = 1, 3, −2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="4" data-topic="m8" id="c-m8-4" type="checkbox"/><label for="c-m8-4">חלק <span class="m" dir="ltr">(x³ + 8) : (x + 2)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² − 2x + 4</span>. בדיקה: <span class="m" dir="ltr">(x + 2)(x² − 2x + 4) = x³ + 8</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="m8" id="c-m8-c1" type="checkbox"/><label for="c-m8-c1"><span class="tt">עמ' 20, חילוק פולינומים</span><span class="nt">תרגילים 1–4</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="m8" id="c-m8-c2" type="checkbox"/><label for="c-m8-c2"><span class="tt">עמ' 26, משוואות פולינומיות</span><span class="nt">תרגילים 1–6</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m8"></span></p>
+</section>
+<section class="topic phys" id="p5">
+<h2>שלוש המשוואות ושלושת הגרפים</h2>
+<p class="meta">פיזיקה · באתר: שוות תאוצה ג, נושאים 13–18 · יום 4–5</p>
+<h3>1. הסבר</h3>
+<p>שלוש המשוואות של תנועה בתאוצה קבועה: <b><span class="m" dir="ltr">v = v₀ + a·t</span></b>, <b><span class="m" dir="ltr">x = x₀ + v₀·t + ½·a·t²</span></b> ו-<b><span class="m" dir="ltr">v² = v₀² + 2·a·(x − x₀)</span></b>.</p>
+<p><b>איך בוחרים משוואה:</b> לכל משוואה חסר גודל אחד. במשוואה הראשונה חסר <span class="m" dir="ltr">x</span>, בשנייה חסר <span class="m" dir="ltr">v</span>, ובשלישית חסר <span class="m" dir="ltr">t</span>. בוחרים את המשוואה שבה חסר הגודל שלא נתון ולא מבקשים.</p>
+<p>המשוואה השלישית חשובה בבלימה: כשלא נתון זמן, היא נותנת קשר בין מהירות, תאוצה ומרחק.</p>
+<p><b>שלושה גרפים:</b> <span class="m" dir="ltr">x(t)</span> הוא פרבולה, <span class="m" dir="ltr">v(t)</span> קו ישר, ו-<span class="m" dir="ltr">a(t)</span> קו אופקי. שיפוע של <span class="m" dir="ltr">x(t)</span> הוא <span class="m" dir="ltr">v</span>. שיפוע של <span class="m" dir="ltr">v(t)</span> הוא <span class="m" dir="ltr">a</span>. שטח מתחת ל-<span class="m" dir="ltr">v(t)</span> הוא <span class="m" dir="ltr">Δx</span>. שטח מתחת ל-<span class="m" dir="ltr">a(t)</span> הוא <span class="m" dir="ltr">Δv</span>.</p>
+<p><b>מרחק בלימה כולל:</b> בזמן תגובה הגוף נע במהירות קבועה, ואחר כך בולם. מחברים את שני המרחקים.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">v = v₀ + a·t</span>   (בלי x)</li>
+<li><span class="m" dir="ltr">x = x₀ + v₀·t + ½·a·t²</span>   (בלי v)</li>
+<li><span class="m" dir="ltr">v² = v₀² + 2·a·(x − x₀)</span>   (בלי t)</li>
+<li>מרחק בלימה: <span class="m" dir="ltr">x = v₀²/(2|a|)</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> בבלימה מרחק העצירה גדל פי 4 כשהמהירות מוכפלת, כי הוא תלוי ב-<span class="m" dir="ltr">v₀²</span>.</p>
+<div class="bridge">
+<h3>תוספת חשובה: בחירת נוסחה בשיטת ״הגודל החסר״</h3>
+<p>רשום את ששת הגדלים <span class="m" dir="ltr">x₀, x, v₀, v, a, t</span>. אם הזמן לא נתון ולא מבוקש — משוואת <span class="m" dir="ltr">v²=v₀²+2aΔx</span> היא בדרך כלל הבחירה הישירה. אם המקום לא רלוונטי — השתמש ב-<span class="m" dir="ltr">v=v₀+at</span>.</p>
+<p>בדיקת שפיות בסוף: זמן בשניות, מרחק במטרים, מהירות ב-<span class="m" dir="ltr">m/s</span>, תאוצה ב-<span class="m" dir="ltr">m/s²</span>. יחידות לא מתאימות הן נורת אזהרה.</p>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> מכונית נוסעת ב-20 מ'/ש ובולמת עד עצירה ב-40 מטר. מצא תאוצה וזמן.</p><div class="sol">
+<p>לא נתון זמן, ולכן משוואה 3: <span class="m" dir="ltr">0 = 400 + 2a · 40</span>, ולכן <span class="m" dir="ltr">a = −5</span> מ'/ש².</p>
+<p>משוואה 1: <span class="m" dir="ltr">0 = 20 − 5t</span>, ולכן <span class="m" dir="ltr">t = 4</span> שניות.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> כדור מתגלגל ממנוחה בתאוצה 0.5 לאורך 100 מטר. מהי מהירותו בסוף ומה הזמן?</p><div class="sol">
+<p>משוואה 3: <span class="m" dir="ltr">v² = 2 · 0.5 · 100 = 100</span>, ולכן <span class="m" dir="ltr">v = 10</span> מ'/ש.</p>
+<p>משוואה 1: <span class="m" dir="ltr">10 = 0.5t</span>, ולכן <span class="m" dir="ltr">t = 20</span> שניות.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> נהג נוסע ב-25 מ'/ש. זמן התגובה 0.8 שניות, ואז הוא בולם בתאוצה <span class="m" dir="ltr">−6.25</span>. מה מרחק העצירה הכולל?</p><div class="sol">
+<p>בזמן תגובה: <span class="m" dir="ltr">25 · 0.8 = 20</span> מטר.</p>
+<p>בלימה: <span class="m" dir="ltr">x = 25²/(2 · 6.25) = 625/12.5 = 50</span> מטר.</p>
+<p>סה״כ 70 מטר.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 4.</b> <b>מהאתר, תרגיל 13.1.</b> מכונית מרוץ נעה ב-100 קמ״ש. במרחק 50 מטר מקו הסיום הנהג לוחץ על הגז ומקנה תאוצה 4 מ'/ש². בקו הסיום הוא לוחץ על הבלם והמכונית עוצרת במרחק 120 מטר מהנקודה שבה לחץ על הגז. (א) באיזו מהירות היא עוברת את קו הסיום? (ב) מה התאוצה שלה אחרי קו הסיום?</p><div class="sol">
+<p>מסמנים את הנקודה שבה לחץ על הגז כ-<span class="m" dir="ltr">x = 0</span>, ולכן קו הסיום ב-<span class="m" dir="ltr">x = 50</span>. המהירות ההתחלתית: <span class="m" dir="ltr">100/3.6 ≈ 27.8</span> מ'/ש.</p>
+<p>(א) <span class="m" dir="ltr">v² = 27.8² + 2 · 4 · 50 = 771.6 + 400 = 1171.6</span>, ולכן <span class="m" dir="ltr">v ≈ 34.2</span> מ'/ש.</p>
+<p>(ב) אחרי קו הסיום היא עוברת עוד <span class="m" dir="ltr">120 − 50 = 70</span> מטר עד עצירה: <span class="m" dir="ltr">0 = 1171.6 + 2a · 70</span>, ולכן <span class="m" dir="ltr">a ≈ −8.37</span> מ'/ש².</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 5.</b> <b>מהאתר, תרגיל 13.5.</b> מטוס נוחת במהירות 500 קמ״ש ומיד מקנה לעצמו תאוצת בלימה של 20 מ'/ש². (א) מהו מרחק הבלימה? (ב) מהי מהירותו במחצית מרחק הבלימה? (ג) באיזה מרחק מהנחיתה המהירות היא חצי מהמהירות ההתחלתית? (ד) מהי מהירותו 50 מטר אחרי הנקודה של סעיף ג?</p><div class="sol">
+<p><span class="m" dir="ltr">v₀ = 500/3.6 ≈ 138.9</span> מ'/ש, <span class="m" dir="ltr">a = −20</span>.</p>
+<p>(א) <span class="m" dir="ltr">0 = v₀² − 2 · 20 · x</span>, ולכן <span class="m" dir="ltr">x = 19290/40 ≈ 482</span> מטר.</p>
+<p>(ב) במחצית המרחק <span class="m" dir="ltr">v² = v₀² − 40 · 241 = v₀²/2</span>, ולכן <span class="m" dir="ltr">v ≈ 98.2</span> מ'/ש.</p>
+<p>(ג) <span class="m" dir="ltr">v₀²/4 = v₀² − 40x</span>, ולכן <span class="m" dir="ltr">x = 3/4 · 482 ≈ 362</span> מטר.</p>
+<p>(ד) <span class="m" dir="ltr">x = 362 + 50 = 412</span>: <span class="m" dir="ltr">v² = 19290 − 40 · 412 = 2822</span>, ולכן <span class="m" dir="ltr">v ≈ 53.1</span> מ'/ש.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 6.</b> <span class="m" dir="ltr">x(t) = 4t + t²</span>. מצא <span class="m" dir="ltr">v(t)</span>, את התאוצה, ואת <span class="m" dir="ltr">x</span> ו-<span class="m" dir="ltr">v</span> ב-<span class="m" dir="ltr">t = 3</span>.</p><div class="sol">
+<p>משווים ל-<span class="m" dir="ltr">x = v₀t + ½at²</span>: <span class="m" dir="ltr">v₀ = 4</span>, <span class="m" dir="ltr">½a = 1</span> ולכן <span class="m" dir="ltr">a = 2</span>.</p>
+<p><span class="m" dir="ltr">v(t) = 4 + 2t</span>. ב-<span class="m" dir="ltr">t = 3</span>: <span class="m" dir="ltr">x = 12 + 9 = 21</span>, <span class="m" dir="ltr">v = 10</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="4" data-topic="p5" id="c-p5-1" type="checkbox"/><label for="c-p5-1">יוצאים ממנוחה בתאוצה 4 ועוברים 50 מטר. מצא מהירות סופית וזמן.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v² = 2 · 4 · 50 = 400</span>, ולכן <span class="m" dir="ltr">v = 20</span>. <span class="m" dir="ltr">t = 5</span> שניות</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="4" data-topic="p5" id="c-p5-2" type="checkbox"/><label for="c-p5-2">המהירות משתנה מ-10 ל-30 מ'/ש על פני 80 מטר. מצא תאוצה וזמן.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = (900 − 100)/160 = 5</span>. <span class="m" dir="ltr">t = 20/5 = 4</span> שניות</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="4" data-topic="p5" id="c-p5-3" type="checkbox"/><label for="c-p5-3">גוף נע ב-15 מ'/ש ועוצר אחרי 45 מטר. מצא תאוצה וזמן.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = −225/90 = −2.5</span>. <span class="m" dir="ltr">t = 6</span> שניות</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="4" data-topic="p5" id="c-p5-4" type="checkbox"/><label for="c-p5-4"><span class="m" dir="ltr">v₀ = 6</span>, <span class="m" dir="ltr">a = 2</span>. מהי המהירות אחרי 27 מטר, ומהו הזמן?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v² = 36 + 108 = 144</span>, ולכן <span class="m" dir="ltr">v = 12</span>. <span class="m" dir="ltr">t = (12 − 6)/2 = 3</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="4" data-topic="p5" id="c-p5-5" type="checkbox"/><label for="c-p5-5">בלימה בתאוצה <span class="m" dir="ltr">−4</span> מ-20 מ'/ש. מצא מרחק וזמן. מה קורה למרחק אם המהירות ההתחלתית מוכפלת?</label></div><details class="ans"><summary>תשובה</summary><p>מרחק <span class="m" dir="ltr">400/8 = 50</span>, זמן 5. במהירות 40: מרחק <span class="m" dir="ltr">1600/8 = 200</span>, פי 4</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="4" data-topic="p5" id="c-p5-6" type="checkbox"/><label for="c-p5-6">נהג נוסע ב-30 מ'/ש, זמן תגובה שנייה אחת, ואז בולם בתאוצה <span class="m" dir="ltr">−6</span>. מה מרחק העצירה הכולל?</label></div><details class="ans"><summary>תשובה</summary><p>תגובה 30 מטר. בלימה <span class="m" dir="ltr">900/12 = 75</span>. סה״כ 105 מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="4" data-topic="p5" id="c-p5-7" type="checkbox"/><label for="c-p5-7">מכונית מאיצה מ-10 ל-20 מ'/ש על פני 150 מטר. מצא תאוצה וזמן.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = 300/300 = 1</span>. <span class="m" dir="ltr">t = 10</span> שניות</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="4" data-topic="p5" id="c-p5-8" type="checkbox"/><label for="c-p5-8">ממנוחה מאיצים בתאוצה 2 במשך 10 שניות, נעים 10 שניות במהירות קבועה, ובולמים בתאוצה <span class="m" dir="ltr">−5</span> עד עצירה. מצא זמן ומרחק כולל, ומהירות סקלרית ממוצעת.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v = 20</span>. מרחקים <span class="m" dir="ltr">100 + 200 + 40 = 340</span>. זמן בלימה 4, סה״כ 24 שניות. מהירות סקלרית ממוצעת <span class="m" dir="ltr">340/24 ≈ 14.2</span> מ'/ש</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="4" data-topic="p5" id="c-p5-9" type="checkbox"/><label for="c-p5-9"><span class="m" dir="ltr">x(t) = 2t + 3t²</span>. מהם <span class="m" dir="ltr">v₀</span> ו-<span class="m" dir="ltr">a</span>, ומה <span class="m" dir="ltr">v</span> ב-<span class="m" dir="ltr">t = 2</span>?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">v₀ = 2</span>, <span class="m" dir="ltr">a = 6</span>. <span class="m" dir="ltr">v(2) = 2 + 12 = 14</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="p5" id="c-p5-c1" type="checkbox"/><label for="c-p5-c1"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/13-מהירות-מקום/תרגיל-13-1" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 13.1</a></span><span class="nt">פתור כאן כדוגמה. לפתור שוב בלי להסתכל</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="p5" id="c-p5-c2" type="checkbox"/><label for="c-p5-c2"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/13-מהירות-מקום/תרגיל-13-2" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 13.2</a></span><span class="nt">מהירות ומקום בלי זמן</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="p5" id="c-p5-c3" type="checkbox"/><label for="c-p5-c3"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/14-בניית-גרף-מקום/תרגיל-14-1" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 14.1</a></span><span class="nt">בניית גרף מקום</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="p5" id="c-p5-c4" type="checkbox"/><label for="c-p5-c4"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/15-שיפוע-גרף-מקום/תרגיל-15-1" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 15.1</a></span><span class="nt">שיפוע גרף מקום</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="p5" id="c-p5-c5" type="checkbox"/><label for="c-p5-c5"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/16-שטח-גרף-מהירות/תרגיל-16-1" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 16.1</a></span><span class="nt">שטח גרף מהירות</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="p5" id="c-p5-c6" type="checkbox"/><label for="c-p5-c6"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/16-שטח-גרף-מהירות/תרגיל-16-2" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 16.2</a></span><span class="nt">שטח גרף מהירות. אם יש כוח: 13.3, 13.4, 13.5 (פתור כאן) ו-16.3, 16.4</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="p5"></span></p>
+</section>
+<section class="topic phys" id="p6">
+<h2>כוחות וחוקי ניוטון</h2>
+<p class="meta">פיזיקה · פרק 3 בקורס (מושגי יסוד, חוק ראשון, חוק שני) · יום 4–5</p>
+<h3>1. הסבר</h3>
+<p><b>כוח</b> נמדד בניוטון (N). כוח הוא וקטור. הכוח השקול הוא הסכום הווקטורי של כל הכוחות על הגוף.</p>
+<p>כוחות נפוצים: משקל W = m·g (כלפי מטה, ובחוברת g = 10 ), כוח נורמלי N (מהמשטח, ניצב אליו), כוח מתיחות T (בחוט), וחיכוך — שמתנגד להחלקה או לנטייה להחליק בין המשטחים.</p>
+<p><b>חוק ראשון:</b> אם סכום הכוחות על גוף הוא אפס, הגוף נמצא במנוחה או נע במהירות קבועה.</p>
+<p><b>חוק שני:</b> <b><span class="m" dir="ltr">ΣF = m·a</span></b>. סכום הכוחות (בכיוון החיובי שבחרת) שווה למסה כפול התאוצה.</p>
+<p><b>שלבים לפתרון:</b> (1) מציירים את הכוחות על הגוף, (2) בוחרים כיוון חיובי, (3) כותבים <span class="m" dir="ltr">ΣF = m·a</span>, (4) פותרים. אם צריך מהירות או מרחק, מחברים את התאוצה למשוואות התנועה.</p>
+<p><b>מעלית:</b> כשלמעלה חיובי, <span class="m" dir="ltr">T − m·g = m·a</span>, כלומר <span class="m" dir="ltr">T = m(g + a)</span>. אם המעלית מאיצה למטה, <span class="m" dir="ltr">a</span> שלילית ו-<span class="m" dir="ltr">T</span> קטן.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">ΣF = m·a</span></li>
+<li><span class="m" dir="ltr">W = m·g</span>  (כש-<span class="m" dir="ltr">g = 10</span> מ'/ש²)</li>
+<li><span class="m" dir="ltr">T − m·g = m·a</span>  (מעלית, למעלה חיובי)</li>
+<li>מהירות קבועה ⇒ <span class="m" dir="ltr">ΣF = 0</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> מחברים את הכוחות בסימן: כוח לכיוון החיובי בפלוס, לכיוון ההפוך במינוס. וחשוב לא לשכוח את המשקל.</p>
+<div class="bridge">
+<h3>תוספת חשובה: ציור כוחות לפני משוואה</h3>
+<p>צייר <b>רק את הכוחות שפועלים על הגוף שאתה מנתח</b>. אחר כך בחר צירים ורק אז כתוב <span class="m" dir="ltr">ΣF=ma</span>.</p>
+<p><b>הנורמל אינו תמיד mg.</b> הוא שווה ל-<span class="m" dir="ltr">mg</span> רק במקרים פשוטים שבהם אין תאוצה אנכית ואין כוחות אנכיים נוספים. במעלית, למשל, הוא משתנה.</p>
+<p><b>חיכוך:</b> אל תשים אותו אוטומטית ״נגד המהירות״. הוא מתנגד להחלקה או לנטייה להחליק בין המשטחים. בתרגילים הפשוטים של גוף שמחליק על משטח, זה בדרך כלל אכן נגד כיוון ההחלקה.</p>
+<details><summary>תרגיל גשר</summary><p>קופסה של 4 kg על רצפה אופקית נמשכת 18 N ימינה וחיכוך 6 N שמאלה. <span class="m" dir="ltr">ΣF=12 N</span>, ולכן <span class="m" dir="ltr">a=3 m/s²</span> ימינה. אנכית אין תאוצה ולכן במקרה הזה <span class="m" dir="ltr">N=mg=40 N</span>.</p></details>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> גוף בעל מסה 2 ק״ג מקבל כוח שקול 10 ניוטון. מהי התאוצה?</p><div class="sol">
+<p><span class="m" dir="ltr">a = ΣF/m = 10/2 = 5</span> מ'/ש².</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> גוף של 5 ק״ג נדחף בכוח 30 ניוטון ימינה, וחיכוך 10 ניוטון שמאלה. מצא תאוצה. אחרי 4 שניות ממנוחה, מהי המהירות?</p><div class="sol">
+<p><span class="m" dir="ltr">ΣF = 30 − 10 = 20</span>, ולכן <span class="m" dir="ltr">a = 20/5 = 4</span> מ'/ש².</p>
+<p><span class="m" dir="ltr">v = a·t = 16</span> מ'/ש.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> אדם של 60 ק״ג עומד במעלית. מהו הכוח שהרצפה מפעילה עליו כשהמעלית מאיצה למעלה ב-2, מאיצה למטה ב-2, ונעה במהירות קבועה?</p><div class="sol">
+<p>למעלה חיובי: <span class="m" dir="ltr">N − mg = ma</span>, ולכן <span class="m" dir="ltr">N = m(g + a)</span>.</p>
+<p>מאיצה למעלה: <span class="m" dir="ltr">N = 60 · 12 = 720</span> ניוטון.</p>
+<p>מאיצה למטה: <span class="m" dir="ltr">N = 60 · (10 − 2) = 480</span> ניוטון.</p>
+<p>מהירות קבועה: <span class="m" dir="ltr">a = 0</span>, ולכן <span class="m" dir="ltr">N = 600</span> ניוטון.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 4.</b> גוף של 2 ק״ג נופל באוויר, והתנגדות האוויר 4 ניוטון. מהי התאוצה?</p><div class="sol">
+<p>למטה חיובי: משקל <span class="m" dir="ltr">mg = 20</span> למטה, התנגדות 4 למעלה.</p>
+<p><span class="m" dir="ltr">ΣF = 20 − 4 = 16</span>, ולכן <span class="m" dir="ltr">a = 16/2 = 8</span> מ'/ש².</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="4" data-topic="p6" id="c-p6-1" type="checkbox"/><label for="c-p6-1"><span class="m" dir="ltr">ΣF = 12</span> ניוטון ו-<span class="m" dir="ltr">m = 3</span> ק״ג. מצא תאוצה.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = 4</span> מ'/ש²</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="4" data-topic="p6" id="c-p6-2" type="checkbox"/><label for="c-p6-2">גוף של 1000 ק״ג מושפע מכוח שקול 4000 ניוטון. מצא תאוצה.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = 4</span> מ'/ש²</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="4" data-topic="p6" id="c-p6-3" type="checkbox"/><label for="c-p6-3">גוף של 6 ק״ג נדחף ב-50 ניוטון וחיכוך 20 ניוטון. מצא תאוצה.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">ΣF = 30</span>, ולכן <span class="m" dir="ltr">a = 5</span> מ'/ש²</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="4" data-topic="p6" id="c-p6-4" type="checkbox"/><label for="c-p6-4">איזה כוח שקול נדרש כדי לתת לגוף של 4 ק״ג תאוצה 3?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">ΣF = 4 · 3 = 12</span> ניוטון</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="4" data-topic="p6" id="c-p6-5" type="checkbox"/><label for="c-p6-5">מהו המשקל של אדם שמסתו 70 ק״ג?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">W = 70 · 10 = 700</span> ניוטון</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="4" data-topic="p6" id="c-p6-6" type="checkbox"/><label for="c-p6-6">אדם של 80 ק״ג עומד במעלית שמאיצה למעלה ב-1.5. ואז למטה ב-1.5. מצא את הכוח מהרצפה בכל מקרה.</label></div><details class="ans"><summary>תשובה</summary><p>למעלה: <span class="m" dir="ltr">80 · 11.5 = 920</span> ניוטון. למטה: <span class="m" dir="ltr">80 · 8.5 = 680</span> ניוטון</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="4" data-topic="p6" id="c-p6-7" type="checkbox"/><label for="c-p6-7">גוף של 1000 ק״ג מאיץ ממנוחה ל-12 מ'/ש ב-4 שניות. מהו הכוח השקול?</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">a = 3</span>, ולכן <span class="m" dir="ltr">ΣF = 3000</span> ניוטון</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="4" data-topic="p6" id="c-p6-8" type="checkbox"/><label for="c-p6-8">גוף של 2 ק״ג נמשך ב-14 ניוטון, וחיכוך 4 ניוטון. הוא יוצא ממנוחה. מצא תאוצה, מהירות ומרחק אחרי 3 שניות.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">ΣF = 10</span>, <span class="m" dir="ltr">a = 5</span>. <span class="m" dir="ltr">v = 15</span> מ'/ש. <span class="m" dir="ltr">x = ½ · 5 · 9 = 22.5</span> מטר</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="4" data-topic="p6" id="c-p6-9" type="checkbox"/><label for="c-p6-9">גוף נע במהירות קבועה כשדוחפים אותו ב-500 ניוטון. מהו החיכוך? (חוק ראשון)</label></div><details class="ans"><summary>תשובה</summary><p>מהירות קבועה ⇒ <span class="m" dir="ltr">ΣF = 0</span>, ולכן החיכוך 500 ניוטון בכיוון ההפוך</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="4" data-topic="p6" id="c-p6-10" type="checkbox"/><label for="c-p6-10">גוף של 0.4 ק״ג נופל, והתנגדות האוויר 1 ניוטון. מצא תאוצה.</label></div><details class="ans"><summary>תשובה</summary><p>משקל <span class="m" dir="ltr">4</span> ניוטון. <span class="m" dir="ltr">ΣF = 3</span>, ולכן <span class="m" dir="ltr">a = 3/0.4 = 7.5</span> מ'/ש²</p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="4" data-topic="p6" id="c-p6-11" type="checkbox"/><label for="c-p6-11">כדור של 0.5 ק״ג נופל ממנוחה מגובה 10 מטר, והתנגדות אוויר 0.6 ניוטון. מצא תאוצה ומהירות פגיעה.</label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">ΣF = 5 − 0.6 = 4.4</span>, <span class="m" dir="ltr">a = 8.8</span>. <span class="m" dir="ltr">v² = 2 · 8.8 · 10 = 176</span>, ולכן <span class="m" dir="ltr">v ≈ 13.3</span> מ'/ש</p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="4" data-topic="p6" id="c-p6-c1" type="checkbox"/><label for="c-p6-c1"><span class="tt">חוברת הפיזיקה, תרגיל 87, סעיפים א ו-ב1</span><span class="nt">עמ' 64: כוחות על גוף שתלוי במעלית. בסעיף א מספיק לרשום את הכוחות. במהירות קבועה סכום הכוחות הוא אפס</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="p6"></span></p>
+</section>
+</section>
+<section class="day" id="day5"><header class="dayhead"><h1>יום 5: משוואות מתקדמות, זהויות, חוק שני וחזרה</h1><p class="busy"><b>אם היום עמוס:</b> במתמטיקה רק משוואות רציונליות ואי-רציונליות בלי חזרה, בפיזיקה תרגילים 17.1, 18.1 ו-87, ובטריגונומטריה רק זהויות 1–3 ו-6–7.</p><p class="daycnt"><span data-daycount="5"></span></p></header>
+<section class="topic math" id="m9">
+<h2>משוואות רציונליות (עם שברים אלגבריים)</h2>
+<p class="meta">מתמטיקה · עמ' 27–29 בחוברת · יום 5</p>
+<h3>1. הסבר</h3>
+<p>משוואה רציונלית היא משוואה שהנעלם נמצא בה במכנה. הדרך: (1) קובעים איזה ערכים אסורים (המכנה לא יכול להיות 0), (2) כופלים בכל המכנים, (3) פותרים, (4) <b>פוסלים</b> פתרון אסור.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li>תחום ההגדרה: כל מכנה שונה מ-0</li>
+<li>כופלים את כל שני האגפים במכנה המשותף</li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> אחרי שפתרת, חובה לבדוק שהפתרון לא מאפס מכנה. פתרון כזה אינו פתרון של המשוואה.</p>
+<div class="bridge mathbridge">
+<h3>תוספת חשובה: תחום הגדרה נכתב לפני שמוחקים מכנים</h3>
+<p>אם המכנים הם <span class="m" dir="ltr">x</span> ו-<span class="m" dir="ltr">x−2</span>, כתוב קודם <span class="m" dir="ltr">x≠0,2</span>. גם אם אחרי הכפל המכנים נעלמים, האיסורים נשארים עד סוף התרגיל.</p>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> פתור: <span class="m" dir="ltr">2/x + 3/(x + 1) = 2</span>.</p><div class="sol">
+<p>אסור: <span class="m" dir="ltr">x ≠ 0, −1</span>. כופלים ב-<span class="m" dir="ltr">x(x + 1)</span>: <span class="m" dir="ltr">2(x + 1) + 3x = 2x(x + 1)</span>.</p>
+<p><span class="m" dir="ltr">5x + 2 = 2x² + 2x</span>, ולכן <span class="m" dir="ltr">2x² − 3x − 2 = 0</span>.</p>
+<p><span class="m" dir="ltr">x = (3 ± 5)/4</span>: <span class="m" dir="ltr">x = 2</span> או <span class="m" dir="ltr">x = −1/2</span>. שניהם מותרים.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> פתור: <span class="m" dir="ltr">x²/(x − 3) = 9/(x − 3)</span>.</p><div class="sol">
+<p>אסור: <span class="m" dir="ltr">x ≠ 3</span>. כופלים ב-<span class="m" dir="ltr">(x − 3)</span>: <span class="m" dir="ltr">x² = 9</span>, ולכן <span class="m" dir="ltr">x = 3</span> או <span class="m" dir="ltr">x = −3</span>.</p>
+<p>הפתרון <span class="m" dir="ltr">x = 3</span> אסור. התשובה: <span class="m" dir="ltr">x = −3</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="5" data-topic="m9" id="c-m9-1" type="checkbox"/><label for="c-m9-1"><span class="m" dir="ltr">6/x = 3</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x = 2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="5" data-topic="m9" id="c-m9-2" type="checkbox"/><label for="c-m9-2"><span class="m" dir="ltr">1/x + 1/2 = 3/4</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">1/x = 1/4</span>, ולכן <span class="m" dir="ltr">x = 4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="5" data-topic="m9" id="c-m9-3" type="checkbox"/><label for="c-m9-3"><span class="m" dir="ltr">5/(x − 1) = 2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">5 = 2(x − 1)</span>, ולכן <span class="m" dir="ltr">x = 3.5</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="5" data-topic="m9" id="c-m9-4" type="checkbox"/><label for="c-m9-4"><span class="m" dir="ltr">x/(x − 2) = 3</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x = 3x − 6</span>, ולכן <span class="m" dir="ltr">x = 3</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="5" data-topic="m9" id="c-m9-5" type="checkbox"/><label for="c-m9-5"><span class="m" dir="ltr">2/(x − 1) − 3/(x + 1) = 0</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">2(x + 1) = 3(x − 1)</span>, ולכן <span class="m" dir="ltr">2x + 2 = 3x − 3</span> ו-<span class="m" dir="ltr">x = 5</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="5" data-topic="m9" id="c-m9-6" type="checkbox"/><label for="c-m9-6"><span class="m" dir="ltr">x²/(x − 4) = 16/(x − 4)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² = 16</span>, אבל <span class="m" dir="ltr">x ≠ 4</span>, ולכן <span class="m" dir="ltr">x = −4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="5" data-topic="m9" id="c-m9-7" type="checkbox"/><label for="c-m9-7"><span class="m" dir="ltr">1/x + 1/(x + 2) = 3/4</span></label></div><details class="ans"><summary>תשובה</summary><p>כופלים ב-<span class="m" dir="ltr">4x(x + 2)</span>: <span class="m" dir="ltr">4(x + 2) + 4x = 3x(x + 2)</span>, ולכן <span class="m" dir="ltr">3x² − 2x − 8 = 0</span>. <span class="m" dir="ltr">D = 100</span>, ו-<span class="m" dir="ltr">x = (2 ± 10)/6</span>: <span class="m" dir="ltr">x = 2</span> או <span class="m" dir="ltr">x = −4/3</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="m9" id="c-m9-c1" type="checkbox"/><label for="c-m9-c1"><span class="tt">עמ' 29, משוואות רציונליות</span><span class="nt">תרגילים 1, 2, 3, 5 ו-7. בחוברת הרמה גבוהה יותר, ואם קשה חוזרים לתרגילים שכאן</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m9"></span></p>
+</section>
+<section class="topic math" id="m10">
+<h2>משוואות אי-רציונליות (עם שורשים)</h2>
+<p class="meta">מתמטיקה · עמ' 29–31 בחוברת · יום 5</p>
+<h3>1. הסבר</h3>
+<p>הדרך: (1) מבודדים את השורש בצד אחד, (2) מעלים את שני האגפים בריבוע, (3) פותרים, (4) <b>בודקים</b> כל פתרון במשוואה המקורית.</p>
+<p>הבדיקה הכרחית, כי העלאה בריבוע יכולה להוסיף פתרונות שלא מתאימים. שורש ריבועי אף פעם אינו שלילי.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">(√a)² = a</span>   (כש-<span class="m" dir="ltr">a ≥ 0</span>)</li>
+<li>לבדוק תמיד: <span class="m" dir="ltr">√(...) ≥ 0</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> מי ששוכח לבדוק מקבל פתרונות מזויפים. כדאי להציב תמיד במשוואה המקורית.</p>
+<div class="bridge mathbridge">
+<h3>תוספת חשובה: יש שתי בדיקות, לא רק אחת</h3>
+<p>לפני פתרון, כל ביטוי מתחת לשורש ריבועי חייב להיות <span class="m" dir="ltr">≥0</span>. אחרי העלאה בריבוע, מציבים כל פתרון במשוואה <b>המקורית</b>, כי הריבוע עלול ליצור פתרון זר.</p>
+</div><h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> פתור: <span class="m" dir="ltr">√(x + 3) = x − 3</span>.</p><div class="sol">
+<p>מעלים בריבוע: <span class="m" dir="ltr">x + 3 = x² − 6x + 9</span>, ולכן <span class="m" dir="ltr">x² − 7x + 6 = 0</span>, כלומר <span class="m" dir="ltr">x = 1</span> או <span class="m" dir="ltr">x = 6</span>.</p>
+<p>בדיקה: <span class="m" dir="ltr">x = 1</span>: <span class="m" dir="ltr">√4 = 2</span> אבל <span class="m" dir="ltr">1 − 3 = −2</span>, לא נכון. <span class="m" dir="ltr">x = 6</span>: <span class="m" dir="ltr">√9 = 3 = 6 − 3</span>, נכון.</p>
+<p>התשובה: <span class="m" dir="ltr">x = 6</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> פתור: <span class="m" dir="ltr">√(2x + 1) = 3</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">2x + 1 = 9</span>, ולכן <span class="m" dir="ltr">x = 4</span>. בדיקה: <span class="m" dir="ltr">√9 = 3</span>. נכון.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="5" data-topic="m10" id="c-m10-1" type="checkbox"/><label for="c-m10-1"><span class="m" dir="ltr">√x = 5</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x = 25</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="5" data-topic="m10" id="c-m10-2" type="checkbox"/><label for="c-m10-2"><span class="m" dir="ltr">√(3x − 2) = 4</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3x − 2 = 16</span>, ולכן <span class="m" dir="ltr">x = 6</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="5" data-topic="m10" id="c-m10-3" type="checkbox"/><label for="c-m10-3"><span class="m" dir="ltr">√(x + 6) = x</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x + 6 = x²</span>, ולכן <span class="m" dir="ltr">x = 3</span> או <span class="m" dir="ltr">x = −2</span>. בדיקה: <span class="m" dir="ltr">x = −2</span> נפסל כי <span class="m" dir="ltr">√4 = 2 ≠ −2</span>. התשובה: <span class="m" dir="ltr">x = 3</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="5" data-topic="m10" id="c-m10-4" type="checkbox"/><label for="c-m10-4"><span class="m" dir="ltr">√(x + 7) = x + 1</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x + 7 = x² + 2x + 1</span>, ולכן <span class="m" dir="ltr">x² + x − 6 = 0</span>: <span class="m" dir="ltr">x = 2</span> או <span class="m" dir="ltr">x = −3</span>. <span class="m" dir="ltr">x = −3</span> נפסל. התשובה: <span class="m" dir="ltr">x = 2</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="5" data-topic="m10" id="c-m10-5" type="checkbox"/><label for="c-m10-5"><span class="m" dir="ltr">√(3x + 1) = √(x + 9)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">3x + 1 = x + 9</span>, ולכן <span class="m" dir="ltr">x = 4</span>. בדיקה: <span class="m" dir="ltr">√13 = √13</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="5" data-topic="m10" id="c-m10-6" type="checkbox"/><label for="c-m10-6"><span class="m" dir="ltr">√(x² − 5) = 2</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">x² − 5 = 4</span>, ולכן <span class="m" dir="ltr">x = ±3</span>. שניהם מקיימים</p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="m10" id="c-m10-c1" type="checkbox"/><label for="c-m10-c1"><span class="tt">עמ' 31, משוואות אי-רציונליות</span><span class="nt">תרגילים 1, 2, 3 ו-6. בחוברת הרמה גבוהה יותר, ואם קשה חוזרים לתרגילים שכאן</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="m10"></span></p>
+</section>
+<section class="topic trig" id="t2">
+<h2>זהויות טריגונומטריות</h2>
+<p class="meta">טריגונומטריה · עמ' 79 בחוברת הטריגונומטריה · יום 5</p>
+<h3>1. הסבר</h3>
+<p>הזהות החשובה ביותר: <span class="m" dir="ltr">sin²α + cos²α = 1</span>. ממנה יוצאות כל האחרות.</p>
+<p><b>להוכיח זהות:</b> מתחילים מהצד המסובך יותר, ומגיעים לצד השני בעזרת הנוסחאות. לא מעבירים אגפים.</p>
+<p>טיפ: כשיש <span class="m" dir="ltr">tan</span> או <span class="m" dir="ltr">cot</span>, מחליפים אותם ב-<span class="m" dir="ltr">sin</span> וב-<span class="m" dir="ltr">cos</span>. כשיש <span class="m" dir="ltr">1 − cos²α</span>, מחליפים ב-<span class="m" dir="ltr">sin²α</span>, ולהפך.</p>
+<p><b>חישוב ערכים:</b> אם נתון ערך אחד של זווית ורבע, מוצאים את השאר בעזרת <span class="m" dir="ltr">sin²α + cos²α = 1</span> ובודקים סימן לפי הרבע.</p>
+<div class="formulas"><b>מה צריך לזכור</b><ul>
+<li><span class="m" dir="ltr">sin²α + cos²α = 1</span></li>
+<li><span class="m" dir="ltr">tan α = sin α / cos α</span> <span class="m" dir="ltr">cot α = cos α / sin α</span> <span class="m" dir="ltr">tan α · cot α = 1</span></li>
+<li><span class="m" dir="ltr">1 + tan²α = 1/cos²α</span> <span class="m" dir="ltr">1 + cot²α = 1/sin²α</span></li>
+<li><span class="m" dir="ltr">sin(90° − α) = cos α</span> <span class="m" dir="ltr">cos(90° − α) = sin α</span></li>
+</ul></div>
+<p class="mistake"><b>טעות נפוצה:</b> בהוכחה לא מתחילים מהמסקנה. מתחילים מצד אחד ומגיעים לצד השני.</p>
+<h3>2. דוגמאות פתורות</h3>
+<div class="ex"><p class="q"><b>דוגמה 1.</b> הוכח: <span class="m" dir="ltr">cot α · sin α = cos α</span>.</p><div class="sol">
+<p>צד שמאל: <span class="m" dir="ltr">(cos α / sin α) · sin α</span>.</p>
+<p>מצמצמים <span class="m" dir="ltr">sin α</span> ומקבלים <span class="m" dir="ltr">cos α</span>, כמו צד ימין.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 2.</b> הוכח: <span class="m" dir="ltr">(1 − cos α)(1 + cos α)/cos²α = tan²α</span>.</p><div class="sol">
+<p>מונה: <span class="m" dir="ltr">1 − cos²α = sin²α</span>.</p>
+<p>לכן צד שמאל <span class="m" dir="ltr">sin²α/cos²α = tan²α</span>.</p>
+</div></div>
+<div class="ex"><p class="q"><b>דוגמה 3.</b> נתון <span class="m" dir="ltr">sin α = 3/5</span>, כש-<span class="m" dir="ltr">0° &lt; α &lt; 90°</span>. מצא <span class="m" dir="ltr">cos α</span> ו-<span class="m" dir="ltr">tan α</span>.</p><div class="sol">
+<p><span class="m" dir="ltr">cos²α = 1 − 9/25 = 16/25</span>, ולכן <span class="m" dir="ltr">cos α = 4/5</span> (חיובי ברבע 1).</p>
+<p><span class="m" dir="ltr">tan α = (3/5)/(4/5) = 3/4</span>.</p>
+</div></div>
+<h3>3. תרגול נוסף, עם תשובות</h3>
+<ol class="exs">
+<li><div class="row"><input aria-label="פתרתי את תרגיל 1" data-day="5" data-topic="t2" id="c-t2-1" type="checkbox"/><label for="c-t2-1">הוכח: <span class="m" dir="ltr">tan α · cos α = sin α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(sin α/cos α) · cos α = sin α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 2" data-day="5" data-topic="t2" id="c-t2-2" type="checkbox"/><label for="c-t2-2">הוכח: <span class="m" dir="ltr">cot α · sin α = cos α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">(cos α/sin α) · sin α = cos α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 3" data-day="5" data-topic="t2" id="c-t2-3" type="checkbox"/><label for="c-t2-3">הוכח: <span class="m" dir="ltr">(1 − sin α)(1 + sin α) = cos²α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">1 − sin²α = cos²α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 4" data-day="5" data-topic="t2" id="c-t2-4" type="checkbox"/><label for="c-t2-4">הוכח: <span class="m" dir="ltr">(sin α + cos α)² = 1 + 2 sin α cos α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">sin²α + 2 sin α cos α + cos²α = 1 + 2 sin α cos α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 5" data-day="5" data-topic="t2" id="c-t2-5" type="checkbox"/><label for="c-t2-5">הוכח: <span class="m" dir="ltr">tan α + cot α = 1/(sin α cos α)</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">sin α/cos α + cos α/sin α = (sin²α + cos²α)/(sin α cos α) = 1/(sin α cos α)</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 6" data-day="5" data-topic="t2" id="c-t2-6" type="checkbox"/><label for="c-t2-6">הוכח: <span class="m" dir="ltr">1/(1 + tan²α) = cos²α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">1 + tan²α = 1/cos²α</span>, ולכן ההופכי הוא <span class="m" dir="ltr">cos²α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 7" data-day="5" data-topic="t2" id="c-t2-7" type="checkbox"/><label for="c-t2-7">הוכח: <span class="m" dir="ltr">sin²α − cos²α = 2 sin²α − 1</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">cos²α = 1 − sin²α</span>, ולכן <span class="m" dir="ltr">sin²α − 1 + sin²α = 2 sin²α − 1</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 8" data-day="5" data-topic="t2" id="c-t2-8" type="checkbox"/><label for="c-t2-8">הוכח: <span class="m" dir="ltr">sin⁴α − cos⁴α = sin²α − cos²α</span></label></div><details class="ans"><summary>תשובה</summary><p>הפרש ריבועים: <span class="m" dir="ltr">(sin²α − cos²α)(sin²α + cos²α) = (sin²α − cos²α) · 1</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 9" data-day="5" data-topic="t2" id="c-t2-9" type="checkbox"/><label for="c-t2-9">הוכח: <span class="m" dir="ltr">sin(90° − α) · tan α = sin α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">cos α · (sin α/cos α) = sin α</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 10" data-day="5" data-topic="t2" id="c-t2-10" type="checkbox"/><label for="c-t2-10">נתון <span class="m" dir="ltr">sin α = 5/13</span>, <span class="m" dir="ltr">0° &lt; α &lt; 90°</span>. מצא <span class="m" dir="ltr">cos α</span> ו-<span class="m" dir="ltr">tan α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">cos α = 12/13</span>, <span class="m" dir="ltr">tan α = 5/12</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 11" data-day="5" data-topic="t2" id="c-t2-11" type="checkbox"/><label for="c-t2-11">נתון <span class="m" dir="ltr">cos α = −4/5</span>, <span class="m" dir="ltr">90° &lt; α &lt; 180°</span>. מצא <span class="m" dir="ltr">sin α</span> ו-<span class="m" dir="ltr">tan α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">sin²α = 1 − 16/25 = 9/25</span>, ברבע 2 sin חיובי: <span class="m" dir="ltr">sin α = 3/5</span>. <span class="m" dir="ltr">tan α = −3/4</span></p></details></li>
+<li><div class="row"><input aria-label="פתרתי את תרגיל 12" data-day="5" data-topic="t2" id="c-t2-12" type="checkbox"/><label for="c-t2-12">נתון <span class="m" dir="ltr">tan α = 2</span>, <span class="m" dir="ltr">0° &lt; α &lt; 90°</span>. מצא <span class="m" dir="ltr">sin α</span> ו-<span class="m" dir="ltr">cos α</span></label></div><details class="ans"><summary>תשובה</summary><p><span class="m" dir="ltr">1/cos²α = 1 + 4 = 5</span>, ולכן <span class="m" dir="ltr">cos α = √5/5</span>. <span class="m" dir="ltr">sin α = tan α · cos α = 2√5/5</span></p></details></li>
+</ol>
+<h3>4. תרגילים מהקורס ומהחוברת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="t2" id="c-t2-c1" type="checkbox"/><label for="c-t2-c1"><span class="tt">עמ' 79, זהויות 1–3</span><span class="nt">הוכחות קצרות. מתחילים מהצד הפשוט פחות</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="t2" id="c-t2-c2" type="checkbox"/><label for="c-t2-c2"><span class="tt">עמ' 79, זהויות 6–7</span><span class="nt">ריבוע של סכום או הפרש של sin ו-cos</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="t2" id="c-t2-c3" type="checkbox"/><label for="c-t2-c3"><span class="tt">עמ' 79, זהויות 9–10 ו-12–13</span><span class="nt">שימוש ב-sin² + cos² = 1</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="t2" id="c-t2-c4" type="checkbox"/><label for="c-t2-c4"><span class="tt">עמ' 79, זהויות 14–17</span><span class="nt">אם יש כוח. קשות יותר</span></label></li>
+</ul>
+<p class="cntline"><span class="cnt" data-topic="t2"></span></p>
+</section>
+<section class="topic phys cont" id="p5b"><h2>המשך שוות תאוצה ג (נושאים 17–18)</h2>
+<p class="meta">ההסבר נמצא ביום 4, בנושא שלוש המשוואות ושלושת הגרפים. <a href="#p5">לקפוץ להסבר</a></p>
+<h3>תרגילים <span class="cnt" data-topic="p5b"></span></h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="p5b" id="c-p5b-c1" type="checkbox"/><label for="c-p5b-c1"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/17-שלושה-גרפים/תרגיל-17-1" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 17.1</a></span><span class="nt">שלושה גרפים. יש פתרון באתר</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="p5b" id="c-p5b-c2" type="checkbox"/><label for="c-p5b-c2"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/17-שלושה-גרפים/תרגיל-17-2" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 17.2</a></span><span class="nt">שלושה גרפים. יש פתרון באתר</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="p5b" id="c-p5b-c3" type="checkbox"/><label for="c-p5b-c3"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/18-שלוש-משוואות/תרגיל-18-1" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 18.1</a></span><span class="nt">שלוש משוואות. יש תשובות באתר</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="p5b" id="c-p5b-c4" type="checkbox"/><label for="c-p5b-c4"><span class="tt"><a href="https://sites.google.com/view/kinematikayashar/שוות-תאוצה-ג/18-שלוש-משוואות/תרגיל-18-2" rel="noopener" target="_blank">שוות תאוצה ג, תרגיל 18.2</a></span><span class="nt">שלוש משוואות. יש תשובות באתר. אם יש כוח: 18.3–18.5</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="p5b" id="c-p5b-c5" type="checkbox"/><label for="c-p5b-c5"><span class="tt">הגשה של חלק ג באתר</span><span class="nt">חלק ג חייב להסתיים עד נושא 18, ובהגשה עד תרגיל 14</span></label></li>
+</ul>
+</section>
+<section class="topic phys cont" id="p6b"><h2>חוק שני: תרגילים</h2>
+<p class="meta">ההסבר על חוק שני נמצא ביום 4, בנושא כוחות וחוקי ניוטון. <a href="#p6">לקפוץ להסבר</a></p>
+<h3>תרגילים <span class="cnt" data-topic="p6b"></span></h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="p6b" id="c-p6b-c1" type="checkbox"/><label for="c-p6b-c1"><span class="tt">חוברת הפיזיקה, תרגיל 87, סעיפים ב2–ב3</span><span class="nt">עמ' 64: מעלית שמאיצה למעלה ולמטה</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="p6b" id="c-p6b-c2" type="checkbox"/><label for="c-p6b-c2"><span class="tt">חוברת הפיזיקה, תרגיל 92, סעיף א</span><span class="nt">עמ' 68: בכל שלב מחשבים סכום כוחות ואז תאוצה</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="p6b" id="c-p6b-c3" type="checkbox"/><label for="c-p6b-c3"><span class="tt">חוברת הפיזיקה, תרגיל 4, סעיפים א–ג</span><span class="nt">עמ' 4: כדור נופל באוויר ואז בשלג. חוק שני, נוסחת תנועה, ושוב חוק שני</span></label></li>
+</ul>
+</section>
+<section class="topic review" id="review"><h2>חזרה בסוף היום</h2>
+<h3>לסמן כשסיימת</h3>
+<ul class="tasks">
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="review" id="c-review-c1" type="checkbox"/><label for="c-review-c1"><span class="tt">חזרה: לפתור מחדש משוואה אחת מכל סוג</span><span class="nt">בלי להסתכל בפתרון. משוואות ריבועיות, רציונליות ואי-רציונליות</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="review" id="c-review-c2" type="checkbox"/><label for="c-review-c2"><span class="tt">חזרה: לפתור מחדש תרגיל אחד מכל נושא בפיזיקה</span><span class="nt">גרף, שלוש משוואות, חוק שני</span></label></li>
+<li class="task"><input aria-label="סימון" data-day="5" data-topic="review" id="c-review-c3" type="checkbox"/><label for="c-review-c3"><span class="tt">חזרה: לעבור על תיבות ״מה צריך לזכור״ של כל נושא</span><span class="nt">אם נוסחה לא ברורה, לחזור להסבר שלה</span></label></li>
+</ul>
+</section>
+</section>
+<section class="topic review" id="mastery">
+<h2>שער מעבר: מתי באמת אפשר להגיד ״השלמתי״</h2>
+<p>אין צורך לפתור את כל התרגילים כדי לעבור נושא. לפני מעבר, ודא שאתה מסוגל:</p>
+<ol class="prio">
+<li>להסביר במילים מה הנוסחה/הכלל אומר, לא רק לדקלם אותו.</li>
+<li>לפתור תרגיל בסיסי בלי דוגמה פתוחה לידך.</li>
+<li>לזהות טעות טיפוסית אחת בנושא (סימן, תחום, יחידות, רבע, דרך מול העתק וכו').</li>
+<li>לפתור תרגיל אחד מעורב שבו צריך לבחור בעצמך את הדרך.</li>
+</ol>
+<p class="mistake"><b>אם סעיף 2 או 4 לא עובד:</b> אל תוסיף עוד חומר חדש. חזור לדוגמה הפתורה, סגור אותה, ופתור גרסה דומה בעצמך.</p>
+</section><section class="topic review" id="priority">
+<h2>אם נגמר הזמן: מה קודם</h2>
+<ol class="prio">
+<li>משוואות ריבועיות (יום 4). צריך אותן בכל המשך המתמטיקה ובפיזיקה.</li>
+<li>גרפי מהירות–זמן: שיפוע הוא תאוצה, שטח הוא העתק.</li>
+<li>שלוש המשוואות של תנועה בתאוצה קבועה, ואיך בוחרים ביניהן.</li>
+<li>חוק שני של ניוטון: סכום הכוחות שווה מסה כפול תאוצה.</li>
+<li>הנוסחאות של עמ' 79 בטריגונומטריה, והכלל של המעגל.</li>
+<li>אפשר לדלג ראשון על: חילוק פולינומים ומשוואות פולינומיות (יום 4), ותרגילי הרשות.</li>
+</ol>
+<p class="meta">לפי הגיליון, לא נכללו בחומר: חוק שלישי, זריקה אנכית, ושוות תאוצה ג נושאים 19–21.</p>
+</section>
+<p class="lead" style="margin-top:36px">בעמודי החוברת, המספרים הם המספרים המודפסים על העמוד. בקובץ ה-PDF העמוד נמצא בדרך כלל אחד לפני.</p>
+</main>
+<script>
+(function(){
+  var KEY = "notebook-progress-v1";
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var boxes = document.querySelectorAll('input[type="checkbox"][data-day]');
+  function counts(){
+    var tot = 0, done = 0, perDay = {}, perTopic = {};
+    boxes.forEach(function(b){
+      var d = b.dataset.day, t = b.dataset.topic;
+      perDay[d] = perDay[d] || [0,0]; perTopic[t] = perTopic[t] || [0,0];
+      perDay[d][1]++; perTopic[t][1]++; tot++;
+      if (b.checked){ perDay[d][0]++; perTopic[t][0]++; done++; }
+    });
+    document.querySelectorAll('[data-daycount]').forEach(function(s){
+      var p = perDay[s.dataset.daycount]; if (!p) return;
+      s.textContent = p[0] + "/" + p[1];
+    });
+    document.querySelectorAll('.cnt[data-topic]').forEach(function(s){
+      var p = perTopic[s.dataset.topic]; if (p) s.textContent = "סימנת " + p[0] + " מתוך " + p[1];
+    });
+    document.getElementById("total").textContent = "סימנת " + done + " מתוך " + tot + " משימות";
+    document.getElementById("pbar").style.width = (tot ? (done / tot * 100) : 0) + "%";
+  }
+  boxes.forEach(function(b){
+    b.checked = !!state[b.id];
+    b.addEventListener("change", function(){ state[b.id] = b.checked; save(); counts(); });
+  });
+  counts();
+  document.getElementById("openAll").addEventListener("click", function(){ document.querySelectorAll("details.ans").forEach(function(d){ d.open = true; }); });
+  document.getElementById("closeAll").addEventListener("click", function(){ document.querySelectorAll("details.ans").forEach(function(d){ d.open = false; }); });
+  document.getElementById("reset").addEventListener("click", function(){
+    if (!confirm("לאפס את כל הסימונים?")) return;
+    state = {}; save(); boxes.forEach(function(b){ b.checked = false; }); counts();
+  });
+})();
+</script>
+</body>
+</html>
